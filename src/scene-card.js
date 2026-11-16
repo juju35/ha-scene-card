@@ -2049,6 +2049,18 @@ const resolve = (hass, config) => {
   const lights = Object.keys(hass.states).filter((id) => domainOf(id) === "light");
   const areaByName = new Map(Object.values(hass.areas || {}).map((a) => [String(a.name).toLowerCase(), a.area_id]));
   const lightsOf = new Map();
+  // The lights counted as "on" for a scene: only those it really sets (listed, or on its device), a light group
+  // expanded to its members; null when they come from the area, or a Hue room light that can't be expanded.
+  const countOf = new Map();
+  const byFriendly = new Map(lights.map((id) => [String(hass.states[id]?.attributes?.friendly_name || ""), id]));
+  const expand = (id) => {
+    const a = hass.states[id]?.attributes || {};
+    const listed = asList(a.entity_id).filter((x) => domainOf(x) === "light" && x !== id);
+    if (listed.length) return listed;
+    const named = asList(a.lights).map((n) => byFriendly.get(String(n))).filter((x) => x && x !== id);
+    if (named.length) return named;
+    return a.is_hue_group ? null : [id];
+  };
   for (const sc of scenes) {
     const attrs = hass.states[sc.entity].attributes || {};
     const listed = asList(attrs.entity_id);
@@ -2056,6 +2068,7 @@ const resolve = (hass, config) => {
     const area = sc.area || (attrs.group_name ? areaByName.get(String(attrs.group_name).toLowerCase()) : null) || null;
     let members = listed;
     if (!members.length && device) members = lights.filter((id) => hass.entities?.[id]?.device_id === device);
+    const sure = members.length > 0;
     if (!members.length && attrs.group_name) {
       const named = areaByName.get(String(attrs.group_name).toLowerCase());
       if (named) members = lights.filter((id) => areaOf(hass, id) === named);
@@ -2063,10 +2076,20 @@ const resolve = (hass, config) => {
     if (!members.length && area) members = lights.filter((id) => areaOf(hass, id) === area);
     if (!sc.area && area) sc.area = area;
     lightsOf.set(sc.entity, members);
+    if (sure) {
+      const parts = members.map(expand);
+      countOf.set(sc.entity, parts.some((x) => x === null) ? null : [...new Set(parts.flat())]);
+    } else countOf.set(sc.entity, null);
   }
-  const out = { scenes, scripts, lightsOf };
+  const out = { scenes, scripts, lightsOf, countOf };
   per.set(sig, out);
   return out;
+};
+
+// Relative luminance of a #rrggbb color (0 black … 1 white).
+const luminance = (hex) => {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 };
 
 // When a scene was last activated: the state of every scene entity, or null (never).
@@ -2126,7 +2149,12 @@ const SCENE_STYLE = `
                 background: var(--secondary-background-color, rgba(127,127,127,.12)); transition: background-color .3s ease, border-color .3s ease; }
   button.tile.tint { background: color-mix(in srgb, var(--c) 13%, var(--secondary-background-color, rgba(127,127,127,.12)));
                      border-color: color-mix(in srgb, var(--c) 30%, transparent); }
-  button.tile:hover { background: color-mix(in srgb, var(--c) 8%, var(--secondary-background-color, rgba(127,127,127,.12))); }
+  /* Only with a real pointer (no sticky hover after a tap on WebKit), and never over the active tile's tint. */
+  @media (hover: hover) {
+    button.tile:not(.tint):hover { background: color-mix(in srgb, var(--c) 8%, var(--secondary-background-color, rgba(127,127,127,.12))); }
+  }
+  .hero-body .big b { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .big ha-icon { --mdc-icon-size: 24px; color: var(--c); align-self: center; flex: none; }
   button.tile:focus-visible { outline: 2px solid var(--primary-color, var(--sc-accent)); outline-offset: 2px; }
   .tile .row-icon > ha-icon { --mdc-icon-size: 18px; }
   /* The scene just launched: a ripple from its icon. */
@@ -2166,7 +2194,6 @@ const SCENE_STYLE = `
   @container (max-width: 200px) {
     .hero-art { display: none; }
     .tiles { --cols: 1; }
-    .mini .picks { display: none; }
   }
 `;
 
@@ -2188,7 +2215,7 @@ class SceneCard extends CardBase {
   }
 
   _entityIds(m) {
-    return [...m.scenes.map((x) => x.entity), ...m.scripts.map((x) => x.entity), ...new Set([...m.lightsOf.values()].flat())];
+    return [...m.scenes.map((x) => x.entity), ...m.scripts.map((x) => x.entity), ...new Set([...m.lightsOf.values(), ...[...m.countOf.values()].filter(Boolean)].flat())];
   }
 
   _extraDeps() {
@@ -2229,21 +2256,30 @@ class SceneCard extends CardBase {
     // SmartThings scenes have a color of their own (a hex code).
     const own = this._s(x.entity)?.attributes?.color;
     const hex = typeof own === "string" && /^#?[0-9a-f]{6}$/i.test(own) ? (own.startsWith("#") ? own : `#${own}`) : null;
-    return x.color || hex || (key && TINTS[key]) || "var(--sc-accent)";
+    // A very light color (cream, pale yellow) would leave its icon unreadable: darkened.
+    const light = hex && luminance(hex) > 0.6;
+    return x.color || (hex && (light ? `color-mix(in srgb, ${hex} 55%, #000)` : hex)) || (key && TINTS[key]) || "var(--sc-accent)";
   }
 
-  // The lights a scene set that are on.
+  // The lights a scene set that are on; 0 when the card can't tell which lights the scene sets.
   _lightsOn(m, x) {
-    return (m.lightsOf.get(x.entity) || []).filter((id) => this._s(id)?.state === "on").length;
+    return (m.countOf.get(x.entity) || []).filter((id) => this._s(id)?.state === "on").length;
   }
 
   _summary(m) {
     const active = activeScenes(this._hass, m);
-    const running = m.scripts.filter((x) => this._s(x.entity)?.state === "on");
+    // Running scripts are not shown anywhere when the scripts are hidden.
+    const running = this._config.show_scripts === false ? [] : m.scripts.filter((x) => this._s(x.entity)?.state === "on");
     const on = m.scenes.filter((x) => active.has(x.entity));
-    const sub = on.length ? this._t("active_scene", { name: on.map((x) => x.name).join(", ") }) : m.scenes.length ? this._t("no_active") : "";
+    // Without an active scene, the hero says so: the subtitle stays empty then.
+    const heroShown = this._config.show_hero !== false;
+    const sub = on.length ? this._t("active_scene", { name: on.map((x) => x.name).join(", ") }) : m.scenes.length && !heroShown ? this._t("no_active") : "";
     const chip = running.length ? { cls: "accent", text: running.length === 1 ? this._t("running") : this._t("running_n", { n: running.length }), entity: running[0].entity } : null;
     return { active, running, on, sub, chip };
+  }
+
+  _onDisconnect() {
+    clearTimeout(this._fireTimer);
   }
 
   _firing(id) {
@@ -2256,21 +2292,23 @@ class SceneCard extends CardBase {
 
   // The hero: the active scene in big with where and when, its lights on and the running scripts; greyed without.
   _hero(m, sum) {
-    const x = sum.on[0];
+    // The area filter applies to the hero too.
+    const x = sum.on.find((o) => this._inArea(o));
+    const running = sum.running.filter((r) => this._inArea(r));
     const lines = [];
     if (x) {
       const t = activatedAt(this._s(x.entity));
       const where = [x.area && this._areaName(x.area), t && this._t("activated", { when: this._when(t) })].filter(Boolean).join(" · ");
       if (where) lines.push(`<div class="line">${svgIcon(ICONS.marker)}<span>${esc(where)}</span></div>`);
       const n = this._lightsOn(m, x);
-      if (n) lines.push(`<div class="line warn">${svgIcon(ICONS.bulb)}<span>${esc(this._t("lights_on", { n }))}</span></div>`);
+      if (n) lines.push(`<div class="line">${svgIcon(ICONS.bulb)}<span>${esc(this._t("lights_on", { n }))}</span></div>`);
     }
-    for (const r of sum.running.slice(0, 2)) {
-      lines.push(`<div class="line warn clickable"${moreInfo(r.entity)}>${svgIcon(ICONS.script)}<span>${esc(`${r.name} · ${this._t("running")}`)}</span></div>`);
+    for (const r of running.slice(0, 2)) {
+      lines.push(`<div class="line accent clickable"${moreInfo(r.entity)}>${svgIcon(ICONS.script)}<span>${esc(`${r.name} · ${this._t("running")}`)}</span></div>`);
     }
-    const key = x && this._icon(x, "palette").key;
+    const icon = x && this._icon(x, "palette");
     const big = x
-      ? `<div class="big" style="--c: ${esc(this._color(x, key))}">${svgIcon(ICONS[key || "palette"])}<b>${esc(x.name)}</b><span>${esc(this._t("active").toLowerCase())}</span></div>`
+      ? `<div class="big" style="--c: ${esc(this._color(x, icon.key))}">${icon.html}<b>${esc(x.name)}</b><span>${esc(this._t("active").toLowerCase())}</span></div>`
       : `<div class="big none"><b>${esc(this._t("no_active"))}</b></div>`;
     return `<div class="hero"><div class="hero-art${x ? "" : " off"}">${ART}</div><div class="hero-body">${big}${lines.join("")}</div></div>`;
   }
@@ -2289,7 +2327,7 @@ class SceneCard extends CardBase {
       <span class="ripple" aria-hidden="true"></span>
       <span class="tile-head"><span class="row-icon${on ? "" : " idle"}">${html}${on ? `<span class="badge">${svgIcon(ICONS.check)}</span>` : ""}</span>
         <span class="row-text"><span class="row-name">${esc(x.name)}</span>${when ? `<span class="row-state${on ? " accent" : ""}">${esc(when)}</span>` : ""}</span></span>
-      ${n ? `<span class="badges"><span class="pill warn">${svgIcon(ICONS.bulb)}${n}</span></span>` : ""}
+      ${n ? `<span class="badges"><span class="pill">${svgIcon(ICONS.bulb)}${n}</span></span>` : ""}
     </button>`;
   }
 
@@ -2311,9 +2349,9 @@ class SceneCard extends CardBase {
     const off = !s || s.state === "unavailable";
     const label = running ? this._t("stop") : this._t("run");
     return `<div class="row">
-      <div class="row-icon${running ? " warn" : " idle"}">${running ? ring(44, 3, 0.3).replace('class="ring-svg"', 'class="ring-svg spin"') : ""}${html}</div>
-      <div class="row-text clickable" role="button" tabindex="0" data-entity="${esc(x.entity)}"><div class="row-name">${esc(x.name)}</div>${meta ? `<div class="row-state${running ? " warn" : ""}">${esc(meta)}</div>` : ""}</div>
-      <button class="btn${running ? " active" : ""}" data-action="${running ? "stop" : "run"}" data-entity="${esc(x.entity)}" title="${esc(label)}" aria-label="${esc(`${label} · ${x.name}`)}"${off ? " disabled" : ""}>${svgIcon(running ? ICONS.stop : ICONS.play)}<span>${esc(label)}</span></button>
+      <div class="row-icon${running ? " accent" : " idle"}">${running ? ring(44, 3, 0.3).replace('class="ring-svg"', 'class="ring-svg spin"') : ""}${html}</div>
+      <div class="row-text clickable" role="button" tabindex="0" data-entity="${esc(x.entity)}"><div class="row-name">${esc(x.name)}</div>${meta ? `<div class="row-state${running ? " accent" : ""}">${esc(meta)}</div>` : ""}</div>
+      <button class="btn${running ? " primary" : ""}" data-action="${running ? "stop" : "run"}" data-entity="${esc(x.entity)}" title="${esc(label)}" aria-label="${esc(`${label} · ${x.name}`)}"${off ? " disabled" : ""}>${svgIcon(running ? ICONS.stop : ICONS.play)}<span>${esc(label)}</span></button>
     </div>`;
   }
 
@@ -2388,7 +2426,7 @@ class SceneMiniCard extends withMini(SceneCard) {
     const sum = this._summary(m);
     const lines = [];
     if (sum.on.length) lines.push(`<div class="line accent clickable"${moreInfo(sum.on[0].entity)}>${svgIcon(ICONS.check)}<span>${esc(this._t("active_scene", { name: sum.on.map((x) => x.name).join(", ") }))}</span></div>`);
-    for (const x of sum.running.slice(0, 2)) lines.push(`<div class="line warn clickable"${moreInfo(x.entity)}>${svgIcon(ICONS.script)}<span>${esc(`${x.name} · ${this._t("running")}`)}</span></div>`);
+    for (const x of sum.running.slice(0, 2)) lines.push(`<div class="line accent clickable"${moreInfo(x.entity)}>${svgIcon(ICONS.script)}<span>${esc(`${x.name} · ${this._t("running")}`)}</span></div>`);
     if (!lines.length) lines.push(`<div class="line">${svgIcon(ICONS.palette)}<span>${esc(this._t("no_active"))}</span></div>`);
     // The first scenes as round buttons (`mini_count`, 3 by default).
     const n = clamp(Number(this._config.mini_count ?? 3), 0, 6);

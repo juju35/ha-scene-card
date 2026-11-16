@@ -11,6 +11,10 @@
 - SmartThings scenes: their numeric icon codes are no longer shown as icons, and their own color tints the tile.
 - Philips Hue scenes on a room or zone without an area: the active scene is found from the lights of the room's device, or of the area named as the group; deCONZ and other scenes without members use the lights of their area.
 - Lutron Caséta, Velux and Hunter Douglas PowerView listed among the supported integrations.
+- The hero follows the area filter and `show_scripts: false`; a long scene name ends with an ellipsis; the hero uses the scene's own icon.
+- The count of lights on only counts the lights a scene sets (a light group by its members), never those of its area.
+- The mini card keeps its scene buttons on narrow cards, on a row of their own.
+- A running script is shown in the card's accent everywhere; very light SmartThings colors are darkened so their icon stays readable; "No active scene" no longer shown twice.
 
 ## 1.0.0 - 2026-11-16
 
