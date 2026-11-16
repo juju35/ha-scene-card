@@ -2043,11 +2043,25 @@ const resolve = (hass, config) => {
   // In the configuration's order when listed there, else by name.
   if (config.scenes === undefined) scenes.sort(byName);
   if (config.scripts === undefined) scripts.sort(byName);
-  // The lights a scene sets: its `entity_id` attribute (scenes of Home Assistant), else the lights of its area.
+  // The lights a scene sets: its `entity_id` attribute (scenes of Home Assistant); else the lights of its device (Hue
+  // scenes belong to their room or zone, whose grouped light is on the same device); else those of the area named as
+  // its `group_name` (Hue), else of its own area (deCONZ and the others).
+  const lights = Object.keys(hass.states).filter((id) => domainOf(id) === "light");
+  const areaByName = new Map(Object.values(hass.areas || {}).map((a) => [String(a.name).toLowerCase(), a.area_id]));
   const lightsOf = new Map();
   for (const sc of scenes) {
-    const listed = asList(hass.states[sc.entity].attributes?.entity_id);
-    const members = listed.length ? listed : sc.area ? Object.keys(hass.states).filter((id) => domainOf(id) === "light" && areaOf(hass, id) === sc.area) : [];
+    const attrs = hass.states[sc.entity].attributes || {};
+    const listed = asList(attrs.entity_id);
+    const device = hass.entities?.[sc.entity]?.device_id;
+    const area = sc.area || (attrs.group_name ? areaByName.get(String(attrs.group_name).toLowerCase()) : null) || null;
+    let members = listed;
+    if (!members.length && device) members = lights.filter((id) => hass.entities?.[id]?.device_id === device);
+    if (!members.length && attrs.group_name) {
+      const named = areaByName.get(String(attrs.group_name).toLowerCase());
+      if (named) members = lights.filter((id) => areaOf(hass, id) === named);
+    }
+    if (!members.length && area) members = lights.filter((id) => areaOf(hass, id) === area);
+    if (!sc.area && area) sc.area = area;
     lightsOf.set(sc.entity, members);
   }
   const out = { scenes, scripts, lightsOf };
@@ -2203,14 +2217,19 @@ class SceneCard extends CardBase {
 
   // The icon of a scene or script: the one set in the card or in Home Assistant, else one from its name.
   _icon(x, fallback) {
-    const icon = x.icon || this._s(x.entity)?.attributes?.icon;
+    // A state icon only when it is an icon name: SmartThings scenes carry a numeric code of their own ("203").
+    const own = this._s(x.entity)?.attributes?.icon;
+    const icon = x.icon || (typeof own === "string" && own.includes(":") ? own : null);
     if (icon) return { html: `<ha-icon icon="${esc(icon)}"></ha-icon>`, key: null };
     const key = iconFor(x.name, null);
     return { html: svgIcon(ICONS[key || fallback]), key };
   }
 
   _color(x, key) {
-    return x.color || (key && TINTS[key]) || "var(--sc-accent)";
+    // SmartThings scenes have a color of their own (a hex code).
+    const own = this._s(x.entity)?.attributes?.color;
+    const hex = typeof own === "string" && /^#?[0-9a-f]{6}$/i.test(own) ? (own.startsWith("#") ? own : `#${own}`) : null;
+    return x.color || hex || (key && TINTS[key]) || "var(--sc-accent)";
   }
 
   // The lights a scene set that are on.

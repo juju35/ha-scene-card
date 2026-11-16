@@ -75,6 +75,34 @@ test("the active scene: the last one on its lights, while none changed since; a 
   assert.equal(sc.activatedAt(hass.states["scene.chambre_nuit"]), null);
 });
 
+test("Hue scenes on a room device without area: the lights of that device, else of the area named as the group", () => {
+  const hass = makeHass();
+  hass.devices.room = { id: "room", area_id: null, name: "Living room" };
+  hass.entities["scene.salon_lecture"] = { ...hass.entities["scene.salon_lecture"], area_id: null, device_id: "room" };
+  hass.entities["light.salon_lampe"] = { ...hass.entities["light.salon_lampe"], device_id: "room" };
+  const m = sc.resolve(hass, {});
+  same(m.lightsOf.get("scene.salon_lecture"), ["light.salon_lampe"]);
+  // No light on the room device: the lights of the area named as its group, and the scene takes that area.
+  const h2 = makeHass();
+  h2.entities["scene.salon_lecture"] = { ...h2.entities["scene.salon_lecture"], area_id: null, device_id: null };
+  const m2 = sc.resolve(h2, {});
+  same(m2.lightsOf.get("scene.salon_lecture"), ["light.salon_plafond", "light.salon_lampe"]);
+  assert.equal(m2.scenes.find((x) => x.entity === "scene.salon_lecture").area, "salon");
+});
+
+test("SmartThings scenes: their numeric icon code is ignored, their color tints the tile", async () => {
+  const card = new SceneCard();
+  card._connected = true;
+  card.setConfig({ show_area_filter: false });
+  const hass = makeHass();
+  hass.entities["scene.st_soiree"] = { entity_id: "scene.st_soiree", platform: "smartthings", area_id: "salon" };
+  hass.states["scene.st_soiree"] = { entity_id: "scene.st_soiree", state: "unknown", attributes: { friendly_name: "Evening", icon: "203", color: "#ff9900" } };
+  card.hass = hass;
+  const h = card.shadowRoot.innerHTML;
+  assert.doesNotMatch(h, /ha-icon icon="203"/);
+  assert.match(h, /--c: #ff9900[^>]*data-entity="scene\.st_soiree"|data-entity="scene\.st_soiree"[^>]*--c: #ff9900/);
+});
+
 test("header, scene tiles and script rows: active scene, last activations, running script", async () => {
   const { html } = await mount();
   assert.match(html(), /Movie active/);

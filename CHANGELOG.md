@@ -7,6 +7,11 @@
 - The mini card shows the illustration next to its lines.
 - New option `show_hero`.
 
+### Fixes
+- SmartThings scenes: their numeric icon codes are no longer shown as icons, and their own color tints the tile.
+- Philips Hue scenes on a room or zone without an area: the active scene is found from the lights of the room's device, or of the area named as the group; deCONZ and other scenes without members use the lights of their area.
+- Lutron Caséta, Velux and Hunter Douglas PowerView listed among the supported integrations.
+
 ## 1.0.0 - 2026-11-16
 
 First release.
