@@ -282,3 +282,16 @@ test("a long active scene name is cut with an ellipsis, a very light SmartThings
   card._hass.states["scene.cinema"].attributes.color = "#FFF5E0";
   assert.match(card._color({ entity: "scene.cinema" }, null), /color-mix\(in srgb, #FFF5E0 55%, #000\)/);
 });
+
+test("lights on: a switch or a media player set by a scene is not counted as a light", () => {
+  const d = makeHass();
+  d.states["switch.fan"] = { entity_id: "switch.fan", state: "on", attributes: {}, last_updated: d.states["light.salon_plafond"].last_updated };
+  d.states["scene.cinema"].attributes.entity_id = ["light.salon_plafond", "switch.fan"];
+  same(sc.resolve(d, {}).countOf.get("scene.cinema"), ["light.salon_plafond"]);
+});
+
+test("the header follows the area chosen: no active scene of another area in the subtitle", async () => {
+  const { card, html } = await mount();
+  click(card, { action: "area", area: "chambre" });
+  assert.doesNotMatch(html(), /Movie active/);
+});

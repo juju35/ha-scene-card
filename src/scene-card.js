@@ -2059,6 +2059,8 @@ const resolve = (hass, config) => {
     if (listed.length) return listed;
     const named = asList(a.lights).map((n) => byFriendly.get(String(n))).filter((x) => x && x !== id);
     if (named.length) return named;
+    // Only lights are counted: a switch or a media player set by the scene is not a light.
+    if (domainOf(id) !== "light") return [];
     return a.is_hue_group ? null : [id];
   };
   for (const sc of scenes) {
@@ -2269,8 +2271,9 @@ class SceneCard extends CardBase {
   _summary(m) {
     const active = activeScenes(this._hass, m);
     // Running scripts are not shown anywhere when the scripts are hidden.
-    const running = this._config.show_scripts === false ? [] : m.scripts.filter((x) => this._s(x.entity)?.state === "on");
-    const on = m.scenes.filter((x) => active.has(x.entity));
+    // The header follows the area chosen in the card, as the hero does.
+    const running = this._config.show_scripts === false ? [] : m.scripts.filter((x) => this._inArea(x) && this._s(x.entity)?.state === "on");
+    const on = m.scenes.filter((x) => this._inArea(x) && active.has(x.entity));
     // Without an active scene, the hero says so: the subtitle stays empty then.
     const heroShown = this._config.show_hero !== false;
     const sub = on.length ? this._t("active_scene", { name: on.map((x) => x.name).join(", ") }) : m.scenes.length && !heroShown ? this._t("no_active") : "";
