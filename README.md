@@ -18,10 +18,13 @@
   <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/smartthings.png" alt="SmartThings" width="64">&nbsp;&nbsp;
   <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/tuya.png" alt="Tuya" width="64">&nbsp;&nbsp;
   <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/overkiz.png" alt="Overkiz" width="64">&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/knx.png" alt="KNX" width="64">
+  <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/knx.png" alt="KNX" width="64">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/lutron_caseta.png" alt="Lutron Caséta" width="64">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/velux.png" alt="Velux" width="64">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/hunterdouglas_powerview.png" alt="Hunter Douglas PowerView" width="64">
 </p>
 
-Lovelace cards for Home Assistant to **launch scenes and scripts**: a grid of **scenes** (of Home Assistant, Philips Hue, deCONZ, LIFX, SmartThings, Tuya, Overkiz, KNX… any scene) with the **active one highlighted** and when each was last activated, **scripts** with their **running state**, last run and a **stop** button, and a **filter by area**.
+Lovelace cards for Home Assistant to **launch scenes and scripts**: a grid of **scenes** (of Home Assistant, Philips Hue, deCONZ, LIFX, SmartThings, Tuya, Overkiz, KNX, Lutron, Velux, PowerView… any scene) with the **active one highlighted** and when each was last activated, **scripts** with their **running state**, last run and a **stop** button, and a **filter by area**.
 
 Every scene and script of Home Assistant is shown when nothing is configured (except those hidden in Home Assistant); pick the ones you want, in your order, or keep those of one or several areas: the card then follows what is added to them.
 
@@ -34,10 +37,11 @@ Every scene and script of Home Assistant is shown when nothing is configured (ex
 ## Features
 
 - Two cards: a full **Scene Card** (`custom:scene-card`) and a compact **Scene Mini Card** (`custom:scene-mini-card`)
-- **Scenes** in a grid of tiles: a tap launches the scene, with a ripple from its icon (see [Animations](#animations))
+- A **hero** with an illustration: the active scene in big, its area and when it was activated, how many of its lights are on and the running scripts
+- **Scenes** in a grid of tiles: a tap launches the scene, with a ripple from its icon (see [Animations](#animations)); the active one tinted in its color
 - The **active scene** highlighted, with a tick: the last scene activated on its lights while none of them changed since (a Hue smart scene says it itself)
 - When each scene was **last activated** (*3 hr. ago*, *yesterday*, *Never*)
-- **Scripts** with their state: *Running* (an arc turns round the icon) with a **stop** button, else the last run and a **run** button
+- **Scripts** as rows: *Running* (a ring turns round the icon) with a **Stop** button, else the last run and a **Run** button
 - **Area filter**: chips with the areas of the scenes and scripts shown, to keep one area
 - Icons from Home Assistant or the card, else from the name (a film for *Movie*, cutlery for *Dinner*, a moon for *Good night*…) in a color of their own
 - Header icon in a tinted round badge, the active scene in the subtitle and a status chip on the title's line when a script runs
@@ -59,6 +63,9 @@ Every scene and script of Home Assistant is shown when nothing is configured (ex
 | <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/tuya.png" alt="" width="16"> [Tuya](https://www.home-assistant.io/integrations/tuya/) (core) | Tap-to-run scenes of the Smart Life app |
 | <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/overkiz.png" alt="" width="16"> [Overkiz](https://www.home-assistant.io/integrations/overkiz/) (core) | Scenarios of TaHoma, Connexoon… |
 | <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/knx.png" alt="" width="16"> [KNX](https://www.home-assistant.io/integrations/knx/) (core) | KNX scenes |
+| <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/lutron_caseta.png" alt="" width="16"> [Lutron Caséta](https://www.home-assistant.io/integrations/lutron_caseta/) (core) | Scenes of the Lutron app |
+| <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/velux.png" alt="" width="16"> [Velux](https://www.home-assistant.io/integrations/velux/) (core) | Scenes of the KLF 200 gateway |
+| <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/hunterdouglas_powerview.png" alt="" width="16"> [Hunter Douglas PowerView](https://www.home-assistant.io/integrations/hunterdouglas_powerview/) (core) | Scenes of the PowerView hub |
 | Any other integration with scenes | Its `scene.*` entities: launched with a tap, with when they were last activated |
 
 The cards use Home Assistant's scene and script entities and services (`scene.turn_on`, `script.turn_on`, `script.turn_off`), so they work with any integration that provides scenes.
@@ -135,6 +142,7 @@ area:
   - living_room
 show_title: true
 show_subtitle: true
+show_hero: true
 show_scenes: true
 show_scripts: true
 show_area_filter: true
@@ -160,6 +168,7 @@ zoom: true
 | `title` | both | Scenes | Card title |
 | `show_title` | both | `true` | Show the title in the header |
 | `show_subtitle` | full | `true` | Show the subtitle (the active scene) |
+| `show_hero` | full | `true` | The hero: the active scene with its illustration |
 | `scenes` | both | Every scene | Scenes: entity ids, or objects with `entity`, `name`, `icon` and `color` |
 | `scripts` | both | Every script | Scripts: entity ids, or objects with `entity`, `name` and `icon` |
 | `area` | both | All | Area or areas: only their scenes and scripts |
@@ -232,7 +241,9 @@ The full card at 6 columns of a phone's Sections view and the mini card at its m
 ## How it works
 
 - **Scenes** are the `scene.*` entities: their state is when they were last activated.
-- **Active scene**: the lights a scene sets are its `entity_id` attribute (scenes of Home Assistant), else the lights of its area (Hue scenes belong to their room). The scene is active when it is the last activated on these lights and none of them changed since (10 seconds are left for the transitions). Hue smart scenes give their own `is_active`.
+- **Active scene**: the lights a scene sets are its `entity_id` attribute (scenes of Home Assistant), else the lights of its device (Hue scenes belong to their room or zone), else those of the area named as its group, else of its own area (deCONZ and the others). The scene is active when it is the last activated on these lights and none of them changed since (10 seconds are left for the transitions). Hue smart scenes give their own `is_active`.
+- **Scenes activated outside Home Assistant** (the Hue app, a wall switch, the SmartThings app…) don't update the scene's state: the card can't know about them, so they are not shown as active nor as last activated.
+- **SmartThings** scenes keep their own color as the tile's tint; their numeric icon codes are ignored for an icon from the name.
 - **Scripts** are the `script.*` entities: `on` while they run, with `current` runs and `last_triggered`.
 - **Areas** come from the entity registry, else from the device's area.
 

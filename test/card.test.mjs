@@ -75,16 +75,44 @@ test("the active scene: the last one on its lights, while none changed since; a 
   assert.equal(sc.activatedAt(hass.states["scene.chambre_nuit"]), null);
 });
 
+test("Hue scenes on a room device without area: the lights of that device, else of the area named as the group", () => {
+  const hass = makeHass();
+  hass.devices.room = { id: "room", area_id: null, name: "Living room" };
+  hass.entities["scene.salon_lecture"] = { ...hass.entities["scene.salon_lecture"], area_id: null, device_id: "room" };
+  hass.entities["light.salon_lampe"] = { ...hass.entities["light.salon_lampe"], device_id: "room" };
+  const m = sc.resolve(hass, {});
+  same(m.lightsOf.get("scene.salon_lecture"), ["light.salon_lampe"]);
+  // No light on the room device: the lights of the area named as its group, and the scene takes that area.
+  const h2 = makeHass();
+  h2.entities["scene.salon_lecture"] = { ...h2.entities["scene.salon_lecture"], area_id: null, device_id: null };
+  const m2 = sc.resolve(h2, {});
+  same(m2.lightsOf.get("scene.salon_lecture"), ["light.salon_plafond", "light.salon_lampe"]);
+  assert.equal(m2.scenes.find((x) => x.entity === "scene.salon_lecture").area, "salon");
+});
+
+test("SmartThings scenes: their numeric icon code is ignored, their color tints the tile", async () => {
+  const card = new SceneCard();
+  card._connected = true;
+  card.setConfig({ show_area_filter: false });
+  const hass = makeHass();
+  hass.entities["scene.st_soiree"] = { entity_id: "scene.st_soiree", platform: "smartthings", area_id: "salon" };
+  hass.states["scene.st_soiree"] = { entity_id: "scene.st_soiree", state: "unknown", attributes: { friendly_name: "Evening", icon: "203", color: "#ff9900" } };
+  card.hass = hass;
+  const h = card.shadowRoot.innerHTML;
+  assert.doesNotMatch(h, /ha-icon icon="203"/);
+  assert.match(h, /--c: #ff9900[^>]*data-entity="scene\.st_soiree"|data-entity="scene\.st_soiree"[^>]*--c: #ff9900/);
+});
+
 test("header, scene tiles and script rows: active scene, last activations, running script", async () => {
   const { html } = await mount();
   assert.match(html(), /Movie active/);
   assert.match(html(), /class="chip accent[^"]*"[^>]*data-entity="script\.depart"/);
-  assert.match(html(), /class="scene on"[^>]*data-entity="scene\.cinema"[^>]*aria-pressed="true"/);
+  assert.match(html(), /class="tile tint"[^>]*data-entity="scene\.cinema"[^>]*aria-pressed="true"/);
   assert.match(html(), /3 hr\. ago/);
   assert.match(html(), /Never<\/span>/);
   assert.match(html(), /Last run 5 hr\. ago/);
   assert.match(html(), /Never run/);
-  assert.match(html(), /class="spin"/);
+  assert.match(html(), /class="ring-svg spin"/);
   assert.match(html(), /data-action="stop" data-entity="script\.depart"/);
 });
 
@@ -92,7 +120,7 @@ test("a scene tile activates its scene, with a ripple; scripts run and stop", as
   const { card, hass, html } = await mount();
   click(card, { action: "activate", entity: "scene.diner" });
   same(hass.calls.at(-1), ["scene", "turn_on", { entity_id: "scene.diner" }]);
-  assert.match(html(), /class="scene fire"[^>]*data-entity="scene\.diner"/);
+  assert.match(html(), /class="tile fire"[^>]*data-entity="scene\.diner"/);
   click(card, { action: "run", entity: "script.cafe" });
   same(hass.calls.at(-1), ["script", "turn_on", { entity_id: "script.cafe" }]);
   click(card, { action: "stop", entity: "script.depart" });
@@ -105,7 +133,11 @@ test("the area filter shows the scenes and scripts of one area", async () => {
   assert.match(html(), /data-action="area" data-area="chambre"[^>]*>Bedroom/);
   click(card, { action: "area", area: "chambre" });
   assert.match(html(), /Wake up/);
-  assert.doesNotMatch(html(), /Dinner|Leave home/);
+  assert.doesNotMatch(html(), /Dinner|data-action="stop"|Leave home/);
+  // The hero follows the filter: the movie scene of the living room is not shown there.
+  const hero = /<div class="hero">[\s\S]*?<div class="areas"/.exec(html())[0];
+  assert.doesNotMatch(hero, /Movie|Leave home/);
+  assert.match(hero, /No active scene/);
   click(card, { action: "area", area: "" });
   assert.match(html(), /Dinner/);
 });
@@ -124,20 +156,33 @@ test("configured scenes and scripts in their order; `area` keeps those of an are
   assert.doesNotMatch(r.html(), /Dinner/);
 });
 
+test("the hero: the active scene, where and when, its lights on and the running script; hidden by show_hero", async () => {
+  const { html } = await mount();
+  assert.match(html(), /class="hero"/);
+  assert.match(html(), /Living room · Activated 40 min\. ago/);
+  assert.match(html(), /Lights on: 2/);
+  assert.match(html(), /Leave home · Running/);
+  const r = await mount({ show_hero: false });
+  assert.doesNotMatch(r.html(), /class="hero"/);
+});
+
 test("options: sections hidden, folded, last activations hidden", async () => {
   const { card, html } = await mount({ show_scripts: false, show_last: false, show_area_filter: false, collapsed: ["scenes"] });
-  assert.doesNotMatch(html(), /Leave home|data-action="area"/);
+  assert.doesNotMatch(html(), /data-action="(run|stop)"|data-action="area"|Leave home/);
   assert.doesNotMatch(html(), /Dinner/);
   click(card, { action: "toggle_section", section: "scenes" });
   assert.match(html(), /Dinner/);
   assert.doesNotMatch(html(), /3 hr\. ago/);
 });
 
-test("nothing active: the header says so", async () => {
+test("nothing active: the hero says so, once", async () => {
   const { html } = await mount({}, "idle");
-  assert.match(html(), /No active scene/);
+  assert.equal((html().match(/No active scene/g) || []).length, 1);
+  const r = await mount({ show_hero: false }, "idle");
+  assert.equal((r.html().match(/No active scene/g) || []).length, 1);
   assert.doesNotMatch(html(), /class="chip/);
-  assert.doesNotMatch(html(), /class="scene on"/);
+  assert.doesNotMatch(html(), /class="tile tint"/);
+  assert.match(html(), /hero-art off/);
 });
 
 test("mini card: the active scene, the running script and the first scenes as buttons; the detail button shows the full card", async () => {
@@ -151,7 +196,7 @@ test("mini card: the active scene, the running script and the first scenes as bu
   clearTimeout(card._fireTimer);
   card._dialogClosedAt = 0;
   click(card, { action: "zoom" });
-  assert.match(html(), /class="scenes"/);
+  assert.match(html(), /class="tiles"/);
   card._unzoom.tap({ composedPath: () => [] });
   assert.match(html(), /content mini/);
 });
@@ -211,4 +256,42 @@ test("every clickable element can be reached and used from the keyboard", async 
     assert.match(m[0], /role="button"/, m[0]);
     assert.match(m[0], /tabindex="0"/, m[0]);
   }
+});
+
+test("lights on: only the lights a scene sets, a light group counted by its members; none from the area", async () => {
+  const d = makeHass();
+  const m = sc.resolve(d, {});
+  same(m.countOf.get("scene.cinema"), ["light.salon_plafond", "light.salon_lampe"]);
+  // Reading (Hue) gets its lights from the area: not counted.
+  assert.equal(m.countOf.get("scene.salon_lecture"), null);
+  // A light group listed by a scene counts its members.
+  const g = makeHass();
+  g.states["light.groupe"] = { entity_id: "light.groupe", state: "on", attributes: { entity_id: ["light.salon_plafond", "light.salon_lampe"] }, last_updated: g.states["light.salon_plafond"].last_updated };
+  g.states["scene.cinema"].attributes.entity_id = ["light.groupe"];
+  same(sc.resolve(g, {}).countOf.get("scene.cinema"), ["light.salon_plafond", "light.salon_lampe"]);
+  // A Hue room light that can't be expanded: no count.
+  const h = makeHass();
+  h.states["light.groupe"] = { entity_id: "light.groupe", state: "on", attributes: { is_hue_group: true }, last_updated: h.states["light.salon_plafond"].last_updated };
+  h.states["scene.cinema"].attributes.entity_id = ["light.groupe"];
+  assert.equal(sc.resolve(h, {}).countOf.get("scene.cinema"), null);
+});
+
+test("a long active scene name is cut with an ellipsis, a very light SmartThings color is darkened", async () => {
+  const { card, html } = await mount();
+  assert.match(html(), /\.hero-body \.big b \{ min-width: 0; overflow: hidden; text-overflow: ellipsis; \}/);
+  card._hass.states["scene.cinema"].attributes.color = "#FFF5E0";
+  assert.match(card._color({ entity: "scene.cinema" }, null), /color-mix\(in srgb, #FFF5E0 55%, #000\)/);
+});
+
+test("lights on: a switch or a media player set by a scene is not counted as a light", () => {
+  const d = makeHass();
+  d.states["switch.fan"] = { entity_id: "switch.fan", state: "on", attributes: {}, last_updated: d.states["light.salon_plafond"].last_updated };
+  d.states["scene.cinema"].attributes.entity_id = ["light.salon_plafond", "switch.fan"];
+  same(sc.resolve(d, {}).countOf.get("scene.cinema"), ["light.salon_plafond"]);
+});
+
+test("the header follows the area chosen: no active scene of another area in the subtitle", async () => {
+  const { card, html } = await mount();
+  click(card, { action: "area", area: "chambre" });
+  assert.doesNotMatch(html(), /Movie active/);
 });
