@@ -26,6 +26,8 @@ const CARD_ICONS = {
   power: "M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13",
   shutter: "M3,4H21V8H19V20H17V8H7V20H5V8H3V4M8,9H16V11H8V9M8,12H16V14H8V12M8,15H16V17H8V15M8,18H16V20H8V18Z",
   bed: "M19,7H11V14H3V5H1V20H3V17H21V20H23V11A4,4 0 0,0 19,7M7,13A3,3 0 0,0 10,10A3,3 0 0,0 7,7A3,3 0 0,0 4,10A3,3 0 0,0 7,13Z",
+  bulb: "M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z",
+  marker: "M12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5M12,2A7,7 0 0,1 19,9C19,14.25 12,22 12,22C12,22 5,14.25 5,9A7,7 0 0,1 12,2M12,4A5,5 0 0,0 7,9C7,10 7,12 12,18.71C17,12 17,10 17,9A5,5 0 0,0 12,4Z",
   music: "M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z",
 };
 
@@ -79,6 +81,9 @@ const STRINGS = {
     show_last: "Show when last activated",
     mini_count: "Scene buttons on the mini card",
     stop: "Stop",
+    activated: "Activated {when}",
+    lights_on: "Lights on: {n}",
+    show_hero: "Show the active scene",
     cancel: "Cancel",
     left: "{time} left",
     today_at: "today {time}",
@@ -122,6 +127,9 @@ const STRINGS = {
     show_last: "Afficher la dernière activation",
     mini_count: "Boutons de scène de la mini-carte",
     stop: "Arrêter",
+    activated: "Activée {when}",
+    lights_on: "Lumières allumées : {n}",
+    show_hero: "Afficher la scène active",
     cancel: "Annuler",
     left: "{time} restantes",
     today_at: "aujourd'hui {time}",
@@ -165,6 +173,9 @@ const STRINGS = {
     show_last: "Letzte Aktivierung anzeigen",
     mini_count: "Szenen-Schaltflächen der Mini-Karte",
     stop: "Stoppen",
+    activated: "Aktiviert {when}",
+    lights_on: "Lichter an: {n}",
+    show_hero: "Aktive Szene anzeigen",
     cancel: "Abbrechen",
     left: "Noch {time}",
     today_at: "heute {time}",
@@ -208,6 +219,9 @@ const STRINGS = {
     show_last: "Mostrar la última activación",
     mini_count: "Botones de escena de la mini tarjeta",
     stop: "Detener",
+    activated: "Activada {when}",
+    lights_on: "Luces encendidas: {n}",
+    show_hero: "Mostrar la escena activa",
     cancel: "Cancelar",
     left: "Quedan {time}",
     today_at: "hoy {time}",
@@ -251,6 +265,9 @@ const STRINGS = {
     show_last: "Mostra l'ultima attivazione",
     mini_count: "Pulsanti scena della mini scheda",
     stop: "Ferma",
+    activated: "Attivata {when}",
+    lights_on: "Luci accese: {n}",
+    show_hero: "Mostra la scena attiva",
     cancel: "Annulla",
     left: "{time} rimanenti",
     today_at: "oggi {time}",
@@ -294,6 +311,9 @@ const STRINGS = {
     show_last: "Laatste activering tonen",
     mini_count: "Scèneknoppen van de mini-kaart",
     stop: "Stoppen",
+    activated: "Geactiveerd {when}",
+    lights_on: "Lampen aan: {n}",
+    show_hero: "Actieve scène tonen",
     cancel: "Annuleren",
     left: "Nog {time}",
     today_at: "vandaag {time}",
@@ -337,6 +357,9 @@ const STRINGS = {
     show_last: "Mostrar a última ativação",
     mini_count: "Botões de cena do mini cartão",
     stop: "Parar",
+    activated: "Ativada {when}",
+    lights_on: "Luzes acesas: {n}",
+    show_hero: "Mostrar a cena ativa",
     cancel: "Cancelar",
     left: "Faltam {time}",
     today_at: "hoje {time}",
@@ -380,6 +403,9 @@ const STRINGS = {
     show_last: "Pokaż ostatnią aktywację",
     mini_count: "Przyciski scen mini karty",
     stop: "Stop",
+    activated: "Aktywowano {when}",
+    lights_on: "Włączone światła: {n}",
+    show_hero: "Pokaż aktywną scenę",
     cancel: "Anuluj",
     left: "Pozostało {time}",
     today_at: "dziś {time}",
@@ -423,6 +449,9 @@ const STRINGS = {
     show_last: "Прикажи последње покретање",
     mini_count: "Дугмад сцена мини картице",
     stop: "Заустави",
+    activated: "Активирана {when}",
+    lights_on: "Упаљена светла: {n}",
+    show_hero: "Прикажи активну сцену",
     cancel: "Откажи",
     left: "Преостало {time}",
     today_at: "данас {time}",
@@ -466,6 +495,9 @@ const STRINGS = {
     show_last: "Prikaži poslednje pokretanje",
     mini_count: "Dugmad scena mini kartice",
     stop: "Zaustavi",
+    activated: "Aktivirana {when}",
+    lights_on: "Upaljena svetla: {n}",
+    show_hero: "Prikaži aktivnu scenu",
     cancel: "Otkaži",
     left: "Preostalo {time}",
     today_at: "danas {time}",
@@ -509,6 +541,9 @@ const STRINGS = {
     show_last: "Afișează ultima activare",
     mini_count: "Butoane de scenă ale mini cardului",
     stop: "Oprește",
+    activated: "Activată {when}",
+    lights_on: "Lumini aprinse: {n}",
+    show_hero: "Afișează scena activă",
     cancel: "Anulează",
     left: "Mai sunt {time}",
     today_at: "azi {time}",
@@ -552,6 +587,9 @@ const STRINGS = {
     show_last: "Vis seneste aktivering",
     mini_count: "Sceneknapper på minikortet",
     stop: "Stop",
+    activated: "Aktiveret {when}",
+    lights_on: "Tændte lys: {n}",
+    show_hero: "Vis den aktive scene",
     cancel: "Annuller",
     left: "{time} tilbage",
     today_at: "i dag {time}",
@@ -595,6 +633,9 @@ const STRINGS = {
     show_last: "Visa senaste aktivering",
     mini_count: "Scenknappar på minikortet",
     stop: "Stoppa",
+    activated: "Aktiverad {when}",
+    lights_on: "Tända lampor: {n}",
+    show_hero: "Visa den aktiva scenen",
     cancel: "Avbryt",
     left: "{time} kvar",
     today_at: "i dag {time}",
@@ -638,6 +679,9 @@ const STRINGS = {
     show_last: "Показване на последното активиране",
     mini_count: "Бутони за сцени на мини картата",
     stop: "Стоп",
+    activated: "Активирана {when}",
+    lights_on: "Включени светлини: {n}",
+    show_hero: "Показване на активната сцена",
     cancel: "Отказ",
     left: "Остават {time}",
     today_at: "днес {time}",
@@ -681,6 +725,9 @@ const STRINGS = {
     show_last: "Показывать последнюю активацию",
     mini_count: "Кнопки сцен мини-карточки",
     stop: "Остановить",
+    activated: "Активирована {when}",
+    lights_on: "Включено светильников: {n}",
+    show_hero: "Показывать активную сцену",
     cancel: "Отмена",
     left: "Осталось {time}",
     today_at: "сегодня {time}",
@@ -724,6 +771,9 @@ const STRINGS = {
     show_last: "Показувати останню активацію",
     mini_count: "Кнопки сцен міні-картки",
     stop: "Зупинити",
+    activated: "Активовано {when}",
+    lights_on: "Увімкнено світильників: {n}",
+    show_hero: "Показувати активну сцену",
     cancel: "Скасувати",
     left: "Залишилось {time}",
     today_at: "сьогодні {time}",
@@ -767,6 +817,9 @@ const STRINGS = {
     show_last: "Utolsó aktiválás megjelenítése",
     mini_count: "A mini kártya jelenetgombjai",
     stop: "Leállítás",
+    activated: "Aktiválva {when}",
+    lights_on: "Bekapcsolt lámpák: {n}",
+    show_hero: "Aktív jelenet megjelenítése",
     cancel: "Mégse",
     left: "Még {time}",
     today_at: "ma {time}",
@@ -810,6 +863,9 @@ const STRINGS = {
     show_last: "Zobraziť poslednú aktiváciu",
     mini_count: "Tlačidlá scén mini karty",
     stop: "Zastaviť",
+    activated: "Aktivovaná {when}",
+    lights_on: "Zapnuté svetlá: {n}",
+    show_hero: "Zobraziť aktívnu scénu",
     cancel: "Zrušiť",
     left: "Zostáva {time}",
     today_at: "dnes {time}",
@@ -853,6 +909,9 @@ const STRINGS = {
     show_last: "Zobrazit poslední aktivaci",
     mini_count: "Tlačítka scén mini karty",
     stop: "Zastavit",
+    activated: "Aktivována {when}",
+    lights_on: "Rozsvícená světla: {n}",
+    show_hero: "Zobrazit aktivní scénu",
     cancel: "Zrušit",
     left: "Zbývá {time}",
     today_at: "dnes {time}",
@@ -896,6 +955,9 @@ const STRINGS = {
     show_last: "Prikaži zadnjo aktivacijo",
     mini_count: "Gumbi scen mini kartice",
     stop: "Ustavi",
+    activated: "Aktivirana {when}",
+    lights_on: "Prižgane luči: {n}",
+    show_hero: "Prikaži aktivno sceno",
     cancel: "Prekliči",
     left: "Še {time}",
     today_at: "danes {time}",
@@ -939,6 +1001,9 @@ const STRINGS = {
     show_last: "Rādīt pēdējo aktivizēšanu",
     mini_count: "Mini kartītes ainu pogas",
     stop: "Apturēt",
+    activated: "Aktivizēta {when}",
+    lights_on: "Ieslēgtās gaismas: {n}",
+    show_hero: "Rādīt aktīvo ainu",
     cancel: "Atcelt",
     left: "Atlikušas {time}",
     today_at: "šodien {time}",
@@ -982,6 +1047,9 @@ const STRINGS = {
     show_last: "Εμφάνιση της τελευταίας ενεργοποίησης",
     mini_count: "Κουμπιά σκηνών της μίνι κάρτας",
     stop: "Διακοπή",
+    activated: "Ενεργοποιήθηκε {when}",
+    lights_on: "Αναμμένα φώτα: {n}",
+    show_hero: "Εμφάνιση της ενεργής σκηνής",
     cancel: "Ακύρωση",
     left: "Απομένουν {time}",
     today_at: "σήμερα {time}",
@@ -1176,6 +1244,45 @@ const BASE_STYLE = `
   .ring-svg circle { fill: none; }
   .ring-svg .track { stroke: color-mix(in srgb, var(--c, var(--sc-accent)) 18%, transparent); }
   .ring-svg .prog { stroke: var(--c, var(--sc-accent)); stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
+  /* Hero, as on the garden and tempo cards: a flat illustration on the left, a big value and a few colored lines on the right. */
+  .hero { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .hero-art { flex: none; width: 120px; display: grid; place-items: center; }
+  .hero-art svg { width: 100%; height: auto; display: block; }
+  .hero-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+  .hero-kick { font-size: 12px; color: var(--secondary-text-color); }
+  .big { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+  .big .icon { width: 24px; height: 24px; align-self: center; color: var(--c, var(--sc-accent)); }
+  .big b { font-size: 30px; font-weight: 400; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .big span { font-size: 14px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hero .line { font-size: 12.5px; }
+  /* Rows, as the watering zones: a round icon (grey at rest, tinted otherwise, a ring while it runs), name, colored state, a button. */
+  .row { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .row-icon { position: relative; width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid; place-items: center;
+              --t: var(--c, var(--sc-idle)); background: color-mix(in srgb, var(--t) 18%, transparent); color: color-mix(in srgb, var(--t) 70%, var(--primary-text-color)); }
+  .row-icon.idle { background: color-mix(in srgb, var(--primary-text-color) 8%, transparent); color: var(--secondary-text-color); }
+  .row-icon > .icon, .row-icon > ha-icon { width: 22px; height: 22px; --mdc-icon-size: 22px; }
+  .row-icon .ring-svg { inset: -2px; width: 44px; height: 44px; }
+  .badge { position: absolute; right: -3px; bottom: -3px; width: 17px; height: 17px; border-radius: 50%; display: grid; place-items: center;
+           background: var(--b, var(--sc-ok)); color: #fff; box-shadow: 0 0 0 2px var(--ha-card-background, var(--card-background-color, #fff)); }
+  .badge .icon { width: 11px; height: 11px; }
+  .row-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .row-name { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row-state { font-size: 12.5px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row-state.ok, .row-state.warn, .row-state.crit, .row-state.active, .row-state.accent { color: color-mix(in srgb, var(--c) 60%, var(--primary-text-color)); }
+  .rows { display: flex; flex-direction: column; gap: 8px; }
+  /* Tiles, as on room overview: grey, tinted with a border when they need a look; small badges below. */
+  .tiles { display: grid; gap: 8px; grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr)); }
+  .tile { min-width: 0; display: flex; flex-direction: column; gap: 6px; padding: 8px; border-radius: 10px; box-sizing: border-box;
+          background: var(--secondary-background-color, rgba(127,127,127,.12)); border: 1px solid transparent; }
+  .tile.tint { background: color-mix(in srgb, var(--c) 13%, var(--secondary-background-color, rgba(127,127,127,.12)));
+               border-color: color-mix(in srgb, var(--c) 30%, transparent); }
+  .tile-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .tile .row-icon { width: 30px; height: 30px; } .tile .row-icon > .icon { width: 18px; height: 18px; }
+  .tile .row-state { font-size: 12px; }
+  .badges { display: flex; gap: 4px; flex-wrap: wrap; }
+  .pill { display: inline-flex; align-items: center; gap: 3px; font-size: 12px; padding: 1px 7px; border-radius: 10px;
+          color: color-mix(in srgb, var(--c, var(--sc-idle)) 60%, var(--primary-text-color)); background: color-mix(in srgb, var(--c, var(--sc-idle)) 14%, transparent); }
+  .pill .icon { width: 14px; height: 14px; color: var(--c, var(--sc-idle)); }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
   @container (max-width: 230px) {
     .chip { padding: 4px; flex: none; }
@@ -1267,6 +1374,14 @@ const FOCUS_SELECTOR = "[data-action], [data-entity], [data-keep]";
 const focusKey = (el) => {
   const data = Object.entries({ ...el.dataset });
   return data.length ? `${el.tagName}|${JSON.stringify(data)}` : "";
+};
+// A progress ring (SVG, size × size, stroke width w) whose progress `p` (0..1) is drawn; `end` and `total` (ms) make it
+// count down every second in place (see _syncCountdown).
+const ring = (size, w, p, { end, total } = {}) => {
+  const r = (size - w) / 2;
+  const c = 2 * Math.PI * r;
+  const live = end && total ? ` data-end="${end}" data-total="${total}" data-c="${c.toFixed(2)}"` : "";
+  return `<svg class="ring-svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" aria-hidden="true"><circle class="track" cx="${size / 2}" cy="${size / 2}" r="${r}" stroke-width="${w}"/><circle class="prog" cx="${size / 2}" cy="${size / 2}" r="${r}" stroke-width="${w}" stroke-dasharray="${c.toFixed(2)}" style="stroke-dashoffset:${(c * (1 - clamp(p, 0, 1))).toFixed(2)}"${live}/></svg>`;
 };
 
 // ---------------------------------------------------------------------------
@@ -1969,66 +2084,75 @@ const activeScenes = (hass, m) => {
 // Styles
 // ---------------------------------------------------------------------------
 
+// The illustration of the hero: a sofa under a lamp, greyed when no scene is active.
+const ART = `<svg viewBox="0 0 120 100" aria-hidden="true">
+  <ellipse cx="60" cy="60" rx="52" ry="36" class="a-bg"/>
+  <rect x="22" y="58" width="76" height="22" rx="8" class="a-s1"/><rect x="16" y="54" width="14" height="28" rx="6" class="a-s2"/>
+  <rect x="90" y="54" width="14" height="28" rx="6" class="a-s2"/><rect x="30" y="50" width="28" height="14" rx="6" class="a-s3"/>
+  <rect x="62" y="50" width="28" height="14" rx="6" class="a-s3"/><rect x="20" y="82" width="4" height="8" class="a-s2"/><rect x="96" y="82" width="4" height="8" class="a-s2"/>
+  <path d="M96 14 v20" class="a-cord"/><path d="M86 34 h20 l-4 -10 h-12 z" class="a-lamp"/><path d="M84 36 l-8 14 h40 l-8 -14" class="a-light"/>
+  <circle cx="22" cy="24" r="14" class="a-moon2"/><circle cx="22" cy="24" r="8" class="a-moon"/></svg>`;
+
 const SCENE_STYLE = `
+  :host { --sc-art-bg: color-mix(in srgb, #7e57c2 14%, transparent); }
+  .a-bg { fill: var(--sc-art-bg); } .a-s1 { fill: #7e57c2; } .a-s2 { fill: #673ab7; } .a-s3 { fill: #9575cd; }
+  .a-cord { stroke: var(--secondary-text-color); stroke-width: 2; } .a-lamp { fill: #ffb74d; } .a-light { fill: #ffe082; opacity: .55; }
+  .a-moon { fill: #ffd54f; opacity: .9; } .a-moon2 { fill: #ffd54f; opacity: .25; }
+  .hero-art.off svg { filter: grayscale(1); opacity: .45; }
+  .hero-art.off .a-light { display: none; }
   .areas { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -12px; padding: 0 12px; }
   .areas::-webkit-scrollbar { display: none; }
-  .area { font: inherit; font-size: 12px; padding: 4px 10px; border-radius: 14px; cursor: pointer; color: var(--primary-text-color); white-space: nowrap; flex: none;
-          background: transparent; border: 1px solid color-mix(in srgb, var(--primary-text-color) 16%, transparent); }
-  .area.on { border-color: color-mix(in srgb, var(--sc-accent) 60%, transparent); color: var(--sc-accent-text); font-weight: 500;
-             background: color-mix(in srgb, var(--sc-accent) 10%, transparent); }
+  .area { font: inherit; font-size: 13px; padding: 4px 10px; border-radius: 14px; cursor: pointer; color: var(--primary-text-color); white-space: nowrap; flex: none;
+          border: none; background: var(--secondary-background-color, rgba(127,127,127,.12)); }
+  .area.on { color: var(--sc-accent-text); background: color-mix(in srgb, var(--sc-accent) 15%, transparent); font-weight: 500; }
   .area:focus-visible { outline: 2px solid var(--primary-color, var(--sc-accent)); outline-offset: 1px; }
-  .scenes { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
-  .scene { all: unset; position: relative; overflow: hidden; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
-           padding: 10px; border-radius: 14px; cursor: pointer; min-width: 0; --c: var(--sc-accent);
-           background: var(--secondary-background-color, rgba(127,127,127,.12)); transition: background-color .3s ease, box-shadow .3s ease; }
-  .scene:hover { background: color-mix(in srgb, var(--c) 10%, var(--secondary-background-color, rgba(127,127,127,.12))); }
-  .scene:focus-visible { outline: 2px solid var(--primary-color, var(--sc-accent)); outline-offset: 2px; }
-  .scene .ico { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; flex: none;
-                background: color-mix(in srgb, var(--c) 16%, transparent); color: color-mix(in srgb, var(--c) 60%, var(--primary-text-color)); }
-  .scene .ico .icon, .scene .ico ha-icon { width: 20px; height: 20px; --mdc-icon-size: 20px; }
-  .scene .sname { font-size: 13px; font-weight: 500; line-height: 1.25; max-width: 100%; overflow: hidden; text-overflow: ellipsis; display: -webkit-box;
-                  -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow-wrap: anywhere; }
-  .scene .when { font-size: 11px; color: var(--secondary-text-color); max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: -4px; }
-  .scene.on { background: color-mix(in srgb, var(--c) 16%, transparent); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c) 55%, transparent); }
-  .scene.on .when { color: color-mix(in srgb, var(--c) 50%, var(--primary-text-color)); font-weight: 500; }
-  .scene .badge { position: absolute; top: 8px; right: 8px; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center;
-                  background: color-mix(in srgb, var(--c) 22%, transparent); color: color-mix(in srgb, var(--c) 60%, var(--primary-text-color)); }
-  .scene .badge .icon { width: 12px; height: 12px; }
+  .tiles { --cols: 3; }
+  button.tile { all: unset; position: relative; overflow: hidden; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; padding: 8px;
+                border-radius: 10px; cursor: pointer; min-width: 0; border: 1px solid transparent;
+                background: var(--secondary-background-color, rgba(127,127,127,.12)); transition: background-color .3s ease, border-color .3s ease; }
+  button.tile.tint { background: color-mix(in srgb, var(--c) 13%, var(--secondary-background-color, rgba(127,127,127,.12)));
+                     border-color: color-mix(in srgb, var(--c) 30%, transparent); }
+  button.tile:hover { background: color-mix(in srgb, var(--c) 8%, var(--secondary-background-color, rgba(127,127,127,.12))); }
+  button.tile:focus-visible { outline: 2px solid var(--primary-color, var(--sc-accent)); outline-offset: 2px; }
+  .tile .row-icon > ha-icon { --mdc-icon-size: 18px; }
   /* The scene just launched: a ripple from its icon. */
-  .scene .ripple { position: absolute; top: 27px; left: 27px; width: 34px; height: 34px; margin: -17px; border-radius: 50%; pointer-events: none;
-                   background: var(--c); opacity: 0; transform: scale(0); }
-  .scene.fire .ripple { animation: sc-ripple ${FIRE_MS}ms ease-out forwards; }
-  .scene.fire .ico { animation: sc-pop ${FIRE_MS}ms ease-out; }
-  @keyframes sc-ripple { 0% { opacity: .35; transform: scale(.6); } 100% { opacity: 0; transform: scale(7); } }
+  .tile .ripple { position: absolute; top: 24px; left: 24px; width: 30px; height: 30px; margin: -15px; border-radius: 50%; pointer-events: none;
+                  background: var(--c); opacity: 0; transform: scale(0); }
+  .tile.fire .ripple { animation: sc-ripple ${FIRE_MS}ms ease-out forwards; }
+  .tile.fire .row-icon { animation: sc-pop ${FIRE_MS}ms ease-out; }
+  @keyframes sc-ripple { 0% { opacity: .35; transform: scale(.6); } 100% { opacity: 0; transform: scale(9); } }
   @keyframes sc-pop { 0%, 100% { transform: scale(1); } 30% { transform: scale(.86); } 60% { transform: scale(1.08); } }
-  .rows { display: flex; flex-direction: column; gap: 10px; }
-  .row { display: flex; align-items: center; gap: 10px; min-width: 0; }
-  .tile { position: relative; width: 40px; height: 40px; flex: none; display: grid; place-items: center; border-radius: 50%; --c: var(--sc-accent);
-          background: color-mix(in srgb, var(--c) 12%, transparent); color: color-mix(in srgb, var(--c) 60%, var(--primary-text-color)); }
-  .tile.idle { --c: var(--sc-idle); }
-  .tile > .icon, .tile > ha-icon { width: 20px; height: 20px; --mdc-icon-size: 20px; }
-  /* A script running: an arc turns round its icon. */
-  .tile .spin { position: absolute; inset: 0; border-radius: 50%; border: 2.5px solid transparent; border-top-color: var(--c); border-right-color: var(--c);
-                animation: sc-spin 1s linear infinite; }
-  @keyframes sc-spin { to { transform: rotate(360deg); } }
-  .row .info { gap: 1px; }
-  .row .rname { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .row .meta { font-size: 12px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .row .meta.on { color: var(--sc-accent-text); font-weight: 500; }
+  /* A script running: its ring turns round the icon. */
+  .row-icon .ring-svg.spin { animation: sc-spin 1.2s linear infinite; }
+  @keyframes sc-spin { from { transform: rotate(-90deg); } to { transform: rotate(270deg); } }
+  .row-text.clickable { cursor: pointer; }
+  .mini .mini-art { width: 84px; flex: none; } .mini .mini-art svg { width: 100%; height: auto; display: block; }
   .mini .picks { display: flex; gap: 6px; flex: none; }
-  .mini .btn.round.on { background: color-mix(in srgb, var(--c, var(--sc-accent)) 18%, transparent); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c, var(--sc-accent)) 55%, transparent); }
-  .mini .btn.round .icon, .mini .btn.round ha-icon { color: color-mix(in srgb, var(--c, var(--sc-accent)) 70%, var(--primary-text-color)); --mdc-icon-size: 18px; }
+  .mini .btn.round { --t: var(--c, var(--sc-accent)); background: color-mix(in srgb, var(--t) 16%, transparent); }
+  .mini .btn.round.on { box-shadow: inset 0 0 0 2px var(--t); }
+  .mini .btn.round .icon, .mini .btn.round ha-icon { color: color-mix(in srgb, var(--t) 70%, var(--primary-text-color)); --mdc-icon-size: 20px; }
+  @container (max-width: 340px) {
+    .tiles { --cols: 2; }
+    .hero-art { width: 84px; }
+    .big b { font-size: 24px; }
+  }
+  .big.none b { font-size: 20px; font-weight: 500; }
   @container (max-width: 300px) {
-    .scenes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-    .scene { padding: 8px; gap: 6px; }
-    .scene .ico { width: 30px; height: 30px; }
-    .scene .ripple { top: 23px; left: 23px; }
-    .row { gap: 8px; }
+    .tile-head { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .tile .ripple { top: 23px; left: 23px; }
+    .hero-art { width: 64px; }
+    .big span { display: none; }
+    .row { gap: 10px; }
+    .row .btn span { display: none; }
+    .row .btn { width: 36px; height: 36px; padding: 0; border-radius: 50%; flex: none; }
+  }
+  @container (max-width: 260px) {
+    .mini .mini-art { display: none; }
   }
   @container (max-width: 200px) {
-    .scenes { grid-template-columns: minmax(0, 1fr); }
-    .scene { flex-direction: row; align-items: center; }
-    .scene .when { display: none; }
+    .hero-art { display: none; }
+    .tiles { --cols: 1; }
+    .mini .picks { display: none; }
   }
 `;
 
@@ -2065,8 +2189,12 @@ class SceneCard extends CardBase {
   _areas(m) {
     if (this._config.show_area_filter === false) return [];
     const ids = [...new Set([...m.scenes, ...m.scripts].map((x) => x.area).filter(Boolean))];
-    const list = ids.map((id) => ({ id, name: this._hass.areas?.[id]?.name || id })).sort((a, b) => a.name.localeCompare(b.name));
+    const list = ids.map((id) => ({ id, name: this._areaName(id) })).sort((a, b) => a.name.localeCompare(b.name));
     return list.length > 1 ? list : [];
+  }
+
+  _areaName(id) {
+    return this._hass.areas?.[id]?.name || id;
   }
 
   _inArea(x) {
@@ -2079,6 +2207,15 @@ class SceneCard extends CardBase {
     if (icon) return { html: `<ha-icon icon="${esc(icon)}"></ha-icon>`, key: null };
     const key = iconFor(x.name, null);
     return { html: svgIcon(ICONS[key || fallback]), key };
+  }
+
+  _color(x, key) {
+    return x.color || (key && TINTS[key]) || "var(--sc-accent)";
+  }
+
+  // The lights a scene set that are on.
+  _lightsOn(m, x) {
+    return (m.lightsOf.get(x.entity) || []).filter((id) => this._s(id)?.state === "on").length;
   }
 
   _summary(m) {
@@ -2094,19 +2231,46 @@ class SceneCard extends CardBase {
     return this._fired?.id === id && Date.now() - this._fired.at < FIRE_MS;
   }
 
-  _scene(x, sum) {
+  _when(t) {
+    return fmtRelative(this._hass, this._config, t);
+  }
+
+  // The hero: the active scene in big with where and when, its lights on and the running scripts; greyed without.
+  _hero(m, sum) {
+    const x = sum.on[0];
+    const lines = [];
+    if (x) {
+      const t = activatedAt(this._s(x.entity));
+      const where = [x.area && this._areaName(x.area), t && this._t("activated", { when: this._when(t) })].filter(Boolean).join(" · ");
+      if (where) lines.push(`<div class="line">${svgIcon(ICONS.marker)}<span>${esc(where)}</span></div>`);
+      const n = this._lightsOn(m, x);
+      if (n) lines.push(`<div class="line warn">${svgIcon(ICONS.bulb)}<span>${esc(this._t("lights_on", { n }))}</span></div>`);
+    }
+    for (const r of sum.running.slice(0, 2)) {
+      lines.push(`<div class="line warn clickable"${moreInfo(r.entity)}>${svgIcon(ICONS.script)}<span>${esc(`${r.name} · ${this._t("running")}`)}</span></div>`);
+    }
+    const key = x && this._icon(x, "palette").key;
+    const big = x
+      ? `<div class="big" style="--c: ${esc(this._color(x, key))}">${svgIcon(ICONS[key || "palette"])}<b>${esc(x.name)}</b><span>${esc(this._t("active").toLowerCase())}</span></div>`
+      : `<div class="big none"><b>${esc(this._t("no_active"))}</b></div>`;
+    return `<div class="hero"><div class="hero-art${x ? "" : " off"}">${ART}</div><div class="hero-body">${big}${lines.join("")}</div></div>`;
+  }
+
+  _scene(m, x, sum) {
     const on = sum.active.has(x.entity);
     const { html, key } = this._icon(x, "palette");
-    const color = x.color || (key && TINTS[key]);
+    const color = this._color(x, key);
     const t = activatedAt(this._s(x.entity));
-    const when = on ? this._t("active") : this._config.show_last === false ? "" : t ? fmtRelative(this._hass, this._config, t) : this._t("never");
-    const cls = `scene${on ? " on" : ""}${this._firing(x.entity) ? " fire" : ""}`;
-    return `<button class="${cls}" data-action="activate" data-entity="${esc(x.entity)}"${color ? ` style="--c: ${esc(color)}"` : ""} aria-pressed="${on}" aria-label="${esc(
+    const when = on ? this._t("active") : this._config.show_last === false ? "" : t ? this._when(t) : this._t("never");
+    const n = on ? this._lightsOn(m, x) : 0;
+    const cls = `tile${on ? " tint" : ""}${this._firing(x.entity) ? " fire" : ""}`;
+    return `<button class="${cls}" data-action="activate" data-entity="${esc(x.entity)}" style="--c: ${esc(color)}" aria-pressed="${on}" aria-label="${esc(
       `${x.name}${on ? ` · ${this._t("active")}` : ""}`,
     )}">
       <span class="ripple" aria-hidden="true"></span>
-      <span class="ico">${html}</span>${on ? `<span class="badge">${svgIcon(ICONS.check)}</span>` : ""}
-      <span class="sname">${esc(x.name)}</span>${when ? `<span class="when">${esc(when)}</span>` : ""}
+      <span class="tile-head"><span class="row-icon${on ? "" : " idle"}">${html}${on ? `<span class="badge">${svgIcon(ICONS.check)}</span>` : ""}</span>
+        <span class="row-text"><span class="row-name">${esc(x.name)}</span>${when ? `<span class="row-state${on ? " accent" : ""}">${esc(when)}</span>` : ""}</span></span>
+      ${n ? `<span class="badges"><span class="pill warn">${svgIcon(ICONS.bulb)}${n}</span></span>` : ""}
     </button>`;
   }
 
@@ -2123,14 +2287,14 @@ class SceneCard extends CardBase {
       : this._config.show_last === false
         ? ""
         : last
-          ? this._t("last_run", { when: fmtRelative(this._hass, this._config, last) })
+          ? this._t("last_run", { when: this._when(last) })
           : this._t("never_run");
     const off = !s || s.state === "unavailable";
     const label = running ? this._t("stop") : this._t("run");
     return `<div class="row">
-      <div class="tile ${running ? "accent" : "idle"}">${running ? '<span class="spin" aria-hidden="true"></span>' : ""}${html}</div>
-      <div class="info clickable" role="button" tabindex="0" data-entity="${esc(x.entity)}"><div class="rname">${esc(x.name)}</div>${meta ? `<div class="meta${running ? " on" : ""}">${esc(meta)}</div>` : ""}</div>
-      <button class="btn round${running ? "" : " primary"}" data-action="${running ? "stop" : "run"}" data-entity="${esc(x.entity)}" title="${esc(label)}" aria-label="${esc(`${label} · ${x.name}`)}"${off ? " disabled" : ""}>${svgIcon(running ? ICONS.stop : ICONS.play)}</button>
+      <div class="row-icon${running ? " warn" : " idle"}">${running ? ring(44, 3, 0.3).replace('class="ring-svg"', 'class="ring-svg spin"') : ""}${html}</div>
+      <div class="row-text clickable" role="button" tabindex="0" data-entity="${esc(x.entity)}"><div class="row-name">${esc(x.name)}</div>${meta ? `<div class="row-state${running ? " warn" : ""}">${esc(meta)}</div>` : ""}</div>
+      <button class="btn${running ? " active" : ""}" data-action="${running ? "stop" : "run"}" data-entity="${esc(x.entity)}" title="${esc(label)}" aria-label="${esc(`${label} · ${x.name}`)}"${off ? " disabled" : ""}>${svgIcon(running ? ICONS.stop : ICONS.play)}<span>${esc(label)}</span></button>
     </div>`;
   }
 
@@ -2146,19 +2310,21 @@ class SceneCard extends CardBase {
     const areas = this._areas(m);
     if (this._area && !areas.some((a) => a.id === this._area)) this._area = null;
     const parts = [];
+    if (c.show_hero !== false && m.scenes.length) parts.push(this._hero(m, sum));
     if (areas.length) {
       const chip = (id, name) => `<button class="area${(this._area || null) === id ? " on" : ""}" data-action="area" data-area="${esc(id || "")}" aria-pressed="${(this._area || null) === id}">${esc(name)}</button>`;
       parts.push(`<div class="areas" role="group" aria-label="${esc(this._t("areas"))}">${chip(null, this._t("all"))}${areas.map((a) => chip(a.id, a.name)).join("")}</div>`);
     }
+    const before = parts.length;
     const scenes = m.scenes.filter((x) => this._inArea(x));
     const scripts = m.scripts.filter((x) => this._inArea(x));
     if (c.show_scenes !== false && scenes.length) {
-      parts.push(this._section("scenes", ICONS.palette, this._t("scenes"), scenes.length, `<div class="scenes">${scenes.map((x) => this._scene(x, sum)).join("")}</div>`));
+      parts.push(this._section("scenes", ICONS.palette, this._t("scenes"), scenes.length, `<div class="tiles">${scenes.map((x) => this._scene(m, x, sum)).join("")}</div>`));
     }
     if (c.show_scripts !== false && scripts.length) {
       parts.push(this._section("scripts", ICONS.script, this._t("scripts"), scripts.length, `<div class="rows">${scripts.map((x) => this._script(x)).join("")}</div>`));
     }
-    if (!parts.length || (areas.length && parts.length === 1)) parts.push(`<div class="empty">${esc(this._t("nothing_here"))}</div>`);
+    if (parts.length === before) parts.push(`<div class="empty">${esc(this._t("nothing_here"))}</div>`);
     return `<style>${BASE_STYLE}${SCENE_STYLE}</style>
       <ha-card>
         ${this._head(sum, sum.sub)}
@@ -2202,21 +2368,21 @@ class SceneMiniCard extends withMini(SceneCard) {
     if (error) return error;
     const sum = this._summary(m);
     const lines = [];
-    if (sum.on.length) lines.push(`<div class="line accent clickable"${moreInfo(sum.on[0].entity)}>${svgIcon(ICONS.check)}<span>${esc(sum.on.map((x) => x.name).join(", "))}</span></div>`);
-    for (const x of sum.running.slice(0, 2)) lines.push(`<div class="line accent clickable"${moreInfo(x.entity)}>${svgIcon(ICONS.script)}<span>${esc(x.name)}</span></div>`);
+    if (sum.on.length) lines.push(`<div class="line accent clickable"${moreInfo(sum.on[0].entity)}>${svgIcon(ICONS.check)}<span>${esc(this._t("active_scene", { name: sum.on.map((x) => x.name).join(", ") }))}</span></div>`);
+    for (const x of sum.running.slice(0, 2)) lines.push(`<div class="line warn clickable"${moreInfo(x.entity)}>${svgIcon(ICONS.script)}<span>${esc(`${x.name} · ${this._t("running")}`)}</span></div>`);
     if (!lines.length) lines.push(`<div class="line">${svgIcon(ICONS.palette)}<span>${esc(this._t("no_active"))}</span></div>`);
     // The first scenes as round buttons (`mini_count`, 3 by default).
     const n = clamp(Number(this._config.mini_count ?? 3), 0, 6);
     const picks = m.scenes.slice(0, n).map((x) => {
       const on = sum.active.has(x.entity);
       const { html, key } = this._icon(x, "palette");
-      const color = x.color || (key && TINTS[key]);
-      return `<button class="btn round${on ? " on" : ""}" data-action="activate" data-entity="${esc(x.entity)}"${color ? ` style="--c: ${esc(color)}"` : ""} title="${esc(x.name)}" aria-label="${esc(x.name)}" aria-pressed="${on}">${html}</button>`;
+      return `<button class="btn round${on ? " on" : ""}" data-action="activate" data-entity="${esc(x.entity)}" style="--c: ${esc(this._color(x, key))}" title="${esc(x.name)}" aria-label="${esc(x.name)}" aria-pressed="${on}">${html}</button>`;
     });
     return `<style>${BASE_STYLE}${SCENE_STYLE}${MINI_STYLE}</style>
       <ha-card>
         ${this._head(sum, "")}
         <div class="content mini">
+          <div class="mini-art${sum.on.length ? "" : " hero-art off"}">${ART}</div>
           <div class="info">${lines.join("")}</div>
           ${picks.length ? `<div class="controls picks">${picks.join("")}</div>` : ""}
         </div>
@@ -2233,6 +2399,7 @@ class SceneCardEditor extends EditorBase {
     return [
       ["show_title", true],
       ["show_subtitle", true],
+      ["show_hero", true],
       ["show_scenes", true],
       ["show_scripts", true],
       ["show_area_filter", true],

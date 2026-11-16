@@ -79,12 +79,12 @@ test("header, scene tiles and script rows: active scene, last activations, runni
   const { html } = await mount();
   assert.match(html(), /Movie active/);
   assert.match(html(), /class="chip accent[^"]*"[^>]*data-entity="script\.depart"/);
-  assert.match(html(), /class="scene on"[^>]*data-entity="scene\.cinema"[^>]*aria-pressed="true"/);
+  assert.match(html(), /class="tile tint"[^>]*data-entity="scene\.cinema"[^>]*aria-pressed="true"/);
   assert.match(html(), /3 hr\. ago/);
   assert.match(html(), /Never<\/span>/);
   assert.match(html(), /Last run 5 hr\. ago/);
   assert.match(html(), /Never run/);
-  assert.match(html(), /class="spin"/);
+  assert.match(html(), /class="ring-svg spin"/);
   assert.match(html(), /data-action="stop" data-entity="script\.depart"/);
 });
 
@@ -92,7 +92,7 @@ test("a scene tile activates its scene, with a ripple; scripts run and stop", as
   const { card, hass, html } = await mount();
   click(card, { action: "activate", entity: "scene.diner" });
   same(hass.calls.at(-1), ["scene", "turn_on", { entity_id: "scene.diner" }]);
-  assert.match(html(), /class="scene fire"[^>]*data-entity="scene\.diner"/);
+  assert.match(html(), /class="tile fire"[^>]*data-entity="scene\.diner"/);
   click(card, { action: "run", entity: "script.cafe" });
   same(hass.calls.at(-1), ["script", "turn_on", { entity_id: "script.cafe" }]);
   click(card, { action: "stop", entity: "script.depart" });
@@ -105,7 +105,7 @@ test("the area filter shows the scenes and scripts of one area", async () => {
   assert.match(html(), /data-action="area" data-area="chambre"[^>]*>Bedroom/);
   click(card, { action: "area", area: "chambre" });
   assert.match(html(), /Wake up/);
-  assert.doesNotMatch(html(), /Dinner|Leave home/);
+  assert.doesNotMatch(html(), /Dinner|data-action="stop"/);
   click(card, { action: "area", area: "" });
   assert.match(html(), /Dinner/);
 });
@@ -124,9 +124,19 @@ test("configured scenes and scripts in their order; `area` keeps those of an are
   assert.doesNotMatch(r.html(), /Dinner/);
 });
 
+test("the hero: the active scene, where and when, its lights on and the running script; hidden by show_hero", async () => {
+  const { html } = await mount();
+  assert.match(html(), /class="hero"/);
+  assert.match(html(), /Living room · Activated 40 min\. ago/);
+  assert.match(html(), /Lights on: 2/);
+  assert.match(html(), /Leave home · Running/);
+  const r = await mount({ show_hero: false });
+  assert.doesNotMatch(r.html(), /class="hero"/);
+});
+
 test("options: sections hidden, folded, last activations hidden", async () => {
   const { card, html } = await mount({ show_scripts: false, show_last: false, show_area_filter: false, collapsed: ["scenes"] });
-  assert.doesNotMatch(html(), /Leave home|data-action="area"/);
+  assert.doesNotMatch(html(), /data-action="(run|stop)"|data-action="area"/);
   assert.doesNotMatch(html(), /Dinner/);
   click(card, { action: "toggle_section", section: "scenes" });
   assert.match(html(), /Dinner/);
@@ -137,7 +147,8 @@ test("nothing active: the header says so", async () => {
   const { html } = await mount({}, "idle");
   assert.match(html(), /No active scene/);
   assert.doesNotMatch(html(), /class="chip/);
-  assert.doesNotMatch(html(), /class="scene on"/);
+  assert.doesNotMatch(html(), /class="tile tint"/);
+  assert.match(html(), /hero-art off/);
 });
 
 test("mini card: the active scene, the running script and the first scenes as buttons; the detail button shows the full card", async () => {
@@ -151,7 +162,7 @@ test("mini card: the active scene, the running script and the first scenes as bu
   clearTimeout(card._fireTimer);
   card._dialogClosedAt = 0;
   click(card, { action: "zoom" });
-  assert.match(html(), /class="scenes"/);
+  assert.match(html(), /class="tiles"/);
   card._unzoom.tap({ composedPath: () => [] });
   assert.match(html(), /content mini/);
 });

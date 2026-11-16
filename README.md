@@ -34,10 +34,11 @@ Every scene and script of Home Assistant is shown when nothing is configured (ex
 ## Features
 
 - Two cards: a full **Scene Card** (`custom:scene-card`) and a compact **Scene Mini Card** (`custom:scene-mini-card`)
-- **Scenes** in a grid of tiles: a tap launches the scene, with a ripple from its icon (see [Animations](#animations))
+- A **hero** with an illustration: the active scene in big, its area and when it was activated, how many of its lights are on and the running scripts
+- **Scenes** in a grid of tiles: a tap launches the scene, with a ripple from its icon (see [Animations](#animations)); the active one tinted in its color
 - The **active scene** highlighted, with a tick: the last scene activated on its lights while none of them changed since (a Hue smart scene says it itself)
 - When each scene was **last activated** (*3 hr. ago*, *yesterday*, *Never*)
-- **Scripts** with their state: *Running* (an arc turns round the icon) with a **stop** button, else the last run and a **run** button
+- **Scripts** as rows: *Running* (a ring turns round the icon) with a **Stop** button, else the last run and a **Run** button
 - **Area filter**: chips with the areas of the scenes and scripts shown, to keep one area
 - Icons from Home Assistant or the card, else from the name (a film for *Movie*, cutlery for *Dinner*, a moon for *Good night*…) in a color of their own
 - Header icon in a tinted round badge, the active scene in the subtitle and a status chip on the title's line when a script runs
@@ -135,6 +136,7 @@ area:
   - living_room
 show_title: true
 show_subtitle: true
+show_hero: true
 show_scenes: true
 show_scripts: true
 show_area_filter: true
@@ -160,6 +162,7 @@ zoom: true
 | `title` | both | Scenes | Card title |
 | `show_title` | both | `true` | Show the title in the header |
 | `show_subtitle` | full | `true` | Show the subtitle (the active scene) |
+| `show_hero` | full | `true` | The hero: the active scene with its illustration |
 | `scenes` | both | Every scene | Scenes: entity ids, or objects with `entity`, `name`, `icon` and `color` |
 | `scripts` | both | Every script | Scripts: entity ids, or objects with `entity`, `name` and `icon` |
 | `area` | both | All | Area or areas: only their scenes and scripts |

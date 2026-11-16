@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0 - 2026-11-16
+
+### Features
+- New look, common to the other cards: a hero with an illustration (the active scene, its area and when it was activated, its lights on, the running scripts), scenes as tiles tinted in their color when active, scripts as rows with a ring while they run and Run / Stop buttons.
+- The mini card shows the illustration next to its lines.
+- New option `show_hero`.
+
 ## 1.0.0 - 2026-11-16
 
 First release.
