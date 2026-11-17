@@ -7,6 +7,9 @@
 - New options `illustration` (`false` keeps the classic header) and `illustration_theme` (`auto`: night when `sun.sun` is below the horizon or with the dark theme, even while the sun is up; `day`, `night`), in both visual editors.
 - A status pill right after the title on every header, in the header icon's colour: the scripts running, else *Active* (the subtitle then names the scenes without repeating it), *Unavailable* or *Idle*; under the subtitle on a narrow card, only its dot below 200 px. The mini card's detail button is the small frosted round button in the banner's top right corner.
 
+### Fixes
+- The header pill, the subtitle and the hero no longer say the same thing: with the hero shown, the subtitle stays empty (the hero names the active scene), and "active" beside the scene's name only while the pill says something else (a script running). Without the hero, the subtitle still names the active scene.
+
 ## 1.1.0 - 2026-11-16
 
 ### Features

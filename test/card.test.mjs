@@ -105,7 +105,9 @@ test("SmartThings scenes: their numeric icon code is ignored, their color tints 
 
 test("header, scene tiles and script rows: active scene, last activations, running script", async () => {
   const { html } = await mount();
-  assert.match(html(), /Movie active/);
+  // The pill says a script runs: the hero names the active scene, "active" beside it, and the subtitle stays empty.
+  assert.match(html(), /<b>Movie<\/b><span>active<\/span>/);
+  assert.doesNotMatch(html(), /class="sub"/);
   assert.match(html(), /class="chip accent[^"]*"[^>]*data-entity="script\.depart"/);
   assert.match(html(), /class="tile tint"[^>]*data-entity="scene\.cinema"[^>]*aria-pressed="true"/);
   assert.match(html(), /3 hr\. ago/);
@@ -199,7 +201,12 @@ test("illustrated header: lit with a scene on, night by option, unique ids per c
   // "active" in the subtitle); with the scripts hidden, "Active" and the scene's name alone under it.
   assert.match(a.html(), /<div class="trow"><div class="name">Scenes<\/div><span class="chip accent clickable"[^>]*><span class="dot"><\/span><span class="chip-text">Running</);
   const active = await mount({ show_scripts: false });
-  assert.match(active.html(), /<span class="chip-text">Active<\/span><\/span><\/div><div class="sub">Movie<\/div>/);
+  // The pill says "Active": the hero names the scene without repeating it, the subtitle stays empty.
+  assert.match(active.html(), /<span class="chip-text">Active<\/span><\/span><\/div><\/div>/);
+  assert.match(active.html(), /<b>Movie<\/b><\/div>/);
+  // Without the hero, the subtitle names the scene.
+  const noHero = await mount({ show_scripts: false, show_hero: false });
+  assert.match(noHero.html(), /<span class="chip-text">Active<\/span><\/span><\/div><div class="sub">Movie<\/div>/);
   assert.match(a.html(), /type-icon accent/);
   assert.match(a.html(), /class="sc-ground"/);
   const b = await mount({ illustration_theme: "night" });
@@ -246,7 +253,7 @@ test("nothing found: a clear message instead of an empty card", () => {
 
 test("French: texts in the card's language", async () => {
   const { html } = await mount({ language: "fr" });
-  assert.match(html(), /Movie active/);
+  assert.match(html(), /<b>Movie<\/b><span>active<\/span>/);
   assert.match(html(), /Toutes/);
   assert.match(html(), /Jamais lancé/);
 });

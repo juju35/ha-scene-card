@@ -2540,9 +2540,10 @@ class SceneCard extends CardBase {
     // The header follows the area chosen in the card, as the hero does.
     const running = this._config.show_scripts === false ? [] : m.scripts.filter((x) => this._inArea(x) && this._s(x.entity)?.state === "on");
     const on = m.scenes.filter((x) => this._inArea(x) && active.has(x.entity));
-    // Without an active scene, the hero says so: the subtitle stays empty then.
+    // The hero names the active scene (or says there is none): the subtitle then stays empty, so that the pill, the
+    // subtitle and the hero never say the same thing. Without the hero, the subtitle names it.
     const heroShown = this._config.show_hero !== false;
-    const sub = on.length ? this._t("active_scene", { name: on.map((x) => x.name).join(", ") }) : m.scenes.length && !heroShown ? this._t("no_active") : "";
+    const sub = heroShown ? "" : on.length ? this._t("active_scene", { name: on.map((x) => x.name).join(", ") }) : m.scenes.length ? this._t("no_active") : "";
     const chip = running.length ? { cls: "accent", text: running.length === 1 ? this._t("running") : this._t("running_n", { n: running.length }), entity: running[0].entity } : null;
     return { active, running, on, sub, chip };
   }
@@ -2576,8 +2577,10 @@ class SceneCard extends CardBase {
       lines.push(`<div class="line accent clickable"${moreInfo(r.entity)}>${svgIcon(ICONS.script)}<span>${esc(`${r.name} · ${this._t("running")}`)}</span></div>`);
     }
     const icon = x && this._icon(x, "palette");
+    // "active" beside the name only while the pill says something else (a script running).
+    const label = sum.chip ? `<span>${esc(this._t("active").toLowerCase())}</span>` : "";
     const big = x
-      ? `<div class="big" style="--c: ${esc(this._color(x, icon.key))}">${icon.html}<b>${esc(x.name)}</b><span>${esc(this._t("active").toLowerCase())}</span></div>`
+      ? `<div class="big" style="--c: ${esc(this._color(x, icon.key))}">${icon.html}<b>${esc(x.name)}</b>${label}</div>`
       : `<div class="big none"><b>${esc(this._t("no_active"))}</b></div>`;
     // With the illustrated header, the drawing is in the banner: the hero keeps its text only.
     const art = this._illustrated ? "" : `<div class="hero-art${x ? "" : " off"}">${ART}</div>`;
