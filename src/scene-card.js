@@ -94,6 +94,11 @@ const STRINGS = {
     title: "Title (optional)",
     language: "Language",
     lang_auto: "Automatic",
+    illustration: "Animated illustration",
+    illustration_theme: "Illustration theme",
+    theme_auto: "Automatic (sun or dark theme)",
+    theme_day: "Day",
+    theme_night: "Night",
     collapsed: "Sections folded by default",
     zoom: "Detail button",
     zoom_helper: "Switches the mini card to the full card's content",
@@ -101,6 +106,7 @@ const STRINGS = {
     show_subtitle: "Show subtitle",
     no_registry: "This card needs Home Assistant 2024.8 or later.",
     unavailable: "Unavailable",
+    idle: "Idle",
   },
   fr: {
     scenes: "Scènes",
@@ -140,6 +146,11 @@ const STRINGS = {
     title: "Titre (facultatif)",
     language: "Langue",
     lang_auto: "Automatique",
+    illustration: "Illustration animée",
+    illustration_theme: "Thème de l’illustration",
+    theme_auto: "Automatique (soleil ou thème sombre)",
+    theme_day: "Jour",
+    theme_night: "Nuit",
     collapsed: "Sections repliées par défaut",
     zoom: "Bouton détail",
     zoom_helper: "Bascule la mini-carte vers le contenu de la carte complète",
@@ -147,6 +158,7 @@ const STRINGS = {
     show_subtitle: "Afficher le sous-titre",
     no_registry: "Cette carte nécessite Home Assistant 2024.8 ou plus récent.",
     unavailable: "Indisponible",
+    idle: "Au repos",
   },
   de: {
     scenes: "Szenen",
@@ -186,6 +198,11 @@ const STRINGS = {
     title: "Titel (optional)",
     language: "Sprache",
     lang_auto: "Automatisch",
+    illustration: "Animierte Illustration",
+    illustration_theme: "Thema der Illustration",
+    theme_auto: "Automatisch (Sonne oder dunkles Design)",
+    theme_day: "Tag",
+    theme_night: "Nacht",
     collapsed: "Standardmäßig eingeklappte Bereiche",
     zoom: "Detail-Schaltfläche",
     zoom_helper: "Schaltet die Mini-Karte auf den Inhalt der vollen Karte um",
@@ -193,6 +210,7 @@ const STRINGS = {
     show_subtitle: "Untertitel anzeigen",
     no_registry: "Diese Karte benötigt Home Assistant 2024.8 oder neuer.",
     unavailable: "Nicht verfügbar",
+    idle: "Inaktiv",
   },
   es: {
     scenes: "Escenas",
@@ -232,6 +250,11 @@ const STRINGS = {
     title: "Título (opcional)",
     language: "Idioma",
     lang_auto: "Automático",
+    illustration: "Ilustración animada",
+    illustration_theme: "Tema de la ilustración",
+    theme_auto: "Automático (sol o tema oscuro)",
+    theme_day: "Día",
+    theme_night: "Noche",
     collapsed: "Secciones plegadas por defecto",
     zoom: "Botón de detalle",
     zoom_helper: "Cambia la minitarjeta al contenido de la tarjeta completa",
@@ -239,6 +262,7 @@ const STRINGS = {
     show_subtitle: "Mostrar subtítulo",
     no_registry: "Esta tarjeta necesita Home Assistant 2024.8 o posterior.",
     unavailable: "No disponible",
+    idle: "En reposo",
   },
   it: {
     scenes: "Scene",
@@ -278,6 +302,11 @@ const STRINGS = {
     title: "Titolo (facoltativo)",
     language: "Lingua",
     lang_auto: "Automatica",
+    illustration: "Illustrazione animata",
+    illustration_theme: "Tema dell’illustrazione",
+    theme_auto: "Automatico (sole o tema scuro)",
+    theme_day: "Giorno",
+    theme_night: "Notte",
     collapsed: "Sezioni chiuse per impostazione predefinita",
     zoom: "Pulsante dettagli",
     zoom_helper: "Passa la mini scheda al contenuto della scheda completa",
@@ -285,6 +314,7 @@ const STRINGS = {
     show_subtitle: "Mostra sottotitolo",
     no_registry: "Questa scheda richiede Home Assistant 2024.8 o successivo.",
     unavailable: "Non disponibile",
+    idle: "A riposo",
   },
   nl: {
     scenes: "Scènes",
@@ -324,6 +354,11 @@ const STRINGS = {
     title: "Titel (optioneel)",
     language: "Taal",
     lang_auto: "Automatisch",
+    illustration: "Geanimeerde illustratie",
+    illustration_theme: "Thema van de illustratie",
+    theme_auto: "Automatisch (zon of donker thema)",
+    theme_day: "Dag",
+    theme_night: "Nacht",
     collapsed: "Standaard ingeklapte secties",
     zoom: "Detailknop",
     zoom_helper: "Schakelt de minikaart naar de inhoud van de volledige kaart",
@@ -331,6 +366,7 @@ const STRINGS = {
     show_subtitle: "Ondertitel tonen",
     no_registry: "Deze kaart vereist Home Assistant 2024.8 of nieuwer.",
     unavailable: "Niet beschikbaar",
+    idle: "Inactief",
   },
   pt: {
     scenes: "Cenas",
@@ -370,6 +406,11 @@ const STRINGS = {
     title: "Título (opcional)",
     language: "Idioma",
     lang_auto: "Automático",
+    illustration: "Ilustração animada",
+    illustration_theme: "Tema da ilustração",
+    theme_auto: "Automático (sol ou tema escuro)",
+    theme_day: "Dia",
+    theme_night: "Noite",
     collapsed: "Secções recolhidas por predefinição",
     zoom: "Botão de detalhe",
     zoom_helper: "Muda o minicartão para o conteúdo do cartão completo",
@@ -377,6 +418,7 @@ const STRINGS = {
     show_subtitle: "Mostrar subtítulo",
     no_registry: "Este cartão requer o Home Assistant 2024.8 ou posterior.",
     unavailable: "Indisponível",
+    idle: "Inativo",
   },
   pl: {
     scenes: "Sceny",
@@ -416,6 +458,11 @@ const STRINGS = {
     title: "Tytuł (opcjonalnie)",
     language: "Język",
     lang_auto: "Automatycznie",
+    illustration: "Animowana ilustracja",
+    illustration_theme: "Motyw ilustracji",
+    theme_auto: "Automatycznie (słońce lub ciemny motyw)",
+    theme_day: "Dzień",
+    theme_night: "Noc",
     collapsed: "Sekcje domyślnie zwinięte",
     zoom: "Przycisk szczegółów",
     zoom_helper: "Przełącza minikartę na zawartość pełnej karty",
@@ -423,6 +470,7 @@ const STRINGS = {
     show_subtitle: "Pokaż podtytuł",
     no_registry: "Ta karta wymaga Home Assistant 2024.8 lub nowszego.",
     unavailable: "Niedostępne",
+    idle: "Bezczynny",
   },
   sr: {
     scenes: "Сцене",
@@ -462,6 +510,11 @@ const STRINGS = {
     title: "Наслов (опционо)",
     language: "Језик",
     lang_auto: "Аутоматски",
+    illustration: "Анимирана илустрација",
+    illustration_theme: "Тема илустрације",
+    theme_auto: "Аутоматски (сунце или тамна тема)",
+    theme_day: "Дан",
+    theme_night: "Ноћ",
     collapsed: "Подразумевано скупљени одељци",
     zoom: "Дугме за детаље",
     zoom_helper: "Пребацује мини картицу на садржај пуне картице",
@@ -469,6 +522,7 @@ const STRINGS = {
     show_subtitle: "Прикажи поднаслов",
     no_registry: "Ова картица захтева Home Assistant 2024.8 или новији.",
     unavailable: "Недоступно",
+    idle: "Мирује",
   },
   "sr-Latn": {
     scenes: "Scene",
@@ -508,6 +562,11 @@ const STRINGS = {
     title: "Naslov (opciono)",
     language: "Jezik",
     lang_auto: "Automatski",
+    illustration: "Animirana ilustracija",
+    illustration_theme: "Tema ilustracije",
+    theme_auto: "Automatski (sunce ili tamna tema)",
+    theme_day: "Dan",
+    theme_night: "Noć",
     collapsed: "Podrazumevano skupljeni odeljci",
     zoom: "Dugme za detalje",
     zoom_helper: "Prebacuje mini karticu na sadržaj pune kartice",
@@ -515,6 +574,7 @@ const STRINGS = {
     show_subtitle: "Prikaži podnaslov",
     no_registry: "Ova kartica zahteva Home Assistant 2024.8 ili noviji.",
     unavailable: "Nedostupno",
+    idle: "Miruje",
   },
   ro: {
     scenes: "Scene",
@@ -554,6 +614,11 @@ const STRINGS = {
     title: "Titlu (opțional)",
     language: "Limbă",
     lang_auto: "Automat",
+    illustration: "Ilustrație animată",
+    illustration_theme: "Tema ilustrației",
+    theme_auto: "Automat (soare sau temă întunecată)",
+    theme_day: "Zi",
+    theme_night: "Noapte",
     collapsed: "Secțiuni pliate implicit",
     zoom: "Buton de detalii",
     zoom_helper: "Comută mini cardul la conținutul cardului complet",
@@ -561,6 +626,7 @@ const STRINGS = {
     show_subtitle: "Afișează subtitlul",
     no_registry: "Acest card necesită Home Assistant 2024.8 sau mai nou.",
     unavailable: "Indisponibil",
+    idle: "Inactiv",
   },
   da: {
     scenes: "Scener",
@@ -600,6 +666,11 @@ const STRINGS = {
     title: "Titel (valgfri)",
     language: "Sprog",
     lang_auto: "Automatisk",
+    illustration: "Animeret illustration",
+    illustration_theme: "Illustrationens tema",
+    theme_auto: "Automatisk (sol eller mørkt tema)",
+    theme_day: "Dag",
+    theme_night: "Nat",
     collapsed: "Sektioner foldet sammen som standard",
     zoom: "Detaljeknap",
     zoom_helper: "Skifter minikortet til det fulde korts indhold",
@@ -607,6 +678,7 @@ const STRINGS = {
     show_subtitle: "Vis undertitel",
     no_registry: "Dette kort kræver Home Assistant 2024.8 eller nyere.",
     unavailable: "Utilgængelig",
+    idle: "Inaktiv",
   },
   sv: {
     scenes: "Scener",
@@ -646,6 +718,11 @@ const STRINGS = {
     title: "Titel (valfri)",
     language: "Språk",
     lang_auto: "Automatiskt",
+    illustration: "Animerad illustration",
+    illustration_theme: "Illustrationens tema",
+    theme_auto: "Automatiskt (sol eller mörkt tema)",
+    theme_day: "Dag",
+    theme_night: "Natt",
     collapsed: "Sektioner hopfällda som standard",
     zoom: "Detaljknapp",
     zoom_helper: "Växlar minikortet till hela kortets innehåll",
@@ -653,6 +730,7 @@ const STRINGS = {
     show_subtitle: "Visa undertitel",
     no_registry: "Det här kortet kräver Home Assistant 2024.8 eller senare.",
     unavailable: "Otillgänglig",
+    idle: "Vilande",
   },
   bg: {
     scenes: "Сцени",
@@ -692,6 +770,11 @@ const STRINGS = {
     title: "Заглавие (по избор)",
     language: "Език",
     lang_auto: "Автоматично",
+    illustration: "Анимирана илюстрация",
+    illustration_theme: "Тема на илюстрацията",
+    theme_auto: "Автоматично (слънце или тъмна тема)",
+    theme_day: "Ден",
+    theme_night: "Нощ",
     collapsed: "Сгънати по подразбиране раздели",
     zoom: "Бутон за подробности",
     zoom_helper: "Превключва мини картата към съдържанието на пълната карта",
@@ -699,6 +782,7 @@ const STRINGS = {
     show_subtitle: "Покажи подзаглавие",
     no_registry: "Тази карта изисква Home Assistant 2024.8 или по-нов.",
     unavailable: "Недостъпно",
+    idle: "Неактивно",
   },
   ru: {
     scenes: "Сцены",
@@ -738,6 +822,11 @@ const STRINGS = {
     title: "Заголовок (необязательно)",
     language: "Язык",
     lang_auto: "Автоматически",
+    illustration: "Анимированная иллюстрация",
+    illustration_theme: "Тема иллюстрации",
+    theme_auto: "Автоматически (солнце или тёмная тема)",
+    theme_day: "День",
+    theme_night: "Ночь",
     collapsed: "Свёрнутые по умолчанию разделы",
     zoom: "Кнопка подробностей",
     zoom_helper: "Переключает мини-карточку на содержимое полной карточки",
@@ -745,6 +834,7 @@ const STRINGS = {
     show_subtitle: "Показывать подзаголовок",
     no_registry: "Для этой карточки нужен Home Assistant 2024.8 или новее.",
     unavailable: "Недоступно",
+    idle: "Неактивно",
   },
   uk: {
     scenes: "Сцени",
@@ -784,6 +874,11 @@ const STRINGS = {
     title: "Заголовок (необов'язково)",
     language: "Мова",
     lang_auto: "Автоматично",
+    illustration: "Анімована ілюстрація",
+    illustration_theme: "Тема ілюстрації",
+    theme_auto: "Автоматично (сонце або темна тема)",
+    theme_day: "День",
+    theme_night: "Ніч",
     collapsed: "Згорнуті за замовчуванням розділи",
     zoom: "Кнопка подробиць",
     zoom_helper: "Перемикає міні-картку на вміст повної картки",
@@ -791,6 +886,7 @@ const STRINGS = {
     show_subtitle: "Показувати підзаголовок",
     no_registry: "Для цієї картки потрібен Home Assistant 2024.8 або новіший.",
     unavailable: "Недоступно",
+    idle: "Неактивно",
   },
   hu: {
     scenes: "Jelenetek",
@@ -830,6 +926,11 @@ const STRINGS = {
     title: "Cím (nem kötelező)",
     language: "Nyelv",
     lang_auto: "Automatikus",
+    illustration: "Animált illusztráció",
+    illustration_theme: "Az illusztráció témája",
+    theme_auto: "Automatikus (nap vagy sötét téma)",
+    theme_day: "Nappal",
+    theme_night: "Éjszaka",
     collapsed: "Alapértelmezetten összecsukott szakaszok",
     zoom: "Részletek gomb",
     zoom_helper: "A minikártyát a teljes kártya tartalmára váltja",
@@ -837,6 +938,7 @@ const STRINGS = {
     show_subtitle: "Alcím megjelenítése",
     no_registry: "Ehhez a kártyához Home Assistant 2024.8 vagy újabb szükséges.",
     unavailable: "Nem elérhető",
+    idle: "Tétlen",
   },
   sk: {
     scenes: "Scény",
@@ -876,6 +978,11 @@ const STRINGS = {
     title: "Názov (voliteľné)",
     language: "Jazyk",
     lang_auto: "Automaticky",
+    illustration: "Animovaná ilustrácia",
+    illustration_theme: "Téma ilustrácie",
+    theme_auto: "Automaticky (slnko alebo tmavá téma)",
+    theme_day: "Deň",
+    theme_night: "Noc",
     collapsed: "Predvolene zbalené sekcie",
     zoom: "Tlačidlo podrobností",
     zoom_helper: "Prepne mini kartu na obsah úplnej karty",
@@ -883,6 +990,7 @@ const STRINGS = {
     show_subtitle: "Zobraziť podnadpis",
     no_registry: "Táto karta vyžaduje Home Assistant 2024.8 alebo novší.",
     unavailable: "Nedostupné",
+    idle: "Nečinné",
   },
   cs: {
     scenes: "Scény",
@@ -922,6 +1030,11 @@ const STRINGS = {
     title: "Název (volitelné)",
     language: "Jazyk",
     lang_auto: "Automaticky",
+    illustration: "Animovaná ilustrace",
+    illustration_theme: "Motiv ilustrace",
+    theme_auto: "Automaticky (slunce nebo tmavý motiv)",
+    theme_day: "Den",
+    theme_night: "Noc",
     collapsed: "Ve výchozím stavu sbalené sekce",
     zoom: "Tlačítko podrobností",
     zoom_helper: "Přepne mini kartu na obsah plné karty",
@@ -929,6 +1042,7 @@ const STRINGS = {
     show_subtitle: "Zobrazit podtitul",
     no_registry: "Tato karta vyžaduje Home Assistant 2024.8 nebo novější.",
     unavailable: "Nedostupné",
+    idle: "Nečinné",
   },
   sl: {
     scenes: "Scene",
@@ -968,6 +1082,11 @@ const STRINGS = {
     title: "Naslov (neobvezno)",
     language: "Jezik",
     lang_auto: "Samodejno",
+    illustration: "Animirana ilustracija",
+    illustration_theme: "Tema ilustracije",
+    theme_auto: "Samodejno (sonce ali temna tema)",
+    theme_day: "Dan",
+    theme_night: "Noč",
     collapsed: "Privzeto strnjeni razdelki",
     zoom: "Gumb za podrobnosti",
     zoom_helper: "Preklopi mini kartico na vsebino polne kartice",
@@ -975,6 +1094,7 @@ const STRINGS = {
     show_subtitle: "Prikaži podnaslov",
     no_registry: "Ta kartica potrebuje Home Assistant 2024.8 ali novejši.",
     unavailable: "Ni na voljo",
+    idle: "Nedejavno",
   },
   lv: {
     scenes: "Ainas",
@@ -1014,6 +1134,11 @@ const STRINGS = {
     title: "Virsraksts (neobligāts)",
     language: "Valoda",
     lang_auto: "Automātiski",
+    illustration: "Animēta ilustrācija",
+    illustration_theme: "Ilustrācijas motīvs",
+    theme_auto: "Automātiski (saule vai tumšā tēma)",
+    theme_day: "Diena",
+    theme_night: "Nakts",
     collapsed: "Pēc noklusējuma sakļautās sadaļas",
     zoom: "Detaļu poga",
     zoom_helper: "Pārslēdz mini kartīti uz pilnās kartītes saturu",
@@ -1021,6 +1146,7 @@ const STRINGS = {
     show_subtitle: "Rādīt apakšvirsrakstu",
     no_registry: "Šai kartītei nepieciešams Home Assistant 2024.8 vai jaunāks.",
     unavailable: "Nav pieejams",
+    idle: "Dīkstāvē",
   },
   el: {
     scenes: "Σκηνές",
@@ -1060,6 +1186,11 @@ const STRINGS = {
     title: "Τίτλος (προαιρετικό)",
     language: "Γλώσσα",
     lang_auto: "Αυτόματα",
+    illustration: "Κινούμενη εικονογράφηση",
+    illustration_theme: "Θέμα εικονογράφησης",
+    theme_auto: "Αυτόματο (ήλιος ή σκούρο θέμα)",
+    theme_day: "Ημέρα",
+    theme_night: "Νύχτα",
     collapsed: "Ενότητες συμπτυγμένες από προεπιλογή",
     zoom: "Κουμπί λεπτομερειών",
     zoom_helper: "Αλλάζει τη μίνι κάρτα στο περιεχόμενο της πλήρους κάρτας",
@@ -1067,6 +1198,7 @@ const STRINGS = {
     show_subtitle: "Εμφάνιση υπότιτλου",
     no_registry: "Αυτή η κάρτα απαιτεί Home Assistant 2024.8 ή νεότερο.",
     unavailable: "Μη διαθέσιμο",
+    idle: "Αδρανές",
   },
 };
 
@@ -1115,6 +1247,13 @@ const valid = (s) => !!s && !["unknown", "unavailable", ""].includes(s.state);
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 // Attributes of an element that opens an entity's more-info (nothing without an entity).
 const moreInfo = (id) => (id ? ` role="button" tabindex="0" data-entity="${esc(id)}"` : "");
+// The whole width of an element's text in its own font, an ellipsised one included.
+const textWidth = (el) => {
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  return range.getBoundingClientRect().width;
+};
+
 const svgIcon = (path, cls = "") => `<svg class="icon ${cls}" viewBox="0 0 24 24" aria-hidden="true"><path d="${path}"/></svg>`;
 const domainOf = (id) => String(id || "").split(".")[0];
 const asList = (v) => (Array.isArray(v) ? v : v ? [v] : []);
@@ -1192,12 +1331,26 @@ const BASE_STYLE = `
           flex: 0 1 auto; min-width: 0; max-width: 50%; overflow: hidden; box-sizing: border-box; }
   .chip-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .header { display: flex; align-items: center; gap: 10px; padding: 12px 12px 0; }
-  /* The chip sits on the title's line, whether a subtitle follows or not. */
-  .header .chip, .header .zoom { align-self: flex-start; margin-top: 10px; }
+  /* The detail button sits on the title's line, whether a subtitle follows or not. */
+  .header .zoom { align-self: flex-start; margin-top: 10px; }
   .type-icon { position: relative; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none;
                --sc-tint: var(--c, var(--sc-accent)); background: color-mix(in srgb, var(--sc-tint) 16%, transparent); transition: background-color .3s ease; }
   .type-icon .icon { width: 24px; height: 24px; fill: color-mix(in srgb, var(--sc-tint) 60%, var(--primary-text-color)); transition: fill .3s ease; }
   .titles { flex: 1 1 0; min-width: 5ch; }
+  /* The status pill right after the title, centred on it, while the title stays whole and the pill's whole label fits
+     beside it; otherwise (measured by the card, see _fitPill) the pill on its own line under a one-line subtitle, and
+     if even that would not fit in the header, its dot alone (the label stays in title and aria-label). */
+  .titles { display: flex; flex-direction: column; }
+  .trow { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .trow .name { flex: 0 1 auto; min-width: 0; }
+  .trow .chip { flex: none; max-width: none; }
+  .titles.below { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: start; }
+  .titles.below .trow { display: contents; }
+  .titles.below .name { max-width: 100%; }
+  .titles.below > .sub { justify-self: stretch; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .titles.below .chip { grid-row: 3; max-width: 100%; }
+  .titles.pill-dot .chip { padding: 4px; }
+  .titles.pill-dot .chip .chip-text { display: none; }
   :host([hide-title]) .titles > .name, :host([hide-subtitle]) .titles > .sub { display: none; }
   .name { font-size: 16px; font-weight: 500; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sub { font-size: 12px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -1284,7 +1437,7 @@ const BASE_STYLE = `
           color: color-mix(in srgb, var(--c, var(--sc-idle)) 60%, var(--primary-text-color)); background: color-mix(in srgb, var(--c, var(--sc-idle)) 14%, transparent); }
   .pill .icon { width: 14px; height: 14px; color: var(--c, var(--sc-idle)); }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
-  @container (max-width: 230px) {
+  @container (max-width: 200px) {
     .chip { padding: 4px; flex: none; }
     .chip-text { display: none; }
     .header { gap: 6px; }
@@ -1534,6 +1687,18 @@ class CardBase extends HTMLElement {
     }, 60000);
     this._onConnect?.();
     this._update();
+    // A new width (or the web font loaded): the status pill is fitted again, in the next frame.
+    if (typeof ResizeObserver === "function") {
+      this._resize ??= new ResizeObserver((entries) => {
+        const w = Math.round(entries.at(-1).contentRect.width);
+        if (w === this._fitWidth) return;
+        this._fitWidth = w;
+        cancelAnimationFrame(this._fitFrame);
+        this._fitFrame = requestAnimationFrame(() => this._fitPill());
+      });
+      this._resize.observe(this);
+    }
+    document.fonts?.ready?.then(() => this._fitPill());
   }
 
   disconnectedCallback() {
@@ -1546,6 +1711,9 @@ class CardBase extends HTMLElement {
     this._outside?.off();
     window.removeEventListener("keydown", this._onKey);
     this._onDisconnect?.();
+    this._resize?.disconnect();
+    this._fitWidth = null;
+
     // Left (another dashboard view, a conditional card hidden): back to the defaults, so that the card does not come
     // back unfolded or with its popup open.
     this._toggled = new Map();
@@ -1606,6 +1774,7 @@ class CardBase extends HTMLElement {
       const kept = this._dialog || this._byPointer ? null : this._focusedSpot();
       this._html = html;
       this.shadowRoot.innerHTML = html;
+      this._fitPill();
       // Fields get back what was typed, and the caret when one had the focus.
       for (const el of this.shadowRoot.querySelectorAll?.("[data-keep]") || []) {
         const v = this._inputs[el.dataset.keep];
@@ -1784,16 +1953,15 @@ class CardBase extends HTMLElement {
       <div class="header">
         <div class="type-icon ${cls}">${extra}${svgIcon(icon)}</div>
         <div class="titles">
-          <div class="name">${esc(title)}</div>
-          ${sub ? `<div class="sub">${esc(sub)}</div>` : ""}
+          <div class="trow"><div class="name">${esc(title)}</div>${
+            chip
+              ? `<span class="chip ${chip.cls}${chip.entity ? " clickable" : ""}"${moreInfo(chip.entity)} title="${esc(chip.text)}" aria-label="${esc(
+                  chip.text,
+                )}"><span class="dot"></span><span class="chip-text">${esc(chip.text)}</span></span>`
+              : ""
+          }</div>
+          ${sub ? `<div class="sub" title="${esc(sub)}">${esc(sub)}</div>` : ""}
         </div>
-        ${
-          chip
-            ? `<span class="chip ${chip.cls}${chip.entity ? " clickable" : ""}"${moreInfo(chip.entity)} title="${esc(chip.text)}" aria-label="${esc(
-                chip.text,
-              )}"><span class="dot"></span><span class="chip-text">${esc(chip.text)}</span></span>`
-            : ""
-        }
         ${this._zoomButton()}
       </div>`;
   }
@@ -1803,6 +1971,32 @@ class CardBase extends HTMLElement {
   }
 
   _toggleZoom() {}
+
+  // The status pill stays right after the title only while the whole title and the pill's whole label fit on that
+  // row; otherwise it takes a line of its own under the subtitle (.below), and when even then the title, the subtitle
+  // and the pill would not fit above the banner's floor strip, it keeps its dot alone (.pill-dot). Measured in the
+  // real fonts, so that every language and title length gets its own answer.
+  _fitPill() {
+    for (const t of this.shadowRoot?.querySelectorAll?.(".titles") || []) {
+      const row = t.querySelector(":scope > .trow");
+      const chip = row?.querySelector(":scope > .chip");
+      if (!chip?.getBoundingClientRect) continue;
+      t.classList.remove("below", "pill-dot");
+      const name = row.querySelector(":scope > .name");
+      const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+      const title = name ? textWidth(name) + gap : 0;
+      const pill = chip.getBoundingClientRect().width;
+      if (title + pill <= row.getBoundingClientRect().width) continue;
+      t.classList.add("below");
+      const r = t.getBoundingClientRect();
+      const banner = t.closest(".banner");
+      const box = banner?.getBoundingClientRect();
+      const floor = banner?.querySelector(".sc-ground")?.getBoundingClientRect().top ?? box?.bottom;
+      const tall = box && (r.bottom > floor + 0.5 || r.top < box.top - 0.5);
+      if (tall || pill > r.width + 0.5) t.classList.add("pill-dot");
+    }
+  }
+
 }
 
 // The mini card is the full card drawn compact: its detail button (top right, `zoom: false` removes it) switches it
@@ -2200,10 +2394,143 @@ const SCENE_STYLE = `
 `;
 
 // ---------------------------------------------------------------------------
+// The illustrated header: a living room on the right of a 90 px banner (wall, window on the sky, floor lamp and the
+// card's own sofa-and-lamp drawing standing on a 10 px parquet strip edge to edge). The left of the banner is plain
+// wall: the icon, the title and the subtitle sit there.
+// ---------------------------------------------------------------------------
+
+// Night picture: forced by illustration_theme, else the sun below the horizon or Home Assistant's dark mode (a dark
+// theme takes the night picture even while the sun is up; an unknown sun leaves the dark mode alone to decide).
+const isNight = (hass, config) => {
+  const theme = config.illustration_theme;
+  if (theme === "night") return true;
+  if (theme === "day") return false;
+  return hass?.states?.["sun.sun"]?.state === "below_horizon" || !!hass?.themes?.darkMode;
+};
+
+// Stars seen through the window at night (x, y, radius).
+const SC_STARS = [
+  [69, 17, 0.55],
+  [76, 30, 0.45],
+  [84, 15, 0.5],
+  [87, 34, 0.4],
+  [70, 37, 0.45],
+];
+
+// The room, 200 × 80 (the floor is the strip under it). `uid` keeps each card's gradient ids apart on a page.
+const sceneSvg = (uid) => {
+  const stars = SC_STARS.map(([x, y, r], i) => `<circle class="sc-star${i % 2 ? " tw" : ""}" cx="${x}" cy="${y}" r="${r}"/>`).join("");
+  // The card's drawing (120 × 100, sofa legs down to y 90): 76 px high, its legs on the floor.
+  const art = ART.replace("<svg ", '<svg class="sc-art" x="108" y="11.6" width="91.2" height="76" ');
+  return `<svg class="sc-scene" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">
+    <defs><radialGradient id="sc-glow-${uid}"><stop offset="0" stop-color="#ffd27a" stop-opacity=".75"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient></defs>
+    <rect class="sc-skirting" x="0" y="77.4" width="200" height="2.6"/>
+    <g class="sc-window" transform="translate(-16 0)">
+      <rect class="sc-sky" x="64" y="11" width="28" height="30" rx="1.5"/>
+      <g class="sc-day"><circle class="sc-sun" cx="84" cy="20" r="3.4"/><path class="sc-cloud" d="M67 31a2.4 2.4 0 0 1 3.6-2 3 3 0 0 1 5.6.8 1.8 1.8 0 0 1 .3 3.6H68.4a1.8 1.8 0 0 1-1.4-2.4Z"/></g>
+      <g class="sc-night">${stars}<path class="sc-moon" d="M83 16.4a3.6 3.6 0 1 0 3.2 5.4 2.9 2.9 0 1 1-3.2-5.4Z"/></g>
+      <rect class="sc-frame" x="64" y="11" width="28" height="30" rx="1.5"/><path class="sc-bar" d="M78 11V41M64 26H92"/>
+      <rect class="sc-sill" x="61.5" y="41" width="33" height="2.2" rx="1"/>
+      <path class="sc-curtain" d="M58 9h7v36q-4 1-7 0Z"/><path class="sc-curtain" d="M91 9h7v36q-3 1-7 0Z"/><rect class="sc-rod" x="55" y="7.6" width="46" height="1.6" rx=".8"/>
+    </g>
+    <g class="sc-floorlamp" transform="translate(-12 0)">
+      <circle class="sc-halo" cx="113" cy="40" r="15" fill="url(#sc-glow-${uid})"/>
+      <path class="sc-lamplight" d="M107.6 45h10.8l7 32h-24.8Z"/>
+      <rect class="sc-pole" x="112.3" y="44" width="1.4" height="34"/><ellipse class="sc-pole" cx="113" cy="79" rx="5" ry="1.2"/>
+      <path class="sc-shade" d="M108.4 35h9.2l2.6 10h-14.4Z"/>
+    </g>
+    ${art}
+  </svg>`;
+};
+
+const BANNER_STYLE = `
+  .banner { position: relative; overflow: hidden; height: 90px; color: #2a2522; background: #f4ede3; }
+  .banner.night { color: #fff; background: #2a2f3d; }
+  .sc-scene { position: absolute; right: 0; bottom: 10px; height: 80px; width: min(200px, 62%); }
+  /* The floor: a parquet strip edge to edge under the whole banner. */
+  .sc-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 10px;
+               background: repeating-linear-gradient(90deg, #c99a6b 0 38px, #b98a5c 38px 40px); box-shadow: inset 0 2px 0 #a97c50; }
+  .night .sc-ground { background: repeating-linear-gradient(90deg, #4a3a2c 0 38px, #3e3024 38px 40px); box-shadow: inset 0 2px 0 #5c4836; }
+  .sc-skirting { fill: #e6d9c6; } .night .sc-skirting { fill: #353b4b; }
+  .sc-sky { fill: #bfe0f7; } .night .sc-sky { fill: #1b2f52; }
+  .sc-frame { fill: none; stroke: #fff; stroke-width: 1.6; } .night .sc-frame { stroke: #4a5568; }
+  .sc-bar { stroke: #fff; stroke-width: 1; } .night .sc-bar { stroke: #4a5568; }
+  .sc-sill { fill: #fff; } .night .sc-sill { fill: #4a5568; }
+  .sc-curtain { fill: color-mix(in srgb, #7e57c2 30%, #f4ede3); } .night .sc-curtain { fill: color-mix(in srgb, #7e57c2 35%, #2a2f3d); }
+  .sc-rod { fill: #b98a5c; } .night .sc-rod { fill: #5c4836; }
+  .sc-night, .night .sc-day { display: none; } .night .sc-night { display: inline; }
+  .sc-sun { fill: #ffd65a; } .sc-cloud { fill: #fff; opacity: .9; animation: sc-drift 6s ease-in-out infinite alternate; }
+  .sc-star { fill: #fff; } .sc-star.tw { animation: sc-twinkle 3s ease-in-out infinite alternate; } .sc-moon { fill: #f3eed2; }
+  .sc-pole { fill: #8a8f98; } .night .sc-pole { fill: #6b7280; }
+  .sc-shade { fill: #e8e0d0; } .night .sc-shade { fill: #8c8578; }
+  .sc-lamplight, .sc-halo { opacity: 0; transition: opacity .4s ease; }
+  /* A scene on: the floor lamp shines, the card's pendant light breathes. */
+  .banner.on .sc-shade { fill: #ffcf6e; } .banner.on .sc-lamplight { fill: #ffe082; opacity: .35; } .banner.on .sc-halo { opacity: .8; }
+  .banner.night.on .sc-lamplight { opacity: .22; } .banner.night.on .sc-halo { opacity: 1; }
+  .banner.on .sc-art .a-light { animation: sc-breathe 3.6s ease-in-out infinite alternate; }
+  .banner.night.on .sc-art { filter: drop-shadow(0 0 4px rgba(255, 210, 122, .35)); }
+  /* No scene on: the room is greyed and its lamps are off, as the hero's drawing. */
+  .banner:not(.on) .sc-art { filter: grayscale(1); opacity: .5; } .banner:not(.on) .sc-art .a-light { display: none; }
+  .night:not(.on) .sc-art { opacity: .4; }
+  /* The icon (40 px), the title and the subtitle, on the wall at the left (over the scene's empty left edge, never its
+     window). */
+  .htext { position: absolute; left: 12px; top: 6px; bottom: 16px; right: calc(min(200px, 62%) - 8px); display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .banner .type-icon { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sc-tint) 22%, transparent); }
+  .banner.night .type-icon { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
+  /* The icon's color is the status: accent with a scene on or a script running, grey at rest, red when unavailable. */
+  .banner .type-icon .icon { fill: var(--sc-tint); }
+  .banner.night .type-icon .icon { fill: color-mix(in srgb, var(--sc-tint) 60%, #fff); }
+  .banner .type-icon.idle { --sc-tint: #8a8f98; }
+  .htext .titles { display: flex; flex-flow: row wrap; align-items: center; column-gap: 8px; row-gap: 1px; }
+  .htext .titles > * { flex: 1 0 100%; min-width: 0; }
+  /* The title, then its status pill 8 px after it, centred on it, while the whole title and the pill's whole label
+     fit on that row; otherwise (measured by the card, see _fitPill) the pill on its own line under the subtitle
+     (.below), its dot alone (.pill-dot) when even then the text would run into the floor strip. */
+  .htext .trow { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .htext .name { flex: 0 1 auto; min-width: 0; font-weight: 600; }
+  .htext .sub { font-size: 13px; color: #5d544b; } .night .htext .sub { color: rgba(255,255,255,.78); }
+  .htext .chip { flex: none; max-width: none; line-height: 16px;
+                 background: color-mix(in srgb, var(--c) 18%, rgba(255,255,255,.78)); color: color-mix(in srgb, var(--c) 45%, #0d2a45); }
+  .night .htext .chip { background: color-mix(in srgb, var(--c) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c) 35%, #ffffff); }
+  .htext .chip .dot { width: 7px; height: 7px; }
+  .htext .titles.below { display: flex; }
+  .htext .titles.below .trow { display: contents; }
+  .htext .titles.below .name { flex: 1 0 100%; }
+  .htext .titles.below .sub { order: 1; }
+  .htext .titles.below .chip { order: 2; max-width: 100%; margin-top: 2px; }
+  .htext .titles.pill-dot .chip { padding: 5px; }
+  /* Narrower still: only the pill's coloured dot, on the title line (its text stays its tooltip and label). */
+  @container (max-width: 200px) { .htext .chip { padding: 5px; } .htext .chip .chip-text { display: none; } }
+  /* The detail button of the mini card: round, frosted, in the top right corner of the banner. */
+  .banner .zoom { position: absolute; z-index: 2; top: 5px; right: 5px; margin: 0; color: #33506b; background: rgba(255,255,255,.55);
+                  box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); backdrop-filter: blur(4px); }
+  .banner .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }
+  .banner.night .zoom { color: #fff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+  .banner.night .zoom:hover { background: rgba(255,255,255,.22); color: #fff; }
+  .banner + .content { padding-top: 12px; }
+  @keyframes sc-breathe { from { opacity: .4; } to { opacity: .75; } }
+  @keyframes sc-twinkle { from { opacity: .3; } to { opacity: 1; } }
+  @keyframes sc-drift { to { transform: translateX(2px); } }
+  /* Narrow card: no room for the room beside the text, the wall alone stays. */
+  @container (max-width: 300px) { .sc-scene { display: none; } .htext { right: 34px; } }
+`;
+
+let _scUid = 0;
+
+// ---------------------------------------------------------------------------
 // Cards
 // ---------------------------------------------------------------------------
 
 class SceneCard extends CardBase {
+  constructor() {
+    super();
+    this._uid = ++_scUid;
+  }
+
+  // The illustration is shown unless `illustration: false`.
+  get _illustrated() {
+    return this._config.illustration !== false;
+  }
   static getConfigElement() {
     return document.createElement("scene-card-editor");
   }
@@ -2221,7 +2548,8 @@ class SceneCard extends CardBase {
   }
 
   _extraDeps() {
-    return [this._area, this._fired?.at];
+    const h = this._hass;
+    return [this._area, this._fired?.at, ...(this._illustrated ? [h.states["sun.sun"]?.state] : [])];
   }
 
   _emptyKey(m) {
@@ -2274,9 +2602,10 @@ class SceneCard extends CardBase {
     // The header follows the area chosen in the card, as the hero does.
     const running = this._config.show_scripts === false ? [] : m.scripts.filter((x) => this._inArea(x) && this._s(x.entity)?.state === "on");
     const on = m.scenes.filter((x) => this._inArea(x) && active.has(x.entity));
-    // Without an active scene, the hero says so: the subtitle stays empty then.
+    // The hero names the active scene (or says there is none): the subtitle then stays empty, so that the pill, the
+    // subtitle and the hero never say the same thing. Without the hero, the subtitle names it.
     const heroShown = this._config.show_hero !== false;
-    const sub = on.length ? this._t("active_scene", { name: on.map((x) => x.name).join(", ") }) : m.scenes.length && !heroShown ? this._t("no_active") : "";
+    const sub = heroShown ? "" : on.length ? this._t("active_scene", { name: on.map((x) => x.name).join(", ") }) : m.scenes.length ? this._t("no_active") : "";
     const chip = running.length ? { cls: "accent", text: running.length === 1 ? this._t("running") : this._t("running_n", { n: running.length }), entity: running[0].entity } : null;
     return { active, running, on, sub, chip };
   }
@@ -2310,10 +2639,14 @@ class SceneCard extends CardBase {
       lines.push(`<div class="line accent clickable"${moreInfo(r.entity)}>${svgIcon(ICONS.script)}<span>${esc(`${r.name} · ${this._t("running")}`)}</span></div>`);
     }
     const icon = x && this._icon(x, "palette");
+    // "active" beside the name only while the pill says something else (a script running).
+    const label = sum.chip ? `<span>${esc(this._t("active").toLowerCase())}</span>` : "";
     const big = x
-      ? `<div class="big" style="--c: ${esc(this._color(x, icon.key))}">${icon.html}<b>${esc(x.name)}</b><span>${esc(this._t("active").toLowerCase())}</span></div>`
+      ? `<div class="big" style="--c: ${esc(this._color(x, icon.key))}">${icon.html}<b>${esc(x.name)}</b>${label}</div>`
       : `<div class="big none"><b>${esc(this._t("no_active"))}</b></div>`;
-    return `<div class="hero"><div class="hero-art${x ? "" : " off"}">${ART}</div><div class="hero-body">${big}${lines.join("")}</div></div>`;
+    // With the illustrated header, the drawing is in the banner: the hero keeps its text only.
+    const art = this._illustrated ? "" : `<div class="hero-art${x ? "" : " off"}">${ART}</div>`;
+    return `<div class="hero">${art}<div class="hero-body">${big}${lines.join("")}</div></div>`;
   }
 
   _scene(m, x, sum) {
@@ -2358,8 +2691,42 @@ class SceneCard extends CardBase {
     </div>`;
   }
 
-  _head(sum, sub) {
-    return this._header({ icon: ICONS.palette, cls: sum.on.length || sum.running.length ? "accent" : "idle", title: this._config.title || this._t("scenes"), sub, chip: sum.chip });
+  // The header's status: accent with a scene on or a script running, red when every scene and script is unavailable,
+  // grey at rest.
+  _status(m, sum) {
+    if (sum.on.length || sum.running.length) return "accent";
+    const all = [...m.scenes, ...m.scripts];
+    return all.length && all.every((x) => this._s(x.entity)?.state === "unavailable") ? "crit" : "idle";
+  }
+
+  // The status pill, in the header icon's colour: the scripts running, else the scene active, else unavailable (every
+  // scene and script) or idle.
+  _pill(sum, cls) {
+    if (sum.chip) return sum.chip;
+    if (sum.on.length) return { cls, text: this._t("active"), entity: sum.on[0].entity };
+    return { cls, text: this._t(cls === "crit" ? "unavailable" : "idle") };
+  }
+
+  _head(m, sum, sub) {
+    const title = this._config.title || this._t("scenes");
+    const cls = this._status(m, sum);
+    const pill = this._pill(sum, cls);
+    // The pill says "Active": the subtitle names the scenes without repeating it.
+    const text = sub && !sum.chip && sum.on.length ? sum.on.map((x) => x.name).join(", ") : sub;
+    if (!this._illustrated) return this._header({ icon: ICONS.palette, cls, title, sub: text, chip: pill });
+    const chip = `<span class="chip ${pill.cls}${pill.entity ? " clickable" : ""}"${moreInfo(pill.entity)} title="${esc(pill.text)}" aria-label="${esc(
+      pill.text,
+    )}"><span class="dot"></span><span class="chip-text">${esc(pill.text)}</span></span>`;
+    const banner = `banner${isNight(this._hass, this._config) ? " night" : ""}${sum.on.length ? " on" : ""}`;
+    return `<div class="${banner}">${sceneSvg(this._uid)}<div class="sc-ground" aria-hidden="true"></div>
+      <div class="htext"><div class="type-icon ${cls}">${svgIcon(ICONS.palette)}</div><div class="titles"><div class="trow"><div class="name">${esc(title)}</div>${chip}</div>${
+        text ? `<div class="sub" title="${esc(text)}">${esc(text)}</div>` : ""
+      }</div></div>${this._zoomButton()}</div>`;
+  }
+
+  // The illustration's styles, only when it is shown.
+  _bannerStyle() {
+    return this._illustrated ? BANNER_STYLE : "";
   }
 
   _render() {
@@ -2385,9 +2752,9 @@ class SceneCard extends CardBase {
       parts.push(this._section("scripts", ICONS.script, this._t("scripts"), scripts.length, `<div class="rows">${scripts.map((x) => this._script(x)).join("")}</div>`));
     }
     if (parts.length === before) parts.push(`<div class="empty">${esc(this._t("nothing_here"))}</div>`);
-    return `<style>${BASE_STYLE}${SCENE_STYLE}</style>
+    return `<style>${BASE_STYLE}${SCENE_STYLE}${this._bannerStyle()}</style>
       <ha-card>
-        ${this._head(sum, sum.sub)}
+        ${this._head(m, sum, sum.sub)}
         <div class="content">${parts.join("")}</div>
       </ha-card>`;
   }
@@ -2438,11 +2805,11 @@ class SceneMiniCard extends withMini(SceneCard) {
       const { html, key } = this._icon(x, "palette");
       return `<button class="btn round${on ? " on" : ""}" data-action="activate" data-entity="${esc(x.entity)}" style="--c: ${esc(this._color(x, key))}" title="${esc(x.name)}" aria-label="${esc(x.name)}" aria-pressed="${on}">${html}</button>`;
     });
-    return `<style>${BASE_STYLE}${SCENE_STYLE}${MINI_STYLE}</style>
+    return `<style>${BASE_STYLE}${SCENE_STYLE}${MINI_STYLE}${this._bannerStyle()}</style>
       <ha-card>
-        ${this._head(sum, "")}
+        ${this._head(m, sum, "")}
         <div class="content mini">
-          <div class="mini-art${sum.on.length ? "" : " hero-art off"}">${ART}</div>
+          ${this._illustrated ? "" : `<div class="mini-art${sum.on.length ? "" : " hero-art off"}">${ART}</div>`}
           <div class="info">${lines.join("")}</div>
           ${picks.length ? `<div class="controls picks">${picks.join("")}</div>` : ""}
         </div>
@@ -2457,6 +2824,7 @@ class SceneMiniCard extends withMini(SceneCard) {
 class SceneCardEditor extends EditorBase {
   static get toggles() {
     return [
+      ["illustration", true],
       ["show_title", true],
       ["show_subtitle", true],
       ["show_hero", true],
@@ -2471,8 +2839,14 @@ class SceneCardEditor extends EditorBase {
     return ["scenes", "scripts"];
   }
 
+  static get defaults() {
+    return { illustration_theme: "auto" };
+  }
+
   _fields() {
+    const tr = (k) => t(this._hass, this._config, k);
     return [
+      { name: "illustration_theme", selector: { select: { mode: "dropdown", options: ["auto", "day", "night"].map((value) => ({ value, label: tr(`theme_${value}`) })) } } },
       { name: "scenes", selector: { entity: { multiple: true, domain: "scene" } } },
       { name: "scripts", selector: { entity: { multiple: true, domain: "script" } } },
       { name: "area", selector: { area: { multiple: true } } },

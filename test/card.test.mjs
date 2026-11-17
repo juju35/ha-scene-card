@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { mockData, NOW } from "../scripts/mock-states.mjs";
 import { load } from "./load.mjs";
 
-const sc = load({ names: ["iconFor", "resolve", "activeScenes", "activatedAt", "STRINGS", "LANGUAGES"] });
+const sc = load({ names: ["iconFor", "resolve", "activeScenes", "activatedAt", "STRINGS", "LANGUAGES", "isNight"] });
 const SceneCard = sc.element("scene-card");
 const SceneMiniCard = sc.element("scene-mini-card");
 // Objects from the sandbox have the sandbox's prototypes: compared as plain JSON.
@@ -105,7 +105,9 @@ test("SmartThings scenes: their numeric icon code is ignored, their color tints 
 
 test("header, scene tiles and script rows: active scene, last activations, running script", async () => {
   const { html } = await mount();
-  assert.match(html(), /Movie active/);
+  // The pill says a script runs: the hero names the active scene, "active" beside it, and the subtitle stays empty.
+  assert.match(html(), /<b>Movie<\/b><span>active<\/span>/);
+  assert.doesNotMatch(html(), /class="sub"/);
   assert.match(html(), /class="chip accent[^"]*"[^>]*data-entity="script\.depart"/);
   assert.match(html(), /class="tile tint"[^>]*data-entity="scene\.cinema"[^>]*aria-pressed="true"/);
   assert.match(html(), /3 hr\. ago/);
@@ -179,10 +181,52 @@ test("nothing active: the hero says so, once", async () => {
   const { html } = await mount({}, "idle");
   assert.equal((html().match(/No active scene/g) || []).length, 1);
   const r = await mount({ show_hero: false }, "idle");
-  assert.equal((r.html().match(/No active scene/g) || []).length, 1);
-  assert.doesNotMatch(html(), /class="chip/);
+  // Once on screen (the subtitle's tooltip, its full text when it is cut, aside).
+  assert.equal((r.html().replace(/ title="[^"]*"/g, "").match(/No active scene/g) || []).length, 1);
+  // At rest the status pill says so, grey like the header icon.
+  assert.match(html(), /class="chip idle" title="Idle" aria-label="Idle"><span class="dot"><\/span><span class="chip-text">Idle<\/span>/);
   assert.doesNotMatch(html(), /class="tile tint"/);
-  assert.match(html(), /hero-art off/);
+  // The drawing is in the banner, greyed (no `on`) with a grey icon; the hero keeps its text only.
+  assert.match(html(), /class="banner"/);
+  assert.match(html(), /type-icon idle/);
+  assert.doesNotMatch(html(), /class="hero-art/);
+  const classic = await mount({ illustration: false }, "idle");
+  assert.match(classic.html(), /hero-art off/);
+  assert.doesNotMatch(classic.html(), /class="banner/);
+});
+
+test("illustrated header: lit with a scene on, night by option, unique ids per card", async () => {
+  const a = await mount({});
+  assert.match(a.html(), /class="banner on"/);
+  // The status pill right after the title: the script running (it wins over the active scene, then named with
+  // "active" in the subtitle); with the scripts hidden, "Active" and the scene's name alone under it.
+  assert.match(a.html(), /<div class="trow"><div class="name">Scenes<\/div><span class="chip accent clickable"[^>]*><span class="dot"><\/span><span class="chip-text">Running</);
+  const active = await mount({ show_scripts: false });
+  // The pill says "Active": the hero names the scene without repeating it, the subtitle stays empty.
+  assert.match(active.html(), /<span class="chip-text">Active<\/span><\/span><\/div><\/div>/);
+  assert.match(active.html(), /<b>Movie<\/b><\/div>/);
+  // Without the hero, the subtitle names the scene.
+  const noHero = await mount({ show_scripts: false, show_hero: false });
+  assert.match(noHero.html(), /<span class="chip-text">Active<\/span><\/span><\/div><div class="sub" title="Movie">Movie<\/div>/);
+  assert.match(a.html(), /type-icon accent/);
+  assert.match(a.html(), /class="sc-ground"/);
+  const b = await mount({ illustration_theme: "night" });
+  assert.match(b.html(), /class="banner night on"/);
+  const ids = (h) => h.match(/id="sc-glow-\d+"/)[0];
+  assert.notEqual(ids(a.html()), ids(b.html()));
+  const day = await mount({ illustration_theme: "day" });
+  assert.doesNotMatch(day.html(), /banner night/);
+});
+
+test("night picture: the sun below the horizon or the dark theme, even while the sun is up; illustration_theme wins", () => {
+  const h = (state, darkMode = false) => ({ states: { "sun.sun": { state } }, themes: { darkMode } });
+  assert.equal(sc.isNight(h("above_horizon", true), {}), true);
+  assert.equal(sc.isNight(h("above_horizon"), {}), false);
+  assert.equal(sc.isNight(h("below_horizon"), {}), true);
+  assert.equal(sc.isNight(h("unavailable", true), {}), true);
+  assert.equal(sc.isNight(h("unavailable"), {}), false);
+  assert.equal(sc.isNight(h("below_horizon", true), { illustration_theme: "day" }), false);
+  assert.equal(sc.isNight(h("above_horizon"), { illustration_theme: "night" }), true);
 });
 
 test("mini card: the active scene, the running script and the first scenes as buttons; the detail button shows the full card", async () => {
@@ -210,7 +254,7 @@ test("nothing found: a clear message instead of an empty card", () => {
 
 test("French: texts in the card's language", async () => {
   const { html } = await mount({ language: "fr" });
-  assert.match(html(), /Movie active/);
+  assert.match(html(), /<b>Movie<\/b><span>active<\/span>/);
   assert.match(html(), /Toutes/);
   assert.match(html(), /Jamais lancé/);
 });
@@ -294,4 +338,66 @@ test("the header follows the area chosen: no active scene of another area in the
   const { card, html } = await mount();
   click(card, { action: "area", area: "chambre" });
   assert.doesNotMatch(html(), /Movie active/);
+});
+
+// A measured layout stand-in for _fitPill: the title block (.titles) with its row (title + pill) in a banner whose
+// ground strip starts at 80 px. Widths in px; `tall` makes the block run past the strip once the pill drops.
+const fitLayout = ({ title, pill, row, tall = false, banner = true }) => {
+  const rect = (o) => ({ top: 0, bottom: 0, left: 0, right: 0, width: 0, height: 0, ...o });
+  const classes = new Set();
+  const name = { textContent: "x", width: title, getClientRects: () => [1] };
+  const chip = { getBoundingClientRect: () => rect({ width: classes.has("pill-dot") ? 14 : pill }) };
+  const trow = { querySelector: (s) => (s.includes(".name") ? name : chip), getBoundingClientRect: () => rect({ width: row }) };
+  const ground = { getBoundingClientRect: () => rect({ top: 80 }) };
+  const box = { getBoundingClientRect: () => rect({ top: 0, bottom: 90 }), querySelector: () => ground };
+  const t = {
+    classList: {
+      add: (c) => classes.add(c),
+      remove: (...c) => {
+        for (const x of c) classes.delete(x);
+      },
+    },
+    querySelector: () => trow,
+    closest: () => (banner ? box : null),
+    getBoundingClientRect: () => rect({ top: 10, bottom: classes.has("below") && tall ? 86 : 70, width: row }),
+  };
+  return { t, classes };
+};
+
+test("the status pill stays beside a whole title, else drops under the subtitle, else keeps its dot (measured)", () => {
+  const w = sc.window;
+  w.getComputedStyle = () => ({ columnGap: "8px" });
+  w.document.createRange = () => {
+    let el;
+    return { selectNodeContents: (e) => (el = e), getBoundingClientRect: () => ({ width: el.width }) };
+  };
+  const fit = (opts) => {
+    const card = (() => { const c = new SceneCard(); c.setConfig({}); c.hass = makeHass(); return c; })();
+    const l = fitLayout(opts);
+    card.shadowRoot.querySelectorAll = () => [l.t];
+    card._fitPill();
+    return [...l.classes].sort().join(" ");
+  };
+  // Whole title + gap + whole pill fit on the row: the pill stays beside the title.
+  assert.equal(fit({ title: 60, pill: 70, row: 140 }), "");
+  // One pixel short: never an ellipsised title beside the pill, the pill goes under the subtitle.
+  assert.equal(fit({ title: 63, pill: 70, row: 140 }), "below");
+  // Long Greek/Cyrillic/German labels: decided by the measure, not by a fixed width.
+  assert.equal(fit({ title: 40, pill: 130, row: 160 }), "below");
+  assert.equal(fit({ title: 40, pill: 112, row: 160 }), "");
+  // Under the subtitle but the block would run into the ground strip, or the label is wider than the line: dot only.
+  assert.equal(fit({ title: 90, pill: 70, row: 140, tall: true }), "below pill-dot");
+  assert.equal(fit({ title: 90, pill: 150, row: 140 }), "below pill-dot");
+  // The classic header (no banner) follows the same rule.
+  assert.equal(fit({ title: 90, pill: 70, row: 140, banner: false }), "below");
+  delete w.getComputedStyle;
+  delete w.document.createRange;
+});
+
+test("no fixed width decides the pill's place: only the dot-only rule at 200 px is a width rule", () => {
+  const css = ((() => { const c = new SceneCard(); c.setConfig({}); c.hass = makeHass(); return c; })()).shadowRoot.innerHTML;
+  assert.doesNotMatch(css, /@container rc-head/);
+  assert.match(css, /\.titles\.below \.trow \{ display: contents; \}/);
+  assert.match(css, /\.titles\.pill-dot \.chip \.chip-text \{ display: none; \}/);
+  assert.match(css, /@container \(max-width: 200px\) \{\s*\.chip \{ padding: 4px; flex: none; \}/);
 });
