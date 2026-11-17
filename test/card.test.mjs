@@ -218,11 +218,12 @@ test("illustrated header: lit with a scene on, night by option, unique ids per c
   assert.doesNotMatch(day.html(), /banner night/);
 });
 
-test("night picture: the sun below the horizon or the dark theme, even while the sun is up; illustration_theme wins", () => {
+test("night picture: the dark theme alone, even while the sun is up; a light theme keeps the day after sunset; illustration_theme wins", () => {
   const h = (state, darkMode = false) => ({ states: { "sun.sun": { state } }, themes: { darkMode } });
   assert.equal(sc.isNight(h("above_horizon", true), {}), true);
   assert.equal(sc.isNight(h("above_horizon"), {}), false);
-  assert.equal(sc.isNight(h("below_horizon"), {}), true);
+  assert.equal(sc.isNight(h("below_horizon"), {}), false);
+  assert.equal(sc.isNight(h("below_horizon", true), {}), true);
   assert.equal(sc.isNight(h("unavailable", true), {}), true);
   assert.equal(sc.isNight(h("unavailable"), {}), false);
   assert.equal(sc.isNight(h("below_horizon", true), { illustration_theme: "day" }), false);
