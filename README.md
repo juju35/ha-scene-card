@@ -44,7 +44,7 @@ Every scene and script of Home Assistant is shown when nothing is configured (ex
 - **Scripts** as rows: *Running* (a ring turns round the icon) with a **Stop** button, else the last run and a **Run** button
 - **Area filter**: chips with the areas of the scenes and scripts shown, to keep one area
 - Icons from Home Assistant or the card, else from the name (a film for *Movie*, cutlery for *Dinner*, a moon for *Good night*…) in a color of their own
-- **Illustrated header** (90 px, full and mini card): a living room drawn on the right — window on the sky, floor lamp and the card's sofa under its lamp, on a parquet strip — lit and gently breathing while a scene is active, greyed with the lamps off otherwise; day or night picture following the sun (or the dark theme), forced with `illustration_theme`; `illustration: false` keeps the classic header
+- **Illustrated header** (90 px, full and mini card): a living room drawn on the right — window on the sky, floor lamp and the card's sofa under its lamp, on a parquet strip — lit and gently breathing while a scene is active, greyed with the lamps off otherwise; night picture when the sun is down or with the dark theme (even while the sun is up), forced with `illustration_theme`; `illustration: false` keeps the classic header
 - Header icon in a round badge whose color is the status (accent with a scene active or a script running, grey at rest, red when everything is unavailable), the active scene in the subtitle and a status chip when a script runs
 - Collapsible sections, folded back to their default by a click elsewhere on the page
 - Detail button on the mini card (top right): it switches the mini card to the full card's content and back; a click anywhere outside the card brings the compact view back
@@ -170,7 +170,7 @@ zoom: true
 |---|---|---|---|
 | `title` | both | Scenes | Card title |
 | `illustration` | both | `true` | Illustrated header (the card's drawing moves there from the hero and the mini card's row); `false` keeps the classic header |
-| `illustration_theme` | both | `auto` | Picture of the header: `auto` (night when `sun.sun` is below the horizon, else Home Assistant's dark mode), `day` or `night` |
+| `illustration_theme` | both | `auto` | Picture of the header: `auto` (night when `sun.sun` is below the horizon or with Home Assistant's dark mode, even while the sun is up), `day` or `night` |
 | `show_title` | both | `true` | Show the title in the header |
 | `show_subtitle` | full | `true` | Show the subtitle (the active scene) |
 | `show_hero` | full | `true` | The hero: the active scene with its illustration |

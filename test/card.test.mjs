@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { mockData, NOW } from "../scripts/mock-states.mjs";
 import { load } from "./load.mjs";
 
-const sc = load({ names: ["iconFor", "resolve", "activeScenes", "activatedAt", "STRINGS", "LANGUAGES"] });
+const sc = load({ names: ["iconFor", "resolve", "activeScenes", "activatedAt", "STRINGS", "LANGUAGES", "isNight"] });
 const SceneCard = sc.element("scene-card");
 const SceneMiniCard = sc.element("scene-mini-card");
 // Objects from the sandbox have the sandbox's prototypes: compared as plain JSON.
@@ -208,6 +208,17 @@ test("illustrated header: lit with a scene on, night by option, unique ids per c
   assert.notEqual(ids(a.html()), ids(b.html()));
   const day = await mount({ illustration_theme: "day" });
   assert.doesNotMatch(day.html(), /banner night/);
+});
+
+test("night picture: the sun below the horizon or the dark theme, even while the sun is up; illustration_theme wins", () => {
+  const h = (state, darkMode = false) => ({ states: { "sun.sun": { state } }, themes: { darkMode } });
+  assert.equal(sc.isNight(h("above_horizon", true), {}), true);
+  assert.equal(sc.isNight(h("above_horizon"), {}), false);
+  assert.equal(sc.isNight(h("below_horizon"), {}), true);
+  assert.equal(sc.isNight(h("unavailable", true), {}), true);
+  assert.equal(sc.isNight(h("unavailable"), {}), false);
+  assert.equal(sc.isNight(h("below_horizon", true), { illustration_theme: "day" }), false);
+  assert.equal(sc.isNight(h("above_horizon"), { illustration_theme: "night" }), true);
 });
 
 test("mini card: the active scene, the running script and the first scenes as buttons; the detail button shows the full card", async () => {
