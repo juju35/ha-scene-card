@@ -106,6 +106,7 @@ const STRINGS = {
     show_subtitle: "Show subtitle",
     no_registry: "This card needs Home Assistant 2024.8 or later.",
     unavailable: "Unavailable",
+    idle: "Idle",
   },
   fr: {
     scenes: "Scènes",
@@ -157,6 +158,7 @@ const STRINGS = {
     show_subtitle: "Afficher le sous-titre",
     no_registry: "Cette carte nécessite Home Assistant 2024.8 ou plus récent.",
     unavailable: "Indisponible",
+    idle: "Au repos",
   },
   de: {
     scenes: "Szenen",
@@ -208,6 +210,7 @@ const STRINGS = {
     show_subtitle: "Untertitel anzeigen",
     no_registry: "Diese Karte benötigt Home Assistant 2024.8 oder neuer.",
     unavailable: "Nicht verfügbar",
+    idle: "Inaktiv",
   },
   es: {
     scenes: "Escenas",
@@ -259,6 +262,7 @@ const STRINGS = {
     show_subtitle: "Mostrar subtítulo",
     no_registry: "Esta tarjeta necesita Home Assistant 2024.8 o posterior.",
     unavailable: "No disponible",
+    idle: "En reposo",
   },
   it: {
     scenes: "Scene",
@@ -310,6 +314,7 @@ const STRINGS = {
     show_subtitle: "Mostra sottotitolo",
     no_registry: "Questa scheda richiede Home Assistant 2024.8 o successivo.",
     unavailable: "Non disponibile",
+    idle: "A riposo",
   },
   nl: {
     scenes: "Scènes",
@@ -361,6 +366,7 @@ const STRINGS = {
     show_subtitle: "Ondertitel tonen",
     no_registry: "Deze kaart vereist Home Assistant 2024.8 of nieuwer.",
     unavailable: "Niet beschikbaar",
+    idle: "Inactief",
   },
   pt: {
     scenes: "Cenas",
@@ -412,6 +418,7 @@ const STRINGS = {
     show_subtitle: "Mostrar subtítulo",
     no_registry: "Este cartão requer o Home Assistant 2024.8 ou posterior.",
     unavailable: "Indisponível",
+    idle: "Inativo",
   },
   pl: {
     scenes: "Sceny",
@@ -463,6 +470,7 @@ const STRINGS = {
     show_subtitle: "Pokaż podtytuł",
     no_registry: "Ta karta wymaga Home Assistant 2024.8 lub nowszego.",
     unavailable: "Niedostępne",
+    idle: "Bezczynny",
   },
   sr: {
     scenes: "Сцене",
@@ -514,6 +522,7 @@ const STRINGS = {
     show_subtitle: "Прикажи поднаслов",
     no_registry: "Ова картица захтева Home Assistant 2024.8 или новији.",
     unavailable: "Недоступно",
+    idle: "Мирује",
   },
   "sr-Latn": {
     scenes: "Scene",
@@ -565,6 +574,7 @@ const STRINGS = {
     show_subtitle: "Prikaži podnaslov",
     no_registry: "Ova kartica zahteva Home Assistant 2024.8 ili noviji.",
     unavailable: "Nedostupno",
+    idle: "Miruje",
   },
   ro: {
     scenes: "Scene",
@@ -616,6 +626,7 @@ const STRINGS = {
     show_subtitle: "Afișează subtitlul",
     no_registry: "Acest card necesită Home Assistant 2024.8 sau mai nou.",
     unavailable: "Indisponibil",
+    idle: "Inactiv",
   },
   da: {
     scenes: "Scener",
@@ -667,6 +678,7 @@ const STRINGS = {
     show_subtitle: "Vis undertitel",
     no_registry: "Dette kort kræver Home Assistant 2024.8 eller nyere.",
     unavailable: "Utilgængelig",
+    idle: "Inaktiv",
   },
   sv: {
     scenes: "Scener",
@@ -718,6 +730,7 @@ const STRINGS = {
     show_subtitle: "Visa undertitel",
     no_registry: "Det här kortet kräver Home Assistant 2024.8 eller senare.",
     unavailable: "Otillgänglig",
+    idle: "Vilande",
   },
   bg: {
     scenes: "Сцени",
@@ -769,6 +782,7 @@ const STRINGS = {
     show_subtitle: "Покажи подзаглавие",
     no_registry: "Тази карта изисква Home Assistant 2024.8 или по-нов.",
     unavailable: "Недостъпно",
+    idle: "Неактивно",
   },
   ru: {
     scenes: "Сцены",
@@ -820,6 +834,7 @@ const STRINGS = {
     show_subtitle: "Показывать подзаголовок",
     no_registry: "Для этой карточки нужен Home Assistant 2024.8 или новее.",
     unavailable: "Недоступно",
+    idle: "Неактивно",
   },
   uk: {
     scenes: "Сцени",
@@ -871,6 +886,7 @@ const STRINGS = {
     show_subtitle: "Показувати підзаголовок",
     no_registry: "Для цієї картки потрібен Home Assistant 2024.8 або новіший.",
     unavailable: "Недоступно",
+    idle: "Неактивно",
   },
   hu: {
     scenes: "Jelenetek",
@@ -922,6 +938,7 @@ const STRINGS = {
     show_subtitle: "Alcím megjelenítése",
     no_registry: "Ehhez a kártyához Home Assistant 2024.8 vagy újabb szükséges.",
     unavailable: "Nem elérhető",
+    idle: "Tétlen",
   },
   sk: {
     scenes: "Scény",
@@ -973,6 +990,7 @@ const STRINGS = {
     show_subtitle: "Zobraziť podnadpis",
     no_registry: "Táto karta vyžaduje Home Assistant 2024.8 alebo novší.",
     unavailable: "Nedostupné",
+    idle: "Nečinné",
   },
   cs: {
     scenes: "Scény",
@@ -1024,6 +1042,7 @@ const STRINGS = {
     show_subtitle: "Zobrazit podtitul",
     no_registry: "Tato karta vyžaduje Home Assistant 2024.8 nebo novější.",
     unavailable: "Nedostupné",
+    idle: "Nečinné",
   },
   sl: {
     scenes: "Scene",
@@ -1075,6 +1094,7 @@ const STRINGS = {
     show_subtitle: "Prikaži podnaslov",
     no_registry: "Ta kartica potrebuje Home Assistant 2024.8 ali novejši.",
     unavailable: "Ni na voljo",
+    idle: "Nedejavno",
   },
   lv: {
     scenes: "Ainas",
@@ -1126,6 +1146,7 @@ const STRINGS = {
     show_subtitle: "Rādīt apakšvirsrakstu",
     no_registry: "Šai kartītei nepieciešams Home Assistant 2024.8 vai jaunāks.",
     unavailable: "Nav pieejams",
+    idle: "Dīkstāvē",
   },
   el: {
     scenes: "Σκηνές",
@@ -1177,6 +1198,7 @@ const STRINGS = {
     show_subtitle: "Εμφάνιση υπότιτλου",
     no_registry: "Αυτή η κάρτα απαιτεί Home Assistant 2024.8 ή νεότερο.",
     unavailable: "Μη διαθέσιμο",
+    idle: "Αδρανές",
   },
 };
 
@@ -2389,27 +2411,47 @@ const BANNER_STYLE = `
   /* No scene on: the room is greyed and its lamps are off, as the hero's drawing. */
   .banner:not(.on) .sc-art { filter: grayscale(1); opacity: .5; } .banner:not(.on) .sc-art .a-light { display: none; }
   .night:not(.on) .sc-art { opacity: .4; }
-  /* The icon (40 px), the title and the subtitle, on the wall at the left. */
-  .htext { position: absolute; left: 12px; top: 6px; bottom: 16px; right: calc(min(200px, 62%) + 4px); display: flex; align-items: center; gap: 10px; min-width: 0; }
+  /* The icon (40 px), the title and the subtitle, on the wall at the left (over the scene's empty left edge, never its
+     window). */
+  .htext { position: absolute; left: 12px; top: 6px; bottom: 16px; right: calc(min(200px, 62%) - 8px); display: flex; align-items: center; gap: 10px; min-width: 0; }
   .banner .type-icon { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sc-tint) 22%, transparent); }
   .banner.night .type-icon { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
   /* The icon's color is the status: accent with a scene on or a script running, grey at rest, red when unavailable. */
   .banner .type-icon .icon { fill: var(--sc-tint); }
   .banner.night .type-icon .icon { fill: color-mix(in srgb, var(--sc-tint) 60%, #fff); }
   .banner .type-icon.idle { --sc-tint: #8a8f98; }
-  .htext .titles { display: flex; flex-direction: column; gap: 1px; }
-  .htext .name { font-weight: 600; }
+  .htext .titles { display: flex; flex-wrap: wrap; align-items: center; column-gap: 8px; row-gap: 1px; }
+  .htext .titles > * { flex: 1 0 100%; min-width: 0; }
+  /* The title, then its status pill 8 px after it, centred on it: the title ellipsises first but keeps about 4
+     characters (48 px), the pill keeps its whole label. */
+  .htext .trow { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .htext .name { flex: 0 1 auto; min-width: 48px; font-weight: 600; }
   .htext .sub { font-size: 13px; color: #5d544b; } .night .htext .sub { color: rgba(255,255,255,.78); }
-  .htext .chip { align-self: flex-start; max-width: 100%; margin-top: 2px; background: rgba(255,255,255,.7); color: color-mix(in srgb, var(--c) 60%, #2a2522); }
-  .night .htext .chip { background: rgba(10,20,40,.5); color: color-mix(in srgb, var(--c) 45%, #fff); }
-  .banner .zoom { position: absolute; top: 6px; right: 6px; margin: 0; color: #2a2522; background: rgba(255,255,255,.55); }
-  .banner.night .zoom { color: #fff; background: rgba(10,20,40,.45); }
+  .htext .chip { flex: 0 0 auto; max-width: 100%; line-height: 16px;
+                 background: color-mix(in srgb, var(--c) 18%, rgba(255,255,255,.78)); color: color-mix(in srgb, var(--c) 45%, #0d2a45); }
+  .night .htext .chip { background: color-mix(in srgb, var(--c) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c) 35%, #ffffff); }
+  .htext .chip .dot { width: 7px; height: 7px; }
+  /* A narrow card: the title takes its whole line, the pill goes under the subtitle. */
+  @container (min-width: 201px) and (max-width: 260px) {
+    .htext .trow { display: contents; }
+    .htext .name { flex: 1 0 100%; }
+    .htext .sub { order: 1; }
+    .htext .chip { order: 2; max-width: 100%; margin-top: 2px; }
+  }
+  /* Narrower still: only the pill's coloured dot, on the title line (its text stays its tooltip and label). */
+  @container (max-width: 200px) { .htext .chip { padding: 5px; } .htext .chip .chip-text { display: none; } }
+  /* The detail button of the mini card: round, frosted, in the top right corner of the banner. */
+  .banner .zoom { position: absolute; z-index: 2; top: 5px; right: 5px; margin: 0; color: #33506b; background: rgba(255,255,255,.55);
+                  box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); backdrop-filter: blur(4px); }
+  .banner .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }
+  .banner.night .zoom { color: #fff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+  .banner.night .zoom:hover { background: rgba(255,255,255,.22); color: #fff; }
   .banner + .content { padding-top: 12px; }
   @keyframes sc-breathe { from { opacity: .4; } to { opacity: .75; } }
   @keyframes sc-twinkle { from { opacity: .3; } to { opacity: 1; } }
   @keyframes sc-drift { to { transform: translateX(2px); } }
   /* Narrow card: no room for the room beside the text, the wall alone stays. */
-  @container (max-width: 300px) { .sc-scene { display: none; } .htext { right: 40px; } }
+  @container (max-width: 300px) { .sc-scene { display: none; } .htext { right: 34px; } }
 `;
 
 let _scUid = 0;
@@ -2593,18 +2635,29 @@ class SceneCard extends CardBase {
     return all.length && all.every((x) => this._s(x.entity)?.state === "unavailable") ? "crit" : "idle";
   }
 
+  // The status pill, in the header icon's colour: the scripts running, else the scene active, else unavailable (every
+  // scene and script) or idle.
+  _pill(sum, cls) {
+    if (sum.chip) return sum.chip;
+    if (sum.on.length) return { cls, text: this._t("active"), entity: sum.on[0].entity };
+    return { cls, text: this._t(cls === "crit" ? "unavailable" : "idle") };
+  }
+
   _head(m, sum, sub) {
     const title = this._config.title || this._t("scenes");
     const cls = this._status(m, sum);
-    if (!this._illustrated) return this._header({ icon: ICONS.palette, cls, title, sub, chip: sum.chip });
-    const chip = sum.chip
-      ? `<span class="chip ${sum.chip.cls} clickable"${moreInfo(sum.chip.entity)} title="${esc(sum.chip.text)}" aria-label="${esc(sum.chip.text)}"><span class="dot"></span><span class="chip-text">${esc(sum.chip.text)}</span></span>`
-      : "";
+    const pill = this._pill(sum, cls);
+    // The pill says "Active": the subtitle names the scenes without repeating it.
+    const text = sub && !sum.chip && sum.on.length ? sum.on.map((x) => x.name).join(", ") : sub;
+    if (!this._illustrated) return this._header({ icon: ICONS.palette, cls, title, sub: text, chip: pill });
+    const chip = `<span class="chip ${pill.cls}${pill.entity ? " clickable" : ""}"${moreInfo(pill.entity)} title="${esc(pill.text)}" aria-label="${esc(
+      pill.text,
+    )}"><span class="dot"></span><span class="chip-text">${esc(pill.text)}</span></span>`;
     const banner = `banner${isNight(this._hass, this._config) ? " night" : ""}${sum.on.length ? " on" : ""}`;
     return `<div class="${banner}">${sceneSvg(this._uid)}<div class="sc-ground" aria-hidden="true"></div>
-      <div class="htext"><div class="type-icon ${cls}">${svgIcon(ICONS.palette)}</div><div class="titles"><div class="name">${esc(title)}</div>${
-        sub ? `<div class="sub">${esc(sub)}</div>` : ""
-      }${chip}</div></div>${this._zoomButton()}</div>`;
+      <div class="htext"><div class="type-icon ${cls}">${svgIcon(ICONS.palette)}</div><div class="titles"><div class="trow"><div class="name">${esc(title)}</div>${chip}</div>${
+        text ? `<div class="sub">${esc(text)}</div>` : ""
+      }</div></div>${this._zoomButton()}</div>`;
   }
 
   // The illustration's styles, only when it is shown.

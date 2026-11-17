@@ -180,7 +180,8 @@ test("nothing active: the hero says so, once", async () => {
   assert.equal((html().match(/No active scene/g) || []).length, 1);
   const r = await mount({ show_hero: false }, "idle");
   assert.equal((r.html().match(/No active scene/g) || []).length, 1);
-  assert.doesNotMatch(html(), /class="chip/);
+  // At rest the status pill says so, grey like the header icon.
+  assert.match(html(), /class="chip idle" title="Idle" aria-label="Idle"><span class="dot"><\/span><span class="chip-text">Idle<\/span>/);
   assert.doesNotMatch(html(), /class="tile tint"/);
   // The drawing is in the banner, greyed (no `on`) with a grey icon; the hero keeps its text only.
   assert.match(html(), /class="banner"/);
@@ -194,6 +195,11 @@ test("nothing active: the hero says so, once", async () => {
 test("illustrated header: lit with a scene on, night by option, unique ids per card", async () => {
   const a = await mount({});
   assert.match(a.html(), /class="banner on"/);
+  // The status pill right after the title: the script running (it wins over the active scene, then named with
+  // "active" in the subtitle); with the scripts hidden, "Active" and the scene's name alone under it.
+  assert.match(a.html(), /<div class="trow"><div class="name">Scenes<\/div><span class="chip accent clickable"[^>]*><span class="dot"><\/span><span class="chip-text">Running</);
+  const active = await mount({ show_scripts: false });
+  assert.match(active.html(), /<span class="chip-text">Active<\/span><\/span><\/div><div class="sub">Movie<\/div>/);
   assert.match(a.html(), /type-icon accent/);
   assert.match(a.html(), /class="sc-ground"/);
   const b = await mount({ illustration_theme: "night" });
