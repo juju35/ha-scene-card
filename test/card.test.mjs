@@ -182,7 +182,26 @@ test("nothing active: the hero says so, once", async () => {
   assert.equal((r.html().match(/No active scene/g) || []).length, 1);
   assert.doesNotMatch(html(), /class="chip/);
   assert.doesNotMatch(html(), /class="tile tint"/);
-  assert.match(html(), /hero-art off/);
+  // The drawing is in the banner, greyed (no `on`) with a grey icon; the hero keeps its text only.
+  assert.match(html(), /class="banner"/);
+  assert.match(html(), /type-icon idle/);
+  assert.doesNotMatch(html(), /class="hero-art/);
+  const classic = await mount({ illustration: false }, "idle");
+  assert.match(classic.html(), /hero-art off/);
+  assert.doesNotMatch(classic.html(), /class="banner/);
+});
+
+test("illustrated header: lit with a scene on, night by option, unique ids per card", async () => {
+  const a = await mount({});
+  assert.match(a.html(), /class="banner on"/);
+  assert.match(a.html(), /type-icon accent/);
+  assert.match(a.html(), /class="sc-ground"/);
+  const b = await mount({ illustration_theme: "night" });
+  assert.match(b.html(), /class="banner night on"/);
+  const ids = (h) => h.match(/id="sc-glow-\d+"/)[0];
+  assert.notEqual(ids(a.html()), ids(b.html()));
+  const day = await mount({ illustration_theme: "day" });
+  assert.doesNotMatch(day.html(), /banner night/);
 });
 
 test("mini card: the active scene, the running script and the first scenes as buttons; the detail button shows the full card", async () => {

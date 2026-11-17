@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0 - 2026-11-17
+
+### Features
+- Illustrated header on the full and the mini card (90 px): a living room on the right — window on the sky, floor lamp and the card's sofa-and-lamp drawing on a 10 px parquet strip edge to edge — lit with a breathing lamp while a scene is active, greyed with its lamps off otherwise; day and night pictures (stars and moon in the window). The header icon's color follows the status: accent with a scene active or a script running, grey at rest, red when every scene and script is unavailable.
+- New options `illustration` (`false` keeps the classic header) and `illustration_theme` (`auto` follows `sun.sun`, then the dark theme; `day`, `night`), in both visual editors.
+
 ## 1.1.0 - 2026-11-16
 
 ### Features

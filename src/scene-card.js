@@ -94,6 +94,11 @@ const STRINGS = {
     title: "Title (optional)",
     language: "Language",
     lang_auto: "Automatic",
+    illustration: "Animated illustration",
+    illustration_theme: "Illustration theme",
+    theme_auto: "Automatic (sun)",
+    theme_day: "Day",
+    theme_night: "Night",
     collapsed: "Sections folded by default",
     zoom: "Detail button",
     zoom_helper: "Switches the mini card to the full card's content",
@@ -140,6 +145,11 @@ const STRINGS = {
     title: "Titre (facultatif)",
     language: "Langue",
     lang_auto: "Automatique",
+    illustration: "Illustration animée",
+    illustration_theme: "Thème de l’illustration",
+    theme_auto: "Automatique (soleil)",
+    theme_day: "Jour",
+    theme_night: "Nuit",
     collapsed: "Sections repliées par défaut",
     zoom: "Bouton détail",
     zoom_helper: "Bascule la mini-carte vers le contenu de la carte complète",
@@ -186,6 +196,11 @@ const STRINGS = {
     title: "Titel (optional)",
     language: "Sprache",
     lang_auto: "Automatisch",
+    illustration: "Animierte Illustration",
+    illustration_theme: "Thema der Illustration",
+    theme_auto: "Automatisch (Sonne)",
+    theme_day: "Tag",
+    theme_night: "Nacht",
     collapsed: "Standardmäßig eingeklappte Bereiche",
     zoom: "Detail-Schaltfläche",
     zoom_helper: "Schaltet die Mini-Karte auf den Inhalt der vollen Karte um",
@@ -232,6 +247,11 @@ const STRINGS = {
     title: "Título (opcional)",
     language: "Idioma",
     lang_auto: "Automático",
+    illustration: "Ilustración animada",
+    illustration_theme: "Tema de la ilustración",
+    theme_auto: "Automático (sol)",
+    theme_day: "Día",
+    theme_night: "Noche",
     collapsed: "Secciones plegadas por defecto",
     zoom: "Botón de detalle",
     zoom_helper: "Cambia la minitarjeta al contenido de la tarjeta completa",
@@ -278,6 +298,11 @@ const STRINGS = {
     title: "Titolo (facoltativo)",
     language: "Lingua",
     lang_auto: "Automatica",
+    illustration: "Illustrazione animata",
+    illustration_theme: "Tema dell’illustrazione",
+    theme_auto: "Automatico (sole)",
+    theme_day: "Giorno",
+    theme_night: "Notte",
     collapsed: "Sezioni chiuse per impostazione predefinita",
     zoom: "Pulsante dettagli",
     zoom_helper: "Passa la mini scheda al contenuto della scheda completa",
@@ -324,6 +349,11 @@ const STRINGS = {
     title: "Titel (optioneel)",
     language: "Taal",
     lang_auto: "Automatisch",
+    illustration: "Geanimeerde illustratie",
+    illustration_theme: "Thema van de illustratie",
+    theme_auto: "Automatisch (zon)",
+    theme_day: "Dag",
+    theme_night: "Nacht",
     collapsed: "Standaard ingeklapte secties",
     zoom: "Detailknop",
     zoom_helper: "Schakelt de minikaart naar de inhoud van de volledige kaart",
@@ -370,6 +400,11 @@ const STRINGS = {
     title: "Título (opcional)",
     language: "Idioma",
     lang_auto: "Automático",
+    illustration: "Ilustração animada",
+    illustration_theme: "Tema da ilustração",
+    theme_auto: "Automático (sol)",
+    theme_day: "Dia",
+    theme_night: "Noite",
     collapsed: "Secções recolhidas por predefinição",
     zoom: "Botão de detalhe",
     zoom_helper: "Muda o minicartão para o conteúdo do cartão completo",
@@ -416,6 +451,11 @@ const STRINGS = {
     title: "Tytuł (opcjonalnie)",
     language: "Język",
     lang_auto: "Automatycznie",
+    illustration: "Animowana ilustracja",
+    illustration_theme: "Motyw ilustracji",
+    theme_auto: "Automatycznie (słońce)",
+    theme_day: "Dzień",
+    theme_night: "Noc",
     collapsed: "Sekcje domyślnie zwinięte",
     zoom: "Przycisk szczegółów",
     zoom_helper: "Przełącza minikartę na zawartość pełnej karty",
@@ -462,6 +502,11 @@ const STRINGS = {
     title: "Наслов (опционо)",
     language: "Језик",
     lang_auto: "Аутоматски",
+    illustration: "Анимирана илустрација",
+    illustration_theme: "Тема илустрације",
+    theme_auto: "Аутоматски (сунце)",
+    theme_day: "Дан",
+    theme_night: "Ноћ",
     collapsed: "Подразумевано скупљени одељци",
     zoom: "Дугме за детаље",
     zoom_helper: "Пребацује мини картицу на садржај пуне картице",
@@ -508,6 +553,11 @@ const STRINGS = {
     title: "Naslov (opciono)",
     language: "Jezik",
     lang_auto: "Automatski",
+    illustration: "Animirana ilustracija",
+    illustration_theme: "Tema ilustracije",
+    theme_auto: "Automatski (sunce)",
+    theme_day: "Dan",
+    theme_night: "Noć",
     collapsed: "Podrazumevano skupljeni odeljci",
     zoom: "Dugme za detalje",
     zoom_helper: "Prebacuje mini karticu na sadržaj pune kartice",
@@ -554,6 +604,11 @@ const STRINGS = {
     title: "Titlu (opțional)",
     language: "Limbă",
     lang_auto: "Automat",
+    illustration: "Ilustrație animată",
+    illustration_theme: "Tema ilustrației",
+    theme_auto: "Automat (soare)",
+    theme_day: "Zi",
+    theme_night: "Noapte",
     collapsed: "Secțiuni pliate implicit",
     zoom: "Buton de detalii",
     zoom_helper: "Comută mini cardul la conținutul cardului complet",
@@ -600,6 +655,11 @@ const STRINGS = {
     title: "Titel (valgfri)",
     language: "Sprog",
     lang_auto: "Automatisk",
+    illustration: "Animeret illustration",
+    illustration_theme: "Illustrationens tema",
+    theme_auto: "Automatisk (sol)",
+    theme_day: "Dag",
+    theme_night: "Nat",
     collapsed: "Sektioner foldet sammen som standard",
     zoom: "Detaljeknap",
     zoom_helper: "Skifter minikortet til det fulde korts indhold",
@@ -646,6 +706,11 @@ const STRINGS = {
     title: "Titel (valfri)",
     language: "Språk",
     lang_auto: "Automatiskt",
+    illustration: "Animerad illustration",
+    illustration_theme: "Illustrationens tema",
+    theme_auto: "Automatiskt (sol)",
+    theme_day: "Dag",
+    theme_night: "Natt",
     collapsed: "Sektioner hopfällda som standard",
     zoom: "Detaljknapp",
     zoom_helper: "Växlar minikortet till hela kortets innehåll",
@@ -692,6 +757,11 @@ const STRINGS = {
     title: "Заглавие (по избор)",
     language: "Език",
     lang_auto: "Автоматично",
+    illustration: "Анимирана илюстрация",
+    illustration_theme: "Тема на илюстрацията",
+    theme_auto: "Автоматично (слънце)",
+    theme_day: "Ден",
+    theme_night: "Нощ",
     collapsed: "Сгънати по подразбиране раздели",
     zoom: "Бутон за подробности",
     zoom_helper: "Превключва мини картата към съдържанието на пълната карта",
@@ -738,6 +808,11 @@ const STRINGS = {
     title: "Заголовок (необязательно)",
     language: "Язык",
     lang_auto: "Автоматически",
+    illustration: "Анимированная иллюстрация",
+    illustration_theme: "Тема иллюстрации",
+    theme_auto: "Автоматически (солнце)",
+    theme_day: "День",
+    theme_night: "Ночь",
     collapsed: "Свёрнутые по умолчанию разделы",
     zoom: "Кнопка подробностей",
     zoom_helper: "Переключает мини-карточку на содержимое полной карточки",
@@ -784,6 +859,11 @@ const STRINGS = {
     title: "Заголовок (необов'язково)",
     language: "Мова",
     lang_auto: "Автоматично",
+    illustration: "Анімована ілюстрація",
+    illustration_theme: "Тема ілюстрації",
+    theme_auto: "Автоматично (сонце)",
+    theme_day: "День",
+    theme_night: "Ніч",
     collapsed: "Згорнуті за замовчуванням розділи",
     zoom: "Кнопка подробиць",
     zoom_helper: "Перемикає міні-картку на вміст повної картки",
@@ -830,6 +910,11 @@ const STRINGS = {
     title: "Cím (nem kötelező)",
     language: "Nyelv",
     lang_auto: "Automatikus",
+    illustration: "Animált illusztráció",
+    illustration_theme: "Az illusztráció témája",
+    theme_auto: "Automatikus (nap)",
+    theme_day: "Nappal",
+    theme_night: "Éjszaka",
     collapsed: "Alapértelmezetten összecsukott szakaszok",
     zoom: "Részletek gomb",
     zoom_helper: "A minikártyát a teljes kártya tartalmára váltja",
@@ -876,6 +961,11 @@ const STRINGS = {
     title: "Názov (voliteľné)",
     language: "Jazyk",
     lang_auto: "Automaticky",
+    illustration: "Animovaná ilustrácia",
+    illustration_theme: "Téma ilustrácie",
+    theme_auto: "Automaticky (slnko)",
+    theme_day: "Deň",
+    theme_night: "Noc",
     collapsed: "Predvolene zbalené sekcie",
     zoom: "Tlačidlo podrobností",
     zoom_helper: "Prepne mini kartu na obsah úplnej karty",
@@ -922,6 +1012,11 @@ const STRINGS = {
     title: "Název (volitelné)",
     language: "Jazyk",
     lang_auto: "Automaticky",
+    illustration: "Animovaná ilustrace",
+    illustration_theme: "Motiv ilustrace",
+    theme_auto: "Automaticky (slunce)",
+    theme_day: "Den",
+    theme_night: "Noc",
     collapsed: "Ve výchozím stavu sbalené sekce",
     zoom: "Tlačítko podrobností",
     zoom_helper: "Přepne mini kartu na obsah plné karty",
@@ -968,6 +1063,11 @@ const STRINGS = {
     title: "Naslov (neobvezno)",
     language: "Jezik",
     lang_auto: "Samodejno",
+    illustration: "Animirana ilustracija",
+    illustration_theme: "Tema ilustracije",
+    theme_auto: "Samodejno (sonce)",
+    theme_day: "Dan",
+    theme_night: "Noč",
     collapsed: "Privzeto strnjeni razdelki",
     zoom: "Gumb za podrobnosti",
     zoom_helper: "Preklopi mini kartico na vsebino polne kartice",
@@ -1014,6 +1114,11 @@ const STRINGS = {
     title: "Virsraksts (neobligāts)",
     language: "Valoda",
     lang_auto: "Automātiski",
+    illustration: "Animēta ilustrācija",
+    illustration_theme: "Ilustrācijas motīvs",
+    theme_auto: "Automātiski (saule)",
+    theme_day: "Diena",
+    theme_night: "Nakts",
     collapsed: "Pēc noklusējuma sakļautās sadaļas",
     zoom: "Detaļu poga",
     zoom_helper: "Pārslēdz mini kartīti uz pilnās kartītes saturu",
@@ -1060,6 +1165,11 @@ const STRINGS = {
     title: "Τίτλος (προαιρετικό)",
     language: "Γλώσσα",
     lang_auto: "Αυτόματα",
+    illustration: "Κινούμενη εικονογράφηση",
+    illustration_theme: "Θέμα εικονογράφησης",
+    theme_auto: "Αυτόματα (ήλιος)",
+    theme_day: "Ημέρα",
+    theme_night: "Νύχτα",
     collapsed: "Ενότητες συμπτυγμένες από προεπιλογή",
     zoom: "Κουμπί λεπτομερειών",
     zoom_helper: "Αλλάζει τη μίνι κάρτα στο περιεχόμενο της πλήρους κάρτας",
@@ -2200,10 +2310,124 @@ const SCENE_STYLE = `
 `;
 
 // ---------------------------------------------------------------------------
+// The illustrated header: a living room on the right of a 90 px banner (wall, window on the sky, floor lamp and the
+// card's own sofa-and-lamp drawing standing on a 10 px parquet strip edge to edge). The left of the banner is plain
+// wall: the icon, the title and the subtitle sit there.
+// ---------------------------------------------------------------------------
+
+// Night picture: forced by illustration_theme, else the sun below the horizon, else Home Assistant's dark mode.
+const isNight = (hass, config) => {
+  const theme = config.illustration_theme;
+  if (theme === "night") return true;
+  if (theme === "day") return false;
+  const sun = hass?.states?.["sun.sun"];
+  if (sun && sun.state !== "unavailable" && sun.state !== "unknown") return sun.state === "below_horizon";
+  return !!hass?.themes?.darkMode;
+};
+
+// Stars seen through the window at night (x, y, radius).
+const SC_STARS = [
+  [69, 17, 0.55],
+  [76, 30, 0.45],
+  [84, 15, 0.5],
+  [87, 34, 0.4],
+  [70, 37, 0.45],
+];
+
+// The room, 200 × 80 (the floor is the strip under it). `uid` keeps each card's gradient ids apart on a page.
+const sceneSvg = (uid) => {
+  const stars = SC_STARS.map(([x, y, r], i) => `<circle class="sc-star${i % 2 ? " tw" : ""}" cx="${x}" cy="${y}" r="${r}"/>`).join("");
+  // The card's drawing (120 × 100, sofa legs down to y 90): 76 px high, its legs on the floor.
+  const art = ART.replace("<svg ", '<svg class="sc-art" x="108" y="11.6" width="91.2" height="76" ');
+  return `<svg class="sc-scene" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">
+    <defs><radialGradient id="sc-glow-${uid}"><stop offset="0" stop-color="#ffd27a" stop-opacity=".75"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient></defs>
+    <rect class="sc-skirting" x="0" y="77.4" width="200" height="2.6"/>
+    <g class="sc-window" transform="translate(-16 0)">
+      <rect class="sc-sky" x="64" y="11" width="28" height="30" rx="1.5"/>
+      <g class="sc-day"><circle class="sc-sun" cx="84" cy="20" r="3.4"/><path class="sc-cloud" d="M67 31a2.4 2.4 0 0 1 3.6-2 3 3 0 0 1 5.6.8 1.8 1.8 0 0 1 .3 3.6H68.4a1.8 1.8 0 0 1-1.4-2.4Z"/></g>
+      <g class="sc-night">${stars}<path class="sc-moon" d="M83 16.4a3.6 3.6 0 1 0 3.2 5.4 2.9 2.9 0 1 1-3.2-5.4Z"/></g>
+      <rect class="sc-frame" x="64" y="11" width="28" height="30" rx="1.5"/><path class="sc-bar" d="M78 11V41M64 26H92"/>
+      <rect class="sc-sill" x="61.5" y="41" width="33" height="2.2" rx="1"/>
+      <path class="sc-curtain" d="M58 9h7v36q-4 1-7 0Z"/><path class="sc-curtain" d="M91 9h7v36q-3 1-7 0Z"/><rect class="sc-rod" x="55" y="7.6" width="46" height="1.6" rx=".8"/>
+    </g>
+    <g class="sc-floorlamp" transform="translate(-12 0)">
+      <circle class="sc-halo" cx="113" cy="40" r="15" fill="url(#sc-glow-${uid})"/>
+      <path class="sc-lamplight" d="M107.6 45h10.8l7 32h-24.8Z"/>
+      <rect class="sc-pole" x="112.3" y="44" width="1.4" height="34"/><ellipse class="sc-pole" cx="113" cy="79" rx="5" ry="1.2"/>
+      <path class="sc-shade" d="M108.4 35h9.2l2.6 10h-14.4Z"/>
+    </g>
+    ${art}
+  </svg>`;
+};
+
+const BANNER_STYLE = `
+  .banner { position: relative; overflow: hidden; height: 90px; color: #2a2522; background: #f4ede3; }
+  .banner.night { color: #fff; background: #2a2f3d; }
+  .sc-scene { position: absolute; right: 0; bottom: 10px; height: 80px; width: min(200px, 62%); }
+  /* The floor: a parquet strip edge to edge under the whole banner. */
+  .sc-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 10px;
+               background: repeating-linear-gradient(90deg, #c99a6b 0 38px, #b98a5c 38px 40px); box-shadow: inset 0 2px 0 #a97c50; }
+  .night .sc-ground { background: repeating-linear-gradient(90deg, #4a3a2c 0 38px, #3e3024 38px 40px); box-shadow: inset 0 2px 0 #5c4836; }
+  .sc-skirting { fill: #e6d9c6; } .night .sc-skirting { fill: #353b4b; }
+  .sc-sky { fill: #bfe0f7; } .night .sc-sky { fill: #1b2f52; }
+  .sc-frame { fill: none; stroke: #fff; stroke-width: 1.6; } .night .sc-frame { stroke: #4a5568; }
+  .sc-bar { stroke: #fff; stroke-width: 1; } .night .sc-bar { stroke: #4a5568; }
+  .sc-sill { fill: #fff; } .night .sc-sill { fill: #4a5568; }
+  .sc-curtain { fill: color-mix(in srgb, #7e57c2 30%, #f4ede3); } .night .sc-curtain { fill: color-mix(in srgb, #7e57c2 35%, #2a2f3d); }
+  .sc-rod { fill: #b98a5c; } .night .sc-rod { fill: #5c4836; }
+  .sc-night, .night .sc-day { display: none; } .night .sc-night { display: inline; }
+  .sc-sun { fill: #ffd65a; } .sc-cloud { fill: #fff; opacity: .9; animation: sc-drift 6s ease-in-out infinite alternate; }
+  .sc-star { fill: #fff; } .sc-star.tw { animation: sc-twinkle 3s ease-in-out infinite alternate; } .sc-moon { fill: #f3eed2; }
+  .sc-pole { fill: #8a8f98; } .night .sc-pole { fill: #6b7280; }
+  .sc-shade { fill: #e8e0d0; } .night .sc-shade { fill: #8c8578; }
+  .sc-lamplight, .sc-halo { opacity: 0; transition: opacity .4s ease; }
+  /* A scene on: the floor lamp shines, the card's pendant light breathes. */
+  .banner.on .sc-shade { fill: #ffcf6e; } .banner.on .sc-lamplight { fill: #ffe082; opacity: .35; } .banner.on .sc-halo { opacity: .8; }
+  .banner.night.on .sc-lamplight { opacity: .22; } .banner.night.on .sc-halo { opacity: 1; }
+  .banner.on .sc-art .a-light { animation: sc-breathe 3.6s ease-in-out infinite alternate; }
+  .banner.night.on .sc-art { filter: drop-shadow(0 0 4px rgba(255, 210, 122, .35)); }
+  /* No scene on: the room is greyed and its lamps are off, as the hero's drawing. */
+  .banner:not(.on) .sc-art { filter: grayscale(1); opacity: .5; } .banner:not(.on) .sc-art .a-light { display: none; }
+  .night:not(.on) .sc-art { opacity: .4; }
+  /* The icon (40 px), the title and the subtitle, on the wall at the left. */
+  .htext { position: absolute; left: 12px; top: 6px; bottom: 16px; right: calc(min(200px, 62%) + 4px); display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .banner .type-icon { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sc-tint) 22%, transparent); }
+  .banner.night .type-icon { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
+  /* The icon's color is the status: accent with a scene on or a script running, grey at rest, red when unavailable. */
+  .banner .type-icon .icon { fill: var(--sc-tint); }
+  .banner.night .type-icon .icon { fill: color-mix(in srgb, var(--sc-tint) 60%, #fff); }
+  .banner .type-icon.idle { --sc-tint: #8a8f98; }
+  .htext .titles { display: flex; flex-direction: column; gap: 1px; }
+  .htext .name { font-weight: 600; }
+  .htext .sub { font-size: 13px; color: #5d544b; } .night .htext .sub { color: rgba(255,255,255,.78); }
+  .htext .chip { align-self: flex-start; max-width: 100%; margin-top: 2px; background: rgba(255,255,255,.7); color: color-mix(in srgb, var(--c) 60%, #2a2522); }
+  .night .htext .chip { background: rgba(10,20,40,.5); color: color-mix(in srgb, var(--c) 45%, #fff); }
+  .banner .zoom { position: absolute; top: 6px; right: 6px; margin: 0; color: #2a2522; background: rgba(255,255,255,.55); }
+  .banner.night .zoom { color: #fff; background: rgba(10,20,40,.45); }
+  .banner + .content { padding-top: 12px; }
+  @keyframes sc-breathe { from { opacity: .4; } to { opacity: .75; } }
+  @keyframes sc-twinkle { from { opacity: .3; } to { opacity: 1; } }
+  @keyframes sc-drift { to { transform: translateX(2px); } }
+  /* Narrow card: no room for the room beside the text, the wall alone stays. */
+  @container (max-width: 300px) { .sc-scene { display: none; } .htext { right: 40px; } }
+`;
+
+let _scUid = 0;
+
+// ---------------------------------------------------------------------------
 // Cards
 // ---------------------------------------------------------------------------
 
 class SceneCard extends CardBase {
+  constructor() {
+    super();
+    this._uid = ++_scUid;
+  }
+
+  // The illustration is shown unless `illustration: false`.
+  get _illustrated() {
+    return this._config.illustration !== false;
+  }
   static getConfigElement() {
     return document.createElement("scene-card-editor");
   }
@@ -2221,7 +2445,8 @@ class SceneCard extends CardBase {
   }
 
   _extraDeps() {
-    return [this._area, this._fired?.at];
+    const h = this._hass;
+    return [this._area, this._fired?.at, ...(this._illustrated ? [h.states["sun.sun"]?.state] : [])];
   }
 
   _emptyKey(m) {
@@ -2313,7 +2538,9 @@ class SceneCard extends CardBase {
     const big = x
       ? `<div class="big" style="--c: ${esc(this._color(x, icon.key))}">${icon.html}<b>${esc(x.name)}</b><span>${esc(this._t("active").toLowerCase())}</span></div>`
       : `<div class="big none"><b>${esc(this._t("no_active"))}</b></div>`;
-    return `<div class="hero"><div class="hero-art${x ? "" : " off"}">${ART}</div><div class="hero-body">${big}${lines.join("")}</div></div>`;
+    // With the illustrated header, the drawing is in the banner: the hero keeps its text only.
+    const art = this._illustrated ? "" : `<div class="hero-art${x ? "" : " off"}">${ART}</div>`;
+    return `<div class="hero">${art}<div class="hero-body">${big}${lines.join("")}</div></div>`;
   }
 
   _scene(m, x, sum) {
@@ -2358,8 +2585,31 @@ class SceneCard extends CardBase {
     </div>`;
   }
 
-  _head(sum, sub) {
-    return this._header({ icon: ICONS.palette, cls: sum.on.length || sum.running.length ? "accent" : "idle", title: this._config.title || this._t("scenes"), sub, chip: sum.chip });
+  // The header's status: accent with a scene on or a script running, red when every scene and script is unavailable,
+  // grey at rest.
+  _status(m, sum) {
+    if (sum.on.length || sum.running.length) return "accent";
+    const all = [...m.scenes, ...m.scripts];
+    return all.length && all.every((x) => this._s(x.entity)?.state === "unavailable") ? "crit" : "idle";
+  }
+
+  _head(m, sum, sub) {
+    const title = this._config.title || this._t("scenes");
+    const cls = this._status(m, sum);
+    if (!this._illustrated) return this._header({ icon: ICONS.palette, cls, title, sub, chip: sum.chip });
+    const chip = sum.chip
+      ? `<span class="chip ${sum.chip.cls} clickable"${moreInfo(sum.chip.entity)} title="${esc(sum.chip.text)}" aria-label="${esc(sum.chip.text)}"><span class="dot"></span><span class="chip-text">${esc(sum.chip.text)}</span></span>`
+      : "";
+    const banner = `banner${isNight(this._hass, this._config) ? " night" : ""}${sum.on.length ? " on" : ""}`;
+    return `<div class="${banner}">${sceneSvg(this._uid)}<div class="sc-ground" aria-hidden="true"></div>
+      <div class="htext"><div class="type-icon ${cls}">${svgIcon(ICONS.palette)}</div><div class="titles"><div class="name">${esc(title)}</div>${
+        sub ? `<div class="sub">${esc(sub)}</div>` : ""
+      }${chip}</div></div>${this._zoomButton()}</div>`;
+  }
+
+  // The illustration's styles, only when it is shown.
+  _bannerStyle() {
+    return this._illustrated ? BANNER_STYLE : "";
   }
 
   _render() {
@@ -2385,9 +2635,9 @@ class SceneCard extends CardBase {
       parts.push(this._section("scripts", ICONS.script, this._t("scripts"), scripts.length, `<div class="rows">${scripts.map((x) => this._script(x)).join("")}</div>`));
     }
     if (parts.length === before) parts.push(`<div class="empty">${esc(this._t("nothing_here"))}</div>`);
-    return `<style>${BASE_STYLE}${SCENE_STYLE}</style>
+    return `<style>${BASE_STYLE}${SCENE_STYLE}${this._bannerStyle()}</style>
       <ha-card>
-        ${this._head(sum, sum.sub)}
+        ${this._head(m, sum, sum.sub)}
         <div class="content">${parts.join("")}</div>
       </ha-card>`;
   }
@@ -2438,11 +2688,11 @@ class SceneMiniCard extends withMini(SceneCard) {
       const { html, key } = this._icon(x, "palette");
       return `<button class="btn round${on ? " on" : ""}" data-action="activate" data-entity="${esc(x.entity)}" style="--c: ${esc(this._color(x, key))}" title="${esc(x.name)}" aria-label="${esc(x.name)}" aria-pressed="${on}">${html}</button>`;
     });
-    return `<style>${BASE_STYLE}${SCENE_STYLE}${MINI_STYLE}</style>
+    return `<style>${BASE_STYLE}${SCENE_STYLE}${MINI_STYLE}${this._bannerStyle()}</style>
       <ha-card>
-        ${this._head(sum, "")}
+        ${this._head(m, sum, "")}
         <div class="content mini">
-          <div class="mini-art${sum.on.length ? "" : " hero-art off"}">${ART}</div>
+          ${this._illustrated ? "" : `<div class="mini-art${sum.on.length ? "" : " hero-art off"}">${ART}</div>`}
           <div class="info">${lines.join("")}</div>
           ${picks.length ? `<div class="controls picks">${picks.join("")}</div>` : ""}
         </div>
@@ -2457,6 +2707,7 @@ class SceneMiniCard extends withMini(SceneCard) {
 class SceneCardEditor extends EditorBase {
   static get toggles() {
     return [
+      ["illustration", true],
       ["show_title", true],
       ["show_subtitle", true],
       ["show_hero", true],
@@ -2471,8 +2722,14 @@ class SceneCardEditor extends EditorBase {
     return ["scenes", "scripts"];
   }
 
+  static get defaults() {
+    return { illustration_theme: "auto" };
+  }
+
   _fields() {
+    const tr = (k) => t(this._hass, this._config, k);
     return [
+      { name: "illustration_theme", selector: { select: { mode: "dropdown", options: ["auto", "day", "night"].map((value) => ({ value, label: tr(`theme_${value}`) })) } } },
       { name: "scenes", selector: { entity: { multiple: true, domain: "scene" } } },
       { name: "scripts", selector: { entity: { multiple: true, domain: "script" } } },
       { name: "area", selector: { area: { multiple: true } } },
