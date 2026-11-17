@@ -181,7 +181,8 @@ test("nothing active: the hero says so, once", async () => {
   const { html } = await mount({}, "idle");
   assert.equal((html().match(/No active scene/g) || []).length, 1);
   const r = await mount({ show_hero: false }, "idle");
-  assert.equal((r.html().match(/No active scene/g) || []).length, 1);
+  // Once on screen (the subtitle's tooltip, its full text when it is cut, aside).
+  assert.equal((r.html().replace(/ title="[^"]*"/g, "").match(/No active scene/g) || []).length, 1);
   // At rest the status pill says so, grey like the header icon.
   assert.match(html(), /class="chip idle" title="Idle" aria-label="Idle"><span class="dot"><\/span><span class="chip-text">Idle<\/span>/);
   assert.doesNotMatch(html(), /class="tile tint"/);
@@ -206,7 +207,7 @@ test("illustrated header: lit with a scene on, night by option, unique ids per c
   assert.match(active.html(), /<b>Movie<\/b><\/div>/);
   // Without the hero, the subtitle names the scene.
   const noHero = await mount({ show_scripts: false, show_hero: false });
-  assert.match(noHero.html(), /<span class="chip-text">Active<\/span><\/span><\/div><div class="sub">Movie<\/div>/);
+  assert.match(noHero.html(), /<span class="chip-text">Active<\/span><\/span><\/div><div class="sub" title="Movie">Movie<\/div>/);
   assert.match(a.html(), /type-icon accent/);
   assert.match(a.html(), /class="sc-ground"/);
   const b = await mount({ illustration_theme: "night" });
@@ -337,4 +338,66 @@ test("the header follows the area chosen: no active scene of another area in the
   const { card, html } = await mount();
   click(card, { action: "area", area: "chambre" });
   assert.doesNotMatch(html(), /Movie active/);
+});
+
+// A measured layout stand-in for _fitPill: the title block (.titles) with its row (title + pill) in a banner whose
+// ground strip starts at 80 px. Widths in px; `tall` makes the block run past the strip once the pill drops.
+const fitLayout = ({ title, pill, row, tall = false, banner = true }) => {
+  const rect = (o) => ({ top: 0, bottom: 0, left: 0, right: 0, width: 0, height: 0, ...o });
+  const classes = new Set();
+  const name = { textContent: "x", width: title, getClientRects: () => [1] };
+  const chip = { getBoundingClientRect: () => rect({ width: classes.has("pill-dot") ? 14 : pill }) };
+  const trow = { querySelector: (s) => (s.includes(".name") ? name : chip), getBoundingClientRect: () => rect({ width: row }) };
+  const ground = { getBoundingClientRect: () => rect({ top: 80 }) };
+  const box = { getBoundingClientRect: () => rect({ top: 0, bottom: 90 }), querySelector: () => ground };
+  const t = {
+    classList: {
+      add: (c) => classes.add(c),
+      remove: (...c) => {
+        for (const x of c) classes.delete(x);
+      },
+    },
+    querySelector: () => trow,
+    closest: () => (banner ? box : null),
+    getBoundingClientRect: () => rect({ top: 10, bottom: classes.has("below") && tall ? 86 : 70, width: row }),
+  };
+  return { t, classes };
+};
+
+test("the status pill stays beside a whole title, else drops under the subtitle, else keeps its dot (measured)", () => {
+  const w = sc.window;
+  w.getComputedStyle = () => ({ columnGap: "8px" });
+  w.document.createRange = () => {
+    let el;
+    return { selectNodeContents: (e) => (el = e), getBoundingClientRect: () => ({ width: el.width }) };
+  };
+  const fit = (opts) => {
+    const card = (() => { const c = new SceneCard(); c.setConfig({}); c.hass = makeHass(); return c; })();
+    const l = fitLayout(opts);
+    card.shadowRoot.querySelectorAll = () => [l.t];
+    card._fitPill();
+    return [...l.classes].sort().join(" ");
+  };
+  // Whole title + gap + whole pill fit on the row: the pill stays beside the title.
+  assert.equal(fit({ title: 60, pill: 70, row: 140 }), "");
+  // One pixel short: never an ellipsised title beside the pill, the pill goes under the subtitle.
+  assert.equal(fit({ title: 63, pill: 70, row: 140 }), "below");
+  // Long Greek/Cyrillic/German labels: decided by the measure, not by a fixed width.
+  assert.equal(fit({ title: 40, pill: 130, row: 160 }), "below");
+  assert.equal(fit({ title: 40, pill: 112, row: 160 }), "");
+  // Under the subtitle but the block would run into the ground strip, or the label is wider than the line: dot only.
+  assert.equal(fit({ title: 90, pill: 70, row: 140, tall: true }), "below pill-dot");
+  assert.equal(fit({ title: 90, pill: 150, row: 140 }), "below pill-dot");
+  // The classic header (no banner) follows the same rule.
+  assert.equal(fit({ title: 90, pill: 70, row: 140, banner: false }), "below");
+  delete w.getComputedStyle;
+  delete w.document.createRange;
+});
+
+test("no fixed width decides the pill's place: only the dot-only rule at 200 px is a width rule", () => {
+  const css = ((() => { const c = new SceneCard(); c.setConfig({}); c.hass = makeHass(); return c; })()).shadowRoot.innerHTML;
+  assert.doesNotMatch(css, /@container rc-head/);
+  assert.match(css, /\.titles\.below \.trow \{ display: contents; \}/);
+  assert.match(css, /\.titles\.pill-dot \.chip \.chip-text \{ display: none; \}/);
+  assert.match(css, /@container \(max-width: 200px\) \{\s*\.chip \{ padding: 4px; flex: none; \}/);
 });
