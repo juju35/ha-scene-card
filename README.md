@@ -174,8 +174,8 @@ zoom: true
 | `show_title` | both | `true` | Show the title in the header |
 | `show_subtitle` | full | `true` | Show the subtitle (the active scene) |
 | `show_hero` | full | `true` | The hero: the active scene with its illustration |
-| `scenes` | both | Every scene | Scenes: entity ids, or objects with `entity`, `name`, `icon` and `color` |
-| `scripts` | both | Every script | Scripts: entity ids, or objects with `entity`, `name` and `icon` |
+| `scenes` | both | Every scene | Scenes: entity ids, or objects with `entity`, `name`, `icon` and `color` (objects are YAML only: the visual editor then hides the field) |
+| `scripts` | both | Every script | Scripts: entity ids, or objects with `entity`, `name` and `icon` (objects YAML only) |
 | `area` | both | All | Area or areas: only their scenes and scripts |
 | `show_scenes` | full | `true` | Scenes section |
 | `show_scripts` | full | `true` | Scripts section |
