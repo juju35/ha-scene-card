@@ -402,3 +402,66 @@ test("no fixed width decides the pill's place: only the dot-only rule at 200 px 
   assert.match(css, /\.titles\.pill-dot \.chip \.chip-text \{ display: none; \}/);
   assert.match(css, /@container \(max-width: 200px\) \{\s*\.chip \{ padding: 4px; flex: none; \}/);
 });
+
+test("an unavailable scene says so and its tile is disabled", async () => {
+  const { card, hass, html } = await mount();
+  hass.states["scene.diner"] = { ...hass.states["scene.diner"], state: "unavailable" };
+  card._lastDeps = null;
+  card.hass = { ...hass, states: { ...hass.states } };
+  const tile = html().match(/<button class="tile[^"]*" data-action="activate" data-entity="scene\.diner"[^>]*>/)[0];
+  assert.match(tile, / disabled/);
+  assert.match(tile, /Unavailable/);
+});
+
+test("the active scene stays the last one activated on shared lights, with many scenes", () => {
+  const hass = makeHass();
+  const m = sc.resolve(hass, {});
+  // "All off" set every light 30 h ago, the movie 40 min ago: only the movie is active; once "All off" is newer, it is.
+  same([...sc.activeScenes(hass, m)], ["scene.cinema"]);
+  hass.states["scene.tout_eteindre"] = { ...hass.states["scene.tout_eteindre"], state: new Date(NOW - 60e3).toISOString() };
+  same([...sc.activeScenes(hass, m)], ["scene.tout_eteindre"]);
+});
+
+test("visual editor: scenes or scripts written as objects stay YAML-only", () => {
+  const Editor = sc.element("scene-card-editor");
+  const doc = sc.window.document;
+  const create = doc.createElement;
+  let form;
+  doc.createElement = (tag) => (form = { tag, listeners: {}, addEventListener(type, fn) { this.listeners[type] = fn; } });
+  try {
+    const ed = new Editor();
+    ed.setConfig({ type: "custom:scene-card", scenes: [{ entity: "scene.cinema", icon: "mdi:movie" }], scripts: ["script.cafe"] });
+    ed.hass = makeHass();
+    const names = form.schema.map((s) => s.name);
+    assert.ok(!names.includes("scenes"));
+    assert.ok(names.includes("scripts"));
+    ed.setConfig({ type: "custom:scene-card", scenes: ["scene.cinema"] });
+    assert.ok(form.schema.some((s) => s.name === "scenes"));
+  } finally {
+    doc.createElement = create;
+  }
+});
+
+test("mini card: the scene buttons follow the area chosen in the expanded view", async () => {
+  const { card, hass, html } = await mount({ mini_count: 6 }, "default", SceneMiniCard);
+  const picks = () => [...html().matchAll(/data-action="activate" data-entity="([^"]+)"/g)].map((x) => x[1]);
+  const all = picks();
+  card._dialogClosedAt = 0;
+  click(card, { action: "zoom" });
+  click(card, { action: "area", area: "chambre" });
+  card._unzoom.tap({ composedPath: () => [] });
+  assert.match(html(), /content mini/);
+  const bedroom = picks();
+  assert.ok(bedroom.length > 0 && bedroom.length < all.length, `${bedroom} vs ${all}`);
+  for (const id of bedroom) assert.equal(hass.entities[id]?.area_id ?? hass.devices[hass.entities[id]?.device_id]?.area_id, "chambre");
+  clearTimeout(card._fireTimer);
+});
+
+test("the entity ids are listed once per states object, shared by every caller", () => {
+  const t = load({ names: ["stateIds"] });
+  const states = { "scene.a": {}, "light.b": {} };
+  const ids = t.stateIds(states);
+  assert.equal(t.stateIds(states), ids);
+  assert.notEqual(t.stateIds({ ...states }), ids);
+  assert.equal(t.stateIds(undefined).length, 0);
+});

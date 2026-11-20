@@ -174,14 +174,14 @@ zoom: true
 | `show_title` | both | `true` | Show the title in the header |
 | `show_subtitle` | full | `true` | Show the subtitle (the active scene) |
 | `show_hero` | full | `true` | The hero: the active scene with its illustration |
-| `scenes` | both | Every scene | Scenes: entity ids, or objects with `entity`, `name`, `icon` and `color` |
-| `scripts` | both | Every script | Scripts: entity ids, or objects with `entity`, `name` and `icon` |
+| `scenes` | both | Every scene | Scenes: entity ids, or objects with `entity`, `name`, `icon` and `color` (objects are YAML only: the visual editor then hides the field) |
+| `scripts` | both | Every script | Scripts: entity ids, or objects with `entity`, `name` and `icon` (objects YAML only) |
 | `area` | both | All | Area or areas: only their scenes and scripts |
 | `show_scenes` | full | `true` | Scenes section |
 | `show_scripts` | full | `true` | Scripts section |
 | `show_area_filter` | full | `true` | Area chips (with two areas at least) |
 | `show_last` | full | `true` | When each scene was last activated and each script last run |
-| `mini_count` | mini | `3` | How many scenes the mini card shows as buttons (0 to 6) |
+| `mini_count` | mini | `3` | How many scenes the mini card shows as buttons (0 to 6); they follow the area picked in the expanded view |
 | `collapsed` | both | `[]` | Sections folded by default: `scenes`, `scripts`. Click a section title (or Tab to it and press Enter or Space) to fold or unfold it |
 | `zoom` | mini | `true` | Detail button at the top right of the mini card: it shows the full card's content (with the same options, which can be set on the mini card too, in its visual editor as well) and switches back to the compact view; a click outside the card also brings the compact view back. `false` removes the button |
 | `language` | both | Auto | Force language: `fr`, `en`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings) |
