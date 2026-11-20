@@ -2154,10 +2154,12 @@ class EditorBase extends HTMLElement {
       this._formConfig = this._config;
       this._form.data = { ...defaults, ...this._config };
     }
-    const l = lang(this._hass, this._config);
-    if (this._schemaLang !== l) {
-      this._schemaLang = l;
-      this._form.schema = this._schema();
+    // The schema follows the language and the configuration (a field can depend on what the YAML holds).
+    const schema = this._schema();
+    const key = JSON.stringify(schema);
+    if (this._schemaKey !== key) {
+      this._schemaKey = key;
+      this._form.schema = schema;
     }
   }
 }
@@ -2296,6 +2298,13 @@ const activatedAt = (s) => (s && valid(s) ? parseTime(s.state) : null);
 const activeScenes = (hass, m) => {
   const out = new Set();
   const at = new Map(m.scenes.map((sc) => [sc.entity, activatedAt(hass.states[sc.entity])]));
+  // For each light, the last time a scene setting it was activated: one pass over the scenes, not one per pair of
+  // scenes (an install with a hundred Hue scenes redraws this on every light change).
+  const lastByLight = new Map();
+  for (const sc of m.scenes) {
+    const t = at.get(sc.entity) ?? -1;
+    for (const id of m.lightsOf.get(sc.entity) || []) if (t > (lastByLight.get(id) ?? -1)) lastByLight.set(id, t);
+  }
   for (const sc of m.scenes) {
     const s = hass.states[sc.entity];
     if (typeof s?.attributes?.is_active === "boolean") {
@@ -2305,7 +2314,8 @@ const activeScenes = (hass, m) => {
     const t = at.get(sc.entity);
     const lights = m.lightsOf.get(sc.entity) || [];
     if (t === null || !lights.length) continue;
-    const newer = m.scenes.some((o) => o.entity !== sc.entity && (at.get(o.entity) ?? -1) > t && (m.lightsOf.get(o.entity) || []).some((id) => lights.includes(id)));
+    // A scene activated later set one of its lights (only another scene can be later than this one).
+    const newer = lights.some((id) => (lastByLight.get(id) ?? -1) > t);
     if (newer) continue;
     const changed = lights.some((id) => (parseTime(hass.states[id]?.last_updated) ?? 0) > t + SETTLE_MS);
     if (!changed) out.add(sc.entity);
@@ -2351,6 +2361,7 @@ const SCENE_STYLE = `
   }
   .hero-body .big b { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .big ha-icon { --mdc-icon-size: 24px; color: var(--c); align-self: center; flex: none; }
+  button.tile:disabled { cursor: default; opacity: .55; }
   button.tile:focus-visible { outline: 2px solid var(--primary-color, var(--sc-accent)); outline-offset: 2px; }
   .tile .row-icon > ha-icon { --mdc-icon-size: 18px; }
   /* The scene just launched: a ripple from its icon. */
@@ -2652,12 +2663,15 @@ class SceneCard extends CardBase {
     const on = sum.active.has(x.entity);
     const { html, key } = this._icon(x, "palette");
     const color = this._color(x, key);
-    const t = activatedAt(this._s(x.entity));
-    const when = on ? this._t("active") : this._config.show_last === false ? "" : t ? this._when(t) : this._t("never");
+    const s = this._s(x.entity);
+    const t = activatedAt(s);
+    // Unavailable (its integration down): said so, and not a button that could only fail.
+    const off = s?.state === "unavailable";
+    const when = off ? this._t("unavailable") : on ? this._t("active") : this._config.show_last === false ? "" : t ? this._when(t) : this._t("never");
     const n = on ? this._lightsOn(m, x) : 0;
     const cls = `tile${on ? " tint" : ""}${this._firing(x.entity) ? " fire" : ""}`;
-    return `<button class="${cls}" data-action="activate" data-entity="${esc(x.entity)}" style="--c: ${esc(color)}" aria-pressed="${on}" aria-label="${esc(
-      `${x.name}${on ? ` · ${this._t("active")}` : ""}`,
+    return `<button class="${cls}" data-action="activate" data-entity="${esc(x.entity)}" style="--c: ${esc(color)}" aria-pressed="${on}"${off ? " disabled" : ""} aria-label="${esc(
+      `${x.name}${on ? ` · ${this._t("active")}` : off ? ` · ${this._t("unavailable")}` : ""}`,
     )}">
       <span class="ripple" aria-hidden="true"></span>
       <span class="tile-head"><span class="row-icon${on ? "" : " idle"}">${html}${on ? `<span class="badge">${svgIcon(ICONS.check)}</span>` : ""}</span>
@@ -2802,7 +2816,7 @@ class SceneMiniCard extends withMini(SceneCard) {
     const picks = m.scenes.slice(0, n).map((x) => {
       const on = sum.active.has(x.entity);
       const { html, key } = this._icon(x, "palette");
-      return `<button class="btn round${on ? " on" : ""}" data-action="activate" data-entity="${esc(x.entity)}" style="--c: ${esc(this._color(x, key))}" title="${esc(x.name)}" aria-label="${esc(x.name)}" aria-pressed="${on}">${html}</button>`;
+      return `<button class="btn round${on ? " on" : ""}" data-action="activate" data-entity="${esc(x.entity)}" style="--c: ${esc(this._color(x, key))}" title="${esc(x.name)}" aria-label="${esc(x.name)}" aria-pressed="${on}"${this._s(x.entity)?.state === "unavailable" ? " disabled" : ""}>${html}</button>`;
     });
     return `<style>${BASE_STYLE}${SCENE_STYLE}${MINI_STYLE}${this._bannerStyle()}</style>
       <ha-card>
@@ -2844,10 +2858,13 @@ class SceneCardEditor extends EditorBase {
 
   _fields() {
     const tr = (k) => t(this._hass, this._config, k);
+    // `scenes` / `scripts` written in YAML with objects ({ entity, name, icon, color }) stay YAML-only: an entity
+    // picker would show them empty and drop their names, icons and colours on the first change.
+    const plain = (k) => asList(this._config?.[k]).every((x) => typeof x === "string");
     return [
       { name: "illustration_theme", selector: { select: { mode: "dropdown", options: ["auto", "day", "night"].map((value) => ({ value, label: tr(`theme_${value}`) })) } } },
-      { name: "scenes", selector: { entity: { multiple: true, domain: "scene" } } },
-      { name: "scripts", selector: { entity: { multiple: true, domain: "script" } } },
+      ...(plain("scenes") ? [{ name: "scenes", selector: { entity: { multiple: true, domain: "scene" } } }] : []),
+      ...(plain("scripts") ? [{ name: "scripts", selector: { entity: { multiple: true, domain: "script" } } }] : []),
       { name: "area", selector: { area: { multiple: true } } },
     ];
   }
