@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.2 - 2026-11-20
+
+### Fixes
+- An unavailable scene reads "Unavailable" and its tile (and its mini-card button) is disabled, instead of offering an activation that could only fail and saying "Never".
+- Visual editor: `scenes` / `scripts` written in YAML as objects (`entity`, `name`, `icon`, `color`) are no longer shown in an entity picker that would drop them on the next change; the field is hidden (YAML only) and comes back for plain entity lists.
+
+### Performance
+- The active scene is found in one pass over the scenes (the last activation per light) instead of comparing every pair of scenes, on every light change.
+
 ## 1.2.1 - 2026-11-18
 
 ### Fixes

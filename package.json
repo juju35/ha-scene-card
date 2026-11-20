@@ -1,6 +1,6 @@
 {
   "name": "ha-scene-card",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Lovelace cards for Home Assistant to launch scenes and scripts: a grid of scenes with the active one highlighted, scripts with their running state.",
   "private": true,
   "type": "module",
