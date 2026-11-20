@@ -441,3 +441,27 @@ test("visual editor: scenes or scripts written as objects stay YAML-only", () =>
     doc.createElement = create;
   }
 });
+
+test("mini card: the scene buttons follow the area chosen in the expanded view", async () => {
+  const { card, hass, html } = await mount({ mini_count: 6 }, "default", SceneMiniCard);
+  const picks = () => [...html().matchAll(/data-action="activate" data-entity="([^"]+)"/g)].map((x) => x[1]);
+  const all = picks();
+  card._dialogClosedAt = 0;
+  click(card, { action: "zoom" });
+  click(card, { action: "area", area: "chambre" });
+  card._unzoom.tap({ composedPath: () => [] });
+  assert.match(html(), /content mini/);
+  const bedroom = picks();
+  assert.ok(bedroom.length > 0 && bedroom.length < all.length, `${bedroom} vs ${all}`);
+  for (const id of bedroom) assert.equal(hass.entities[id]?.area_id ?? hass.devices[hass.entities[id]?.device_id]?.area_id, "chambre");
+  clearTimeout(card._fireTimer);
+});
+
+test("the entity ids are listed once per states object, shared by every caller", () => {
+  const t = load({ names: ["stateIds"] });
+  const states = { "scene.a": {}, "light.b": {} };
+  const ids = t.stateIds(states);
+  assert.equal(t.stateIds(states), ids);
+  assert.notEqual(t.stateIds({ ...states }), ids);
+  assert.equal(t.stateIds(undefined).length, 0);
+});

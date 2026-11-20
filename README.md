@@ -181,7 +181,7 @@ zoom: true
 | `show_scripts` | full | `true` | Scripts section |
 | `show_area_filter` | full | `true` | Area chips (with two areas at least) |
 | `show_last` | full | `true` | When each scene was last activated and each script last run |
-| `mini_count` | mini | `3` | How many scenes the mini card shows as buttons (0 to 6) |
+| `mini_count` | mini | `3` | How many scenes the mini card shows as buttons (0 to 6); they follow the area picked in the expanded view |
 | `collapsed` | both | `[]` | Sections folded by default: `scenes`, `scripts`. Click a section title (or Tab to it and press Enter or Space) to fold or unfold it |
 | `zoom` | mini | `true` | Detail button at the top right of the mini card: it shows the full card's content (with the same options, which can be set on the mini card too, in its visual editor as well) and switches back to the compact view; a click outside the card also brings the compact view back. `false` removes the button |
 | `language` | both | Auto | Force language: `fr`, `en`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings) |

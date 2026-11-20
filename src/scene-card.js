@@ -1256,6 +1256,16 @@ const textWidth = (el) => {
 
 const svgIcon = (path, cls = "") => `<svg class="icon ${cls}" viewBox="0 0 24 24" aria-hidden="true"><path d="${path}"/></svg>`;
 const domainOf = (id) => String(id || "").split(".")[0];
+
+// The entity ids of a states object, listed once per states object: every card on the dashboard and every call of
+// one update share the same list instead of scanning all states again.
+const _stateIds = new WeakMap();
+const stateIds = (states) => {
+  if (!states) return [];
+  let ids = _stateIds.get(states);
+  if (!ids) _stateIds.set(states, (ids = Object.keys(states)));
+  return ids;
+};
 const asList = (v) => (Array.isArray(v) ? v : v ? [v] : []);
 const DAY_MS = 8.64e7;
 
@@ -1661,7 +1671,7 @@ class CardBase extends HTMLElement {
   _resolve() {
     const h = this._hass;
     if (!h?.entities || !h?.devices) return null;
-    const key = [h.entities, h.devices, h.areas, Object.keys(h.states).length];
+    const key = [h.entities, h.devices, h.areas, stateIds(h.states).length];
     if (this._model && this._modelKey?.every((k, i) => k === key[i])) return this._model;
     this._modelKey = key;
     this._model = this._build();
@@ -2221,11 +2231,11 @@ const visible = (hass, id) => {
 const resolve = (hass, config) => {
   let per = _cache.get(hass.entities);
   if (!per) _cache.set(hass.entities, (per = new Map()));
-  const sig = `${JSON.stringify([config.scenes, config.scripts, config.area])}|${Object.keys(hass.states).length}`;
+  const sig = `${JSON.stringify([config.scenes, config.scripts, config.area])}|${stateIds(hass.states).length}`;
   if (per.has(sig)) return per.get(sig);
   const areas = asList(config.area);
   const all = (domain) =>
-    Object.keys(hass.states)
+    stateIds(hass.states)
       .filter((id) => domainOf(id) === domain && visible(hass, id))
       .map((entity) => ({ entity }));
   const take = (list, domain) =>
@@ -2242,7 +2252,7 @@ const resolve = (hass, config) => {
   // The lights a scene sets: its `entity_id` attribute (scenes of Home Assistant); else the lights of its device (Hue
   // scenes belong to their room or zone, whose grouped light is on the same device); else those of the area named as
   // its `group_name` (Hue), else of its own area (deCONZ and the others).
-  const lights = Object.keys(hass.states).filter((id) => domainOf(id) === "light");
+  const lights = stateIds(hass.states).filter((id) => domainOf(id) === "light");
   const areaByName = new Map(Object.values(hass.areas || {}).map((a) => [String(a.name).toLowerCase(), a.area_id]));
   const lightsOf = new Map();
   // The lights counted as "on" for a scene: only those it really sets (listed, or on its device), a light group
@@ -2811,9 +2821,10 @@ class SceneMiniCard extends withMini(SceneCard) {
     if (sum.on.length) lines.push(`<div class="line accent clickable"${moreInfo(sum.on[0].entity)}>${svgIcon(ICONS.check)}<span>${esc(this._t("active_scene", { name: sum.on.map((x) => x.name).join(", ") }))}</span></div>`);
     for (const x of sum.running.slice(0, 2)) lines.push(`<div class="line accent clickable"${moreInfo(x.entity)}>${svgIcon(ICONS.script)}<span>${esc(`${x.name} · ${this._t("running")}`)}</span></div>`);
     if (!lines.length) lines.push(`<div class="line">${svgIcon(ICONS.palette)}<span>${esc(this._t("no_active"))}</span></div>`);
-    // The first scenes as round buttons (`mini_count`, 3 by default).
+    // The first scenes as round buttons (`mini_count`, 3 by default), of the area chosen in the expanded view
+    // like the summary lines above.
     const n = clamp(Number(this._config.mini_count ?? 3), 0, 6);
-    const picks = m.scenes.slice(0, n).map((x) => {
+    const picks = m.scenes.filter((x) => this._inArea(x)).slice(0, n).map((x) => {
       const on = sum.active.has(x.entity);
       const { html, key } = this._icon(x, "palette");
       return `<button class="btn round${on ? " on" : ""}" data-action="activate" data-entity="${esc(x.entity)}" style="--c: ${esc(this._color(x, key))}" title="${esc(x.name)}" aria-label="${esc(x.name)}" aria-pressed="${on}"${this._s(x.entity)?.state === "unavailable" ? " disabled" : ""}>${html}</button>`;

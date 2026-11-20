@@ -5,9 +5,14 @@
 ### Fixes
 - An unavailable scene reads "Unavailable" and its tile (and its mini-card button) is disabled, instead of offering an activation that could only fail and saying "Never".
 - Visual editor: `scenes` / `scripts` written in YAML as objects (`entity`, `name`, `icon`, `color`) are no longer shown in an entity picker that would drop them on the next change; the field is hidden (YAML only) and comes back for plain entity lists.
+- Mini card: the scene buttons follow the area picked in the expanded view, like the active-scene lines above them.
 
 ### Performance
 - The active scene is found in one pass over the scenes (the last activation per light) instead of comparing every pair of scenes, on every light change.
+- The entity ids are listed once per state update and shared by every card and call, instead of a full scan of the states each time.
+
+### Maintenance
+- CI: npm downloads cached (validate, release, screenshots); the screenshots job no longer installs the unused `gh` package.
 
 ## 1.2.1 - 2026-11-18
 
