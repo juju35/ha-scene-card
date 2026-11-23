@@ -56,7 +56,7 @@ Every scene and script of Home Assistant is shown when nothing is configured (ex
 
 | Integration | What the cards use |
 |---|---|
-| <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/homeassistant.png" alt="" width="16"> [Scenes](https://www.home-assistant.io/integrations/scene/) and [Scripts](https://www.home-assistant.io/integrations/script/) of Home Assistant (core) | Scenes with the lights they set (active scene detection), scripts with their running state, last run and stop |
+| <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/homeassistant.png" alt="" width="16"> [Scenes](https://www.home-assistant.io/integrations/scene/) and <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/home_assistant.png" alt="" width="16"> [Scripts](https://www.home-assistant.io/integrations/script/) of Home Assistant (core) | Scenes with the lights they set (active scene detection), scripts with their running state, last run and stop |
 | <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/hue.png" alt="" width="16"> [Philips Hue](https://www.home-assistant.io/integrations/hue/) (core) | Scenes of each room or zone (the room's lights for the active scene), smart scenes with their own active state |
 | <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/deconz.png" alt="" width="16"> [deCONZ](https://www.home-assistant.io/integrations/deconz/) (core) | Scenes of the groups |
 | <img src="https://raw.githubusercontent.com/juju35/ha-scene-card/main/images/lifx.png" alt="" width="16"> [LIFX](https://www.home-assistant.io/integrations/lifx/) (core) | Scenes of the LIFX app |
